@@ -42,16 +42,41 @@ class OllamaClient implements LLMClient {
     this.label = `ollama ${this.model}`;
   }
   async complete(prompt: string): Promise<string> {
-    const res = await fetch(`${this.baseUrl}/api/generate`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        model: this.model,
-        prompt,
-        stream: false,
-        options: { temperature: 0.7 },
-      }),
-    });
+    let res: Response;
+    try {
+      res = await fetch(`${this.baseUrl}/api/generate`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          model: this.model,
+          prompt,
+          stream: false,
+          options: { temperature: 0.7 },
+        }),
+      });
+    } catch (e) {
+      // A raw undici stack trace here helps nobody. Say what to do.
+      throw new Error(
+        `cannot reach Ollama at ${this.baseUrl}
+` +
+        `      Start it with:  ollama serve
+` +
+        `      Pull a model:   ollama pull ${this.model}
+` +
+        `      Or drop --live to run against recorded output.
+` +
+        `      (underlying: ${(e as Error).message})`,
+      );
+    }
+    if (res.status === 404) {
+      throw new Error(
+        `Ollama has no model "${this.model}".
+` +
+        `      Pull it:  ollama pull ${this.model}
+` +
+        `      Or pick another:  OLLAMA_MODEL=llama3.1:8b npm run <demo> -- --live`,
+      );
+    }
     if (!res.ok) throw new Error(`ollama ${res.status}: ${await res.text()}`);
     return ((await res.json()) as { response: string }).response;
   }
@@ -120,4 +145,14 @@ export function header(title: string, client?: LLMClient): void {
 
 export function section(title: string): void {
   console.log(`\n── ${title} ${"─".repeat(Math.max(0, 63 - title.length))}`);
+}
+
+/** Wrap a demo's main so a --live connection failure prints one clear
+ *  paragraph instead of an undici stack trace. */
+export function runDemo(main: () => Promise<void>): void {
+  main().catch((e: unknown) => {
+    const msg = e instanceof Error ? e.message : String(e);
+    console.error(`\n  x demo could not finish\n      ${msg}\n`);
+    process.exit(1);
+  });
 }

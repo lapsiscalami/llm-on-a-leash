@@ -10,7 +10,7 @@
  * card n for question n. Variety is guaranteed by construction.
  */
 import { DOMAINS, hashString, seededRandom } from "../../src/world.js";
-import { getClient, extractJson, isLive, header, section, bar } from "../../src/llm.js";
+import { getClient, extractJson, isLive, header, section, bar, runDemo } from "../../src/llm.js";
 
 // ── The naive approach ───────────────────────────────────────────────────
 
@@ -70,7 +70,7 @@ function distribution(label: string, picks: string[]): void {
 const client = getClient((_p, call) =>
   JSON.stringify({ topic: RECORDED_NAIVE[call % RECORDED_NAIVE.length] }));
 
-(async () => {
+runDemo(async () => {
   header("DEMO 01 — Deal from a deck, don't ask for variety", client);
 
   section("Asking the model for variety (20 calls)");
@@ -116,4 +116,4 @@ const client = getClient((_p, call) =>
   console.log(`  · Zero tokens spent deciding what to talk about.`);
   console.log(`  · The model still writes the QUESTION — it just doesn't get to`);
   console.log(`    choose the subject. That is the whole pattern in one line.\n`);
-})();
+});
