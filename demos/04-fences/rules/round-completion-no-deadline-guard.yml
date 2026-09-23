@@ -1,0 +1,31 @@
+id: round-completion-no-deadline-guard
+language: TypeScript
+severity: error
+message: "checkRoundCompletion must not consult a deadline. Round deadlines are SOFT — a round resolves only when every player has finalized."
+note: |
+  INVERTED ABSENCE ASSERTION. The idempotency rule asserts a line must be
+  PRESENT; this one asserts a pattern must stay ABSENT.
+
+  A well-meaning contributor adds a deadline comparison to "fix" stuck
+  rounds, and rounds start resolving out from under players who are still
+  typing. The fix is to never let that line land.
+
+  NOTE the `pattern` below rather than a regex: an earlier draft of this
+  rule used `regex: 'Date\.now\(\)\s*>'` and fired on the guard's own
+  EXPLANATORY COMMENT, which mentions the very code it forbids. Structural
+  matching reads the syntax tree, so prose is invisible to it. That is the
+  argument for ast-grep over grep in one example.
+rule:
+  kind: program
+  all:
+    - has:
+        stopBy: end
+        regex: "checkRoundCompletion"
+    - has:
+        stopBy: end
+        any:
+          - pattern: Date.now() > $$$
+          - pattern: $$$ > $DEADLINE.deadline
+          - pattern: $OBJ.isExpired
+files:
+  - "demos/04-fences/guarded/rounds.ts"

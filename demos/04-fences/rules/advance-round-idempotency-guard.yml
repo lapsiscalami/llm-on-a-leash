@@ -1,0 +1,25 @@
+id: advance-round-idempotency-guard
+language: TypeScript
+severity: error
+message: "advanceToNextRound has lost its idempotency guard. Restore the `if (game.currentRound >= nextRoundNumber) return;` early-return."
+note: |
+  ABSENCE ASSERTION. This rule matches the whole file when it does NOT
+  contain both the function and its guard predicate.
+
+  Round advance can be scheduled from multiple triggers near a boundary
+  (last-answer judgment + host clicking Finish Round). Removing this guard
+  reintroduces the double-advance race, where a game skips a round.
+
+  A unit test proves the guard WORKS. Nothing but this proves it EXISTS.
+rule:
+  kind: program
+  not:
+    all:
+      - has:
+          stopBy: end
+          regex: "advanceToNextRound"
+      - has:
+          stopBy: end
+          regex: 'currentRound\s*>=\s*nextRoundNumber'
+files:
+  - "demos/04-fences/guarded/rounds.ts"
