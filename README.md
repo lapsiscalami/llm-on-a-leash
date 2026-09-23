@@ -126,6 +126,23 @@ says so and replays the recorded result instead of faking one.
 
 ---
 
+## This is one person's answer, not a standard
+
+Everything here is **how I handled it**, measured on one game and mostly on
+8B-class models. Some of it is probably not the best available approach —
+it is the best I found, which is a different claim.
+
+**If you have a pattern you like better, tell me.** Open an issue or a PR.
+A crude measurement ("I ran 20 calls each on `<model>` and got X vs Y")
+beats any amount of argument, including mine. Alternatives get added
+*alongside* the original with attribution and both sets of numbers, not
+swapped in silently — a demo showing two approaches and an honest "these
+are close, pick by taste" is a better artifact than one that pretends a
+winner exists.
+
+[CONTRIBUTING.md](CONTRIBUTING.md) has my own list of what is most likely
+wrong in here, which is a cheaper starting point than guessing.
+
 ## License
 
 MIT — see [LICENSE](LICENSE).

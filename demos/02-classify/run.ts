@@ -190,8 +190,40 @@ runDemo(async () => {
   console.log(`     INIT is a seeded roll inside the band that word earned.`);
   console.log(`     Note how little "excellent" buys over "good" — a model that`);
   console.log(`     grades everything excellent gains +1 VALUE, not a runaway.\n`);
+  section("Did the enums actually collapse on this run?");
+  const collapsed = (vals: string[]) => {
+    const c = new Map<string, number>();
+    for (const v of vals) c.set(v, (c.get(v) ?? 0) + 1);
+    const top = Math.max(...c.values());
+    return { pct: Math.round((top / vals.length) * 100), distinct: c.size };
+  };
+  const mA = collapsed(modesA), lA = collapsed(lanesA);
+  const mB = collapsed(modesB), lB = collapsed(lanesB);
+  console.log(`    mode  enum -> top ${String(mA.pct).padStart(3)}% (${mA.distinct} distinct)   decomposed -> top ${String(mB.pct).padStart(3)}% (${mB.distinct} distinct)`);
+  console.log(`    lane  enum -> top ${String(lA.pct).padStart(3)}% (${lA.distinct} distinct)   decomposed -> top ${String(lB.pct).padStart(3)}% (${lB.distinct} distinct)`);
+
+  const worst = Math.max(mA.pct, lA.pct);
+  if (worst >= 100) {
+    console.log(`\n    At least one enum was answered IDENTICALLY every time.`);
+    console.log(`    That is the failure this pattern exists for.`);
+  } else if (worst >= 70) {
+    console.log(`\n    Heavy lean, not a total collapse. The shape is visible but`);
+    console.log(`    your model is holding up better than the 8B did.`);
+  } else {
+    console.log(`\n    Your model did NOT collapse here. That is a real result,`);
+    console.log(`    not a broken demo — see the caveat below.`);
+  }
+
   if (!isLive) {
-    console.log(`  ^ both halves replayed from recorded 8B output. --live to try`);
-    console.log(`    your model; a frontier model may not collapse the enum at all.\n`);
+    console.log(`\n  ^ replayed from recorded 8B output, where BOTH enums collapsed.`);
+    console.log(`    Run --live and expect a PARTIAL result.\n`);
+  } else {
+    console.log(`\n  Honest caveat: collapse is per-model AND per-field. On`);
+    console.log(`  gemma4:e2b the 2-way lane enum collapses to 100% exactly as`);
+    console.log(`  production did, while the 3-way mode enum often spreads on`);
+    console.log(`  its own. The lesson is not "enums always collapse" — it is`);
+    console.log(`  that you cannot predict WHICH fields will, so deriving the`);
+    console.log(`  taxonomy server-side removes the question entirely. Note the`);
+    console.log(`  decomposed columns are well-spread either way.\n`);
   }
 });
