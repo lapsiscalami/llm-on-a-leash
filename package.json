@@ -1,0 +1,24 @@
+{
+  "name": "llm-on-a-leash",
+  "version": "1.0.0",
+  "private": false,
+  "license": "MIT",
+  "description": "Constraint-first patterns for LLM games, learned on 8B models.",
+  "type": "module",
+  "scripts": {
+    "demo:deck": "tsx demos/01-deck/run.ts",
+    "demo:classify": "tsx demos/02-classify/run.ts",
+    "demo:coerce": "tsx demos/03-coerce/run.ts",
+    "demo:fences": "tsx demos/04-fences/run.ts",
+    "demo:all": "npm run demo:deck && npm run demo:classify && npm run demo:coerce && npm run demo:fences",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "@types/node": "^22.10.2"
+  }
+}
