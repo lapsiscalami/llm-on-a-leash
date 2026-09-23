@@ -100,6 +100,30 @@ rule matches a file that *doesn't* contain what it must.
 
 ---
 
+## What the demos actually print
+
+Measured, not asserted — these are the numbers `npm run demo:all` produces
+on the recorded 8B output:
+
+| Demo | Before | After |
+|---|---|---|
+| 01 deck | top 2 topics = **65%** of draws, 5 distinct | **10%**, 20 distinct |
+| 02 classify | mode **100/0/0**, lane **100/0** | mode 13/38/38, lane 38/63 |
+| 03 coerce | strict schema rejects **7 of 8** near-misses | lenient rejects **0 of 8** |
+| 04 fences | — | **6/6** mutations classified correctly |
+
+Demo 02 is the one to be careful with. Run it `--live` on gemma4:e2b and the
+*lane* enum still collapses to a perfect 100%/0%, exactly as production did —
+but the *mode* enum often spreads on its own and does **not** reproduce the
+0%-capture result. The demo measures this per run and says so.
+
+That is the honest lesson, and it is narrower than "enums collapse":
+**collapse is per-model and per-field, and you cannot predict which fields
+will go.** Deriving the taxonomy server-side removes the question instead of
+answering it.
+
+---
+
 ## About the numbers
 
 Every measurement here was taken against **`gemma4:e4b`-class models** (~8B),
