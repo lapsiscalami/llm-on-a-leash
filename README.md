@@ -126,8 +126,31 @@ answering it.
 
 ## About the numbers
 
-Every measurement here was taken against **`gemma4:e4b`-class models** (~8B),
-with [Falcon](https://openwebui.com/) as the harness. That matters:
+Every measurement here was taken against **8B-class and smaller models**.
+The production tuning target was `gemma4:e4b` (via a self-hosted OpenWebUI
+endpoint); the recorded demo output and the `--live` checks come from a local
+Ollama box.
+
+Models this work was developed and sanity-checked against, at various points:
+
+| Model | Role in this work |
+|---|---|
+| `gemma4:e4b` | the production tuning target — the narrative-length and anti-parroting rules are tuned to it |
+| `gemma4:e2b` | local stand-in; the `--live` numbers in demo 01/02 are from this |
+| `llama3.1:8b` | the recorded distributions in demo 01 and 02 |
+| `llama3.2` | earlier dev passes |
+| `dolphin3:8b` | uncensored-ish cross-check — useful for seeing whether a refusal was safety or confusion |
+| `nous-hermes2` | instruction-following cross-check on JSON adherence |
+| `qwen3:8b` | the reason `promptBlocks` exists — bilingual models need an explicit "Respond in English." line injected above the JSON rule |
+| `deepseek-r1:8b` | reasoning-model cross-check; thinking output competes with the visible-token budget |
+
+They do **not** all fail the same way, which is the most useful thing I can
+tell you. `qwen3` drifts language. `deepseek-r1` spends its output budget
+thinking. `gemma4` parrots format examples. `llama3.1` collapses toward a few
+favourite answers. A pattern that fixes one may be irrelevant to another —
+which is the argument for structural constraints over per-model prompt tuning.
+
+Other caveats that matter:
 
 - Several of these failure modes are **much weaker on frontier models**.
   Boolean parroting in particular mostly disappears on Gemini 2.5-flash and
