@@ -22,6 +22,26 @@
  *               across a whole game, but drifts toward the mean.
  *   HEAD-TO-HEAD grade two actions against each other. Much sharper
  *               discrimination, but order-sensitive and non-transitive.
+ *
+ * A THIRD MODE, which is the one actually shipping in NextOath and is
+ * worth separating from head-to-head because it is much safer:
+ *
+ *   COMPARATIVE NARRATION — the model receives EVERY player's action for
+ *   the round in one call, already resolved by the engine (outcome +
+ *   magnitude word per card), and explains what happened between them.
+ *   It reasons across all players' choices at once, but downstream of the
+ *   verdict. Its prompt opens: "The outcome of every action this round is
+ *   ALREADY DECIDED - you only narrate it."
+ *
+ * The difference is not how much the model sees. It is whether its answer
+ * DECIDES anything:
+ *
+ *   judge-in-isolation      model grades one action      -> engine converts
+ *   comparative narration   model sees all, decides none -> SHIPPING
+ *   head-to-head            model's answer IS the result -> this demo
+ *
+ * The failure modes below (order bias, non-transitivity) are exactly why
+ * the third row ships and the fourth does not.
  */
 import type { Quality } from "../../src/world.js";
 import { valueFromQuality, initFromQuality, hashString } from "../../src/world.js";
@@ -200,6 +220,31 @@ const client = getClient((prompt) => {
   console.log(`         as the ranking itself.`);
   console.log(`      3. Reserve head-to-head for the few comparisons that`);
   console.log(`         matter — an endgame award, not every card.`);
+
+  section("The third mode — comparative NARRATION (what actually ships)");
+  console.log(`    The engine resolves every card first: same-hex matchups,`);
+  console.log(`    initiative order, trap collisions. THEN one call hands the`);
+  console.log(`    model all of it at once:`);
+  console.log(``);
+  for (const p of PLANS) {
+    const q = grades.get(p.id)!;
+    const outcome = q === "poor" ? "failed" : "succeeded";
+    const scale = q === "poor" ? "none" : q === "good" ? "solid" : "minor";
+    console.log(`      { factionId: "${p.id}", outcome: "${outcome}", scale: "${scale}" }`);
+  }
+  console.log(``);
+  console.log(`    The model sees all four players' actions and writes what`);
+  console.log(`    happened BETWEEN them — who blocked whom, whose snare caught`);
+  console.log(`    whose push. It reasons comparatively across everyone.`);
+  console.log(`    It just does not get to decide any of it. The real prompt`);
+  console.log(`    opens: "The outcome of every action this round is ALREADY`);
+  console.log(`    DECIDED — you only narrate it."`);
+  console.log(``);
+  console.log(`    This is the mode to reach for first. It buys you the thing`);
+  console.log(`    people actually want from an LLM in a game — a world that`);
+  console.log(`    reacts to everyone's choices together — at none of the risk`);
+  console.log(`    head-to-head carries, because a wrong answer is a clumsy`);
+  console.log(`    sentence rather than a wrong winner.`);
 
   section("Why this is safe here but not in general");
   console.log(`  The judge never touches the board. It emits a WORD; the engine`);

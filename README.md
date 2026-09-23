@@ -101,11 +101,24 @@ A model can answer it. Fuzzily, with real failure modes, but fuzzily is
 enough **because the engine still owns the consequence**. The judge emits a
 word; the engine decides what that word is worth.
 
-Two modes that fail differently: **isolated** grading is stable and
-comparable across a game but compresses toward the mean (2 distinct grades
-across 4 plans); **head-to-head** discriminates much more sharply (3 tiers
-from the same 4) but is order-sensitive and not reliably transitive. The
-demo asks every pair in both orders and shows the flips.
+Three modes, and the useful distinction is not how much the model sees — it
+is **whether its answer decides anything**:
+
+| Mode | Model sees | Model decides | Verdict |
+|---|---|---|---|
+| Isolated | one action | the grade | stable, comparable, but compresses — **2 distinct grades** across 4 plans |
+| **Comparative narration** | **everyone's actions** | **nothing** | **ships.** The engine resolves all collisions first; the model explains what happened between players |
+| Head-to-head | two actions | the winner | **3 tiers** from the same 4 plans, but order-sensitive and non-transitive |
+
+The middle row is the one to reach for first, and it is the mode NextOath
+actually runs. It buys the thing people want from an LLM in a game — a world
+that reacts to everyone's choices together — at none of the risk, because a
+wrong answer is a clumsy sentence rather than a wrong winner. Its prompt
+opens: *"The outcome of every action this round is ALREADY DECIDED — you only
+narrate it."*
+
+The demo asks every head-to-head pair in both orders and shows the flips.
+Those flips are precisely why the third row is still worth hesitating over.
 
 ### 4. [Pin the fix](demos/04-fences) 📌
 
@@ -130,7 +143,7 @@ on the recorded 8B output:
 | 02 classify | mode **100/0/0**, lane **100/0** | mode 13/38/38, lane 38/63 |
 | 03 coerce | strict schema rejects **7 of 8** near-misses | lenient rejects **0 of 8** |
 | 04 fences | — | **6/6** mutations classified correctly |
-| 05 judge | isolated: **2** distinct grades / 4 plans | head-to-head: **3** tiers, with order-bias flips surfaced |
+| 05 judge | isolated: **2** distinct grades / 4 plans | head-to-head: **3** tiers, with order-bias flips surfaced (plus the shipping middle mode) |
 
 Demo 02 is the one to be careful with. Run it `--live` on gemma4:e2b and the
 *lane* enum still collapses to a perfect 100%/0%, exactly as production did —
