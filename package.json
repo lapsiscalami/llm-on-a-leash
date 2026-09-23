@@ -10,8 +10,9 @@
     "demo:classify": "tsx demos/02-classify/run.ts",
     "demo:coerce": "tsx demos/03-coerce/run.ts",
     "demo:fences": "tsx demos/04-fences/run.ts",
-    "demo:all": "npm run demo:deck && npm run demo:classify && npm run demo:coerce && npm run demo:fences",
-    "typecheck": "tsc --noEmit"
+    "demo:all": "npm run demo:deck && npm run demo:classify && npm run demo:coerce && npm run demo:fences && npm run demo:judge",
+    "typecheck": "tsc --noEmit",
+    "demo:judge": "tsx demos/05-judge/run.ts"
   },
   "dependencies": {
     "zod": "^4.6.5"

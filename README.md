@@ -88,6 +88,25 @@ And if your coercer can never fail, **log the fallback** — otherwise a field
 that is 100% fallback looks perfectly healthy. That blind spot is exactly how
 the 0%-capture collapse went unnoticed.
 
+### 5. [Fuzzy judging — what the leash buys you](demos/05-judge) ⚖️
+
+The other four patterns are defensive. This is the payoff.
+
+Games have always adjudicated the **measurable**: did the unit reach the
+tile, was the card legal, is the number bigger. Anything fuzzy had to be
+pre-authored or thrown away — so "was that a clever plan?" stopped being a
+question games asked.
+
+A model can answer it. Fuzzily, with real failure modes, but fuzzily is
+enough **because the engine still owns the consequence**. The judge emits a
+word; the engine decides what that word is worth.
+
+Two modes that fail differently: **isolated** grading is stable and
+comparable across a game but compresses toward the mean (2 distinct grades
+across 4 plans); **head-to-head** discriminates much more sharply (3 tiers
+from the same 4) but is order-sensitive and not reliably transitive. The
+demo asks every pair in both orders and shows the flips.
+
 ### 4. [Pin the fix](demos/04-fences) 📌
 
 You fix a subtle race. Six months later someone refactors and the guard clause
@@ -111,6 +130,7 @@ on the recorded 8B output:
 | 02 classify | mode **100/0/0**, lane **100/0** | mode 13/38/38, lane 38/63 |
 | 03 coerce | strict schema rejects **7 of 8** near-misses | lenient rejects **0 of 8** |
 | 04 fences | — | **6/6** mutations classified correctly |
+| 05 judge | isolated: **2** distinct grades / 4 plans | head-to-head: **3** tiers, with order-bias flips surfaced |
 
 Demo 02 is the one to be careful with. Run it `--live` on gemma4:e2b and the
 *lane* enum still collapses to a perfect 100%/0%, exactly as production did —
