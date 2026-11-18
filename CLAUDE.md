@@ -68,7 +68,7 @@ Don't run two model jobs at once against the same Ollama box. It serves one requ
 ## Blog writing (the posts, drafted locally in drafts/, not in the repo)
 
 - Readers have no NextOath context. Use no internal names (lanes, `aLayer`, etc.), one board, and plain examples.
-- Every pattern follows the same arc: the problem, the target (in plain probability), where it landed, what changed, how close it got. Use an ASCII chart when it makes the gap visible.
+- Every pattern follows the same arc: the problem, the target (in plain probability), before (where it started), what changed, how close it got. Put the before/after chart after the change, under "How it did", not before it. Use an ASCII chart when it makes the gap visible.
 - Useful patterns, not stories about bugs.
 - Voice: the author's, first person, short paragraphs, honest about trade-offs. It ends with the changelog/support footer.
 - Quote model output only verbatim, from the saved replies.

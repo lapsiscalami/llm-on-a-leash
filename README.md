@@ -19,7 +19,7 @@ OLLAMA_MODEL=llama3.1:8b npx tsx measure/faithful.ts  # you may set your model n
 npm run report                                        # your model appears next to mine
 ```
 
-To run all tests.
+To run all tests:
 
 ```bash
 npm run measure
@@ -27,11 +27,11 @@ npm run measure
 
 ## Results
 
-models, least capable first: **Gemma 4 E2B**, **Llama 3.1 8B** and **Gemma 4 E4B**
+Models, least capable first: **Gemma 4 E2B**, **Llama 3.1 8B** and **Gemma 4 E4B**
 
 Each result below is **before → after** on the same test: blue bars are before, green bars are after. The gray line on each chart is the target: what a perfect prompt, or picking at random, would give. The *p* under each chart is the chance of a gap at least that big if the change did nothing. Small is convincing; above about 0.1 it could easily be luck. GitHub draws the charts; other viewers show their source.
 
-### 1. Dealing topics from a shuffled deck beats asking for variety, on every model.
+### Dealing topics from a shuffled deck beats asking for variety, on every model.
 
 How many of the 20 topics got used across 40 questions. Picking at random you'd expect about **17.4**.
 
@@ -63,7 +63,7 @@ xychart-beta
 
 *p*: E2B 0.003, Llama 3.1 0.010, E4B 0.091. E4B repeated least to begin with, so its gap is the least certain.
 
-### 2. Asking for a word instead of a number puts more things at the right level, on the smaller models.
+### Asking for a word instead of a number puts more things at the right level, on the smaller models.
 
 Twenty things with an obvious level (five each of rare, uncommon, common, everywhere). A perfect answer places all **20**. Before, the model gave a number from 0 to 1; after, one of the four words.
 
@@ -80,7 +80,7 @@ xychart-beta
 
 *p*: E2B 0.020, Llama 3.1 0.095, E4B 0.629. Asked for a number, E2B never once landed in the middle two levels. E4B held up either way, so for it this is insurance, not a fix.
 
-### 3. Describing the answer in the format example instead of showing one helps one model and not the others.
+### Describing the answer in the format example instead of showing one helps one model and not the others.
 
 How many of 10 strong answers the judge scored 4 of 5 or better. A fair judge would score all **10**. Before, the format example showed `false` in every slot; after, it described each slot.
 
@@ -113,7 +113,7 @@ Two more are measured and weaker: a forgiving parser rescued 40 of 260 answers o
 
 Each entry in the guide is labelled **reproduced here** (`npm run report` prints it, `npm run measure` re-runs it), **measured in NextOath, not reproduced here** (real numbers from the game's own harness that this repo doesn't regenerate), or **experience** (unmeasured).
 
-These are small-model results, from 20 to 40 items per test. That's enough to see a clear gap and too few to trust a one- or two-point difference. Several patterns help one model and do nothing for another. The tests use the game's real prompt text but a short generic world, so they run lighter than the game does (about 750 prompt tokens for the judge here against about 1,300 in the game). Run them on yours, with your full prompt, before you trust them. [CONTRIBUTING.md](CONTRIBUTING.md) if you have an alternate pattern; I'll consider revising or including it.
+These are small-model results, from 20 to 40 items per test. That's enough to see a clear gap and too few to trust a one- or two-point difference. Several patterns help one model and do nothing for another. The tests use the game's real prompt text but a short generic world, so they run lighter than the game does (about 750 prompt tokens for the judge here against about 1,300 in the game). Run them on yours, with your full prompt, before you trust them. If you have an alternative pattern, see [CONTRIBUTING.md](CONTRIBUTING.md); I'll consider revising or adding it.
 
 ## License
 
