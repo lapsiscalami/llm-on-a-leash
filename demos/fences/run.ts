@@ -21,16 +21,22 @@ import { header, section } from "../../src/llm.js";
 const GUARDED = "demos/fences/guarded/rounds.ts";
 const BACKUP = "demos/fences/guarded/.rounds.backup";
 
-/** Run the real ast-grep scanner. Exit code 0 = clean, 1 = rule fired. */
-function scan(): { clean: boolean; firedRules: string[] } {
+/**
+ * Run the real ast-grep scanner. Exit 0 = clean. A nonzero exit counts as a
+ * rule firing only if the output names a rule; otherwise the scanner itself
+ * failed (bad config, missing binary), which must never pass for a catch.
+ */
+function scan(): { status: "clean" | "fired" | "error"; firedRules: string[]; detail: string } {
   try {
     execFileSync("npx", ["ast-grep", "scan"], { encoding: "utf8", stdio: "pipe", shell: true });
-    return { clean: true, firedRules: [] };
+    return { status: "clean", firedRules: [], detail: "" };
   } catch (e) {
     const out = String((e as { stdout?: string; stderr?: string }).stdout ?? "") +
                 String((e as { stderr?: string }).stderr ?? "");
-    const fired = [...out.matchAll(/error\[([a-z-]+)\]/g)].map((m) => m[1]!);
-    return { clean: false, firedRules: [...new Set(fired)] };
+    const fired = [...new Set([...out.matchAll(/error\[([a-z-]+)\]/g)].map((m) => m[1]!))];
+    return fired.length
+      ? { status: "fired", firedRules: fired, detail: "" }
+      : { status: "error", firedRules: [], detail: out.trim().split("\n").slice(-1)[0] ?? "" };
   }
 }
 
@@ -38,26 +44,34 @@ interface Mutation {
   label: string;
   apply: (src: string) => string;
   expect: "caught" | "clean";
+  /** For "caught": the rule that must fire. Any other rule firing is a mismatch. */
+  rule?: string;
   why: string;
 }
+
+const IDEMPOTENCY = "advance-round-idempotency-guard";
+const NO_DEADLINE = "round-completion-no-deadline-guard";
 
 const MUTATIONS: Mutation[] = [
   {
     label: "delete the idempotency guard",
     apply: (s) => s.replace(/\s*if \(game\.currentRound >= nextRoundNumber\) return;\n/, "\n"),
     expect: "caught",
+    rule: IDEMPOTENCY,
     why: "the exact line a refactor drops",
   },
   {
     label: "weaken >= to >",
     apply: (s) => s.replace("game.currentRound >= nextRoundNumber", "game.currentRound > nextRoundNumber"),
     expect: "caught",
+    rule: IDEMPOTENCY,
     why: "an off-by-one that still 'looks like' a guard",
   },
   {
     label: "rename the function away",
     apply: (s) => s.replace(/advanceToNextRound/g, "advanceRound"),
     expect: "caught",
+    rule: IDEMPOTENCY,
     why: "the fence is pinned to a name; renaming needs a deliberate rule update",
   },
   {
@@ -72,6 +86,7 @@ const MUTATIONS: Mutation[] = [
             "export function checkRoundCompletion",
         ),
     expect: "caught",
+    rule: IDEMPOTENCY,
     why: "the line still exists in the file, just not where it matters; a file-level check would pass this",
   },
   {
@@ -81,6 +96,7 @@ const MUTATIONS: Mutation[] = [
       "if (Date.now() > 1) return true;\n  return players.every((p) => p.submitted);",
     ),
     expect: "caught",
+    rule: NO_DEADLINE,
     why: "the INVERTED fence — fires when forbidden code appears",
   },
   {
@@ -114,36 +130,48 @@ header("DEMO — Pin the fix (regression fences)");
 
 const original = readFileSync(GUARDED, "utf8");
 copyFileSync(GUARDED, BACKUP);
+let failures = 0;
 
 try {
   section("Baseline: guards present");
   const base = scan();
-  console.log(`    ast-grep scan -> ${base.clean ? "clean ✓" : `FIRED: ${base.firedRules.join(", ")}`}`);
-  if (!base.clean) {
-    console.log(`    (baseline should be clean; aborting)`);
-    process.exit(1);
+  console.log(`    ast-grep scan -> ${base.status === "clean" ? "clean ✓" : base.status === "fired" ? `FIRED: ${base.firedRules.join(", ")}` : `SCANNER ERROR: ${base.detail}`}`);
+  if (base.status !== "clean") {
+    console.log(`    (baseline should be clean; skipping the mutations)`);
+    failures++;
+  } else {
+    section("Mutating the file and re-scanning");
+    console.log(`    ${"mutation".padEnd(41)} ${"fence".padEnd(9)} ${"expected".padEnd(9)} verdict`);
+    for (const m of MUTATIONS) {
+      const mutated = m.apply(original);
+      // A mutation that changes nothing would "pass" as clean without testing anything.
+      if (mutated === original) {
+        failures++;
+        console.log(`    ${m.label.padEnd(41)} ${"-".padEnd(9)} ${m.expect.padEnd(9)} MISMATCH\n      ${"".padEnd(41)} the mutation didn't change the file`);
+        continue;
+      }
+      writeFileSync(GUARDED, mutated, "utf8");
+      const r = scan();
+      const got = r.status === "fired" ? "caught" : r.status === "clean" ? "clean" : "error";
+      const good = m.expect === "clean"
+        ? r.status === "clean"
+        : r.status === "fired" && r.firedRules.length === 1 && r.firedRules[0] === m.rule;
+      if (!good) failures++;
+      console.log(
+        `    ${m.label.padEnd(41)} ${got.padEnd(9)} ${m.expect.padEnd(9)} ${good ? "ok" : "MISMATCH"}` +
+        (r.firedRules.length ? `\n      ${"".padEnd(41)} fired: ${r.firedRules.join(", ")}${m.rule && !good ? ` (expected ${m.rule})` : ""}` : "") +
+        (r.status === "error" ? `\n      ${"".padEnd(41)} scanner error: ${r.detail}` : ""),
+      );
+      console.log(`      ${"".padEnd(41)} ${m.why}`);
+    }
+    console.log(`\n    ${MUTATIONS.length - failures}/${MUTATIONS.length} behaved as expected.`);
   }
-
-  section("Mutating the file and re-scanning");
-  console.log(`    ${"mutation".padEnd(41)} ${"fence".padEnd(9)} ${"expected".padEnd(9)} verdict`);
-  let pass = 0;
-  for (const m of MUTATIONS) {
-    writeFileSync(GUARDED, m.apply(original), "utf8");
-    const r = scan();
-    const got: "caught" | "clean" = r.clean ? "clean" : "caught";
-    const good = got === m.expect;
-    if (good) pass++;
-    console.log(
-      `    ${m.label.padEnd(41)} ${got.padEnd(9)} ${m.expect.padEnd(9)} ${good ? "ok" : "MISMATCH"}` +
-      (r.firedRules.length ? `\n      ${"".padEnd(41)} fired: ${r.firedRules.join(", ")}` : ""),
-    );
-    console.log(`      ${"".padEnd(41)} ${m.why}`);
-  }
-  console.log(`\n    ${pass}/${MUTATIONS.length} behaved as expected.`);
 } finally {
   copyFileSync(BACKUP, GUARDED);
   rmSync(BACKUP, { force: true });
 }
+// Restored first, then fail the run, so CI sees a broken fence.
+if (failures) process.exitCode = 1;
 
 section("Why not just write a test?");
 console.log(`  A test proves the guard WORKS. Delete the guard and the test`);

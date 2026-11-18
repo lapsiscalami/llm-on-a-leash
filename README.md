@@ -29,7 +29,7 @@ npm run measure
 
 Models, least capable first: **Gemma 4 E2B**, **Llama 3.1 8B** and **Gemma 4 E4B**
 
-Each result below is **before → after** on the same test: blue bars are before, green bars are after. The gray line on each chart is the target: what a perfect prompt, or picking at random, would give. The *p* under each chart is the chance of a gap at least that big if the change did nothing. Small is convincing; above about 0.1 it could easily be luck. GitHub draws the charts; other viewers show their source.
+Each result below is **before → after** on the same test: blue bars are before, green bars are after. The gray line on each chart is the target: what a perfect prompt, or picking at random, would give. The *p* under each chart is the chance of a gap at least that big if the change did nothing, comparing the same games or items both ways. Small is convincing; above about 0.1 it could easily be luck. GitHub draws the charts; other viewers show their source.
 
 ### Dealing topics from a shuffled deck beats asking for variety, on every model.
 
@@ -46,7 +46,7 @@ xychart-beta
   line [17.4, 17.4, 17.4, 17.4, 17.4, 17.4]
 ```
 
-*p*: E2B 0.001, Llama 3.1 0.001, E4B 0.021. Small on all three models.
+*p*: E2B 0.005, Llama 3.1 0.011, E4B 0.010. Small on all three models.
 
 How many of 20 games asked about the same topic twice in a row. Picking at random you'd expect about **1**.
 
@@ -61,7 +61,7 @@ xychart-beta
   line [1, 1, 1, 1, 1, 1]
 ```
 
-*p*: E2B 0.003, Llama 3.1 0.010, E4B 0.091. E4B repeated least to begin with, so its gap is the least certain.
+*p*: E2B 0.011, Llama 3.1 0.016, E4B 0.109. E4B repeated least to begin with, so its gap is the least certain: at 0.109 it could be luck.
 
 ### Asking for a word instead of a number puts more things at the right level, on the smaller models.
 
@@ -78,7 +78,7 @@ xychart-beta
   line [20, 20, 20, 20, 20, 20]
 ```
 
-*p*: E2B 0.020, Llama 3.1 0.095, E4B 0.629. Asked for a number, E2B never once landed in the middle two levels. E4B held up either way, so for it this is insurance, not a fix.
+*p*: E2B 0.008, Llama 3.1 0.090, E4B 0.688. Asked for a number, E2B never once landed in the middle two levels. E4B held up either way, so for it this is insurance, not a fix.
 
 ### Describing the answer in the format example instead of showing one helps one model and not the others.
 

@@ -186,14 +186,26 @@ export function getClient(name: string): LLMClient {
 /** Pull the first JSON object out of a model response. Small models wrap
  *  JSON in prose and backticks no matter how firmly you ask them not to. */
 export function extractJson(raw: string): unknown {
+  // The common case: the whole reply is the JSON.
+  try { return JSON.parse(raw.trim()); } catch { /* wrapped in fences or prose */ }
   const fenced = raw.match(/```(?:json)?\s*([\s\S]*?)```/);
   const body = fenced?.[1] ?? raw;
   const start = body.indexOf("{");
   if (start === -1) throw new Error(`no JSON object in response: ${raw.slice(0, 120)}`);
-  let depth = 0;
+  // Track strings and escapes, so a brace inside a value ("a } in a reason")
+  // isn't mistaken for the end of the object.
+  let depth = 0, inString = false, escaped = false;
   for (let i = start; i < body.length; i++) {
-    if (body[i] === "{") depth++;
-    else if (body[i] === "}" && --depth === 0) return JSON.parse(body.slice(start, i + 1));
+    const c = body[i];
+    if (inString) {
+      if (escaped) escaped = false;
+      else if (c === "\\") escaped = true;
+      else if (c === '"') inString = false;
+      continue;
+    }
+    if (c === '"') inString = true;
+    else if (c === "{") depth++;
+    else if (c === "}" && --depth === 0) return JSON.parse(body.slice(start, i + 1));
   }
   throw new Error(`unbalanced JSON in response: ${raw.slice(0, 120)}`);
 }

@@ -18,7 +18,7 @@
  *
  *   OLLAMA_MODEL=llama3.1:8b npx tsx measure/faithful-post2.ts
  */
-import { writeFileSync, mkdirSync } from "node:fs";
+import { writeFileSync, mkdirSync, readFileSync, existsSync } from "node:fs";
 import { ensureModel } from "../src/ollama.js";
 
 const BACKEND = process.env.BACKEND ?? "ollama";
@@ -244,6 +244,14 @@ async function testWords() {
   mkdirSync("measure/results/faithful", { recursive: true });
   const safe = `${BACKEND === "falcon" ? "falcon-" : ""}${MODEL}`.replace(/[^a-z0-9.]+/gi, "-");
   const file = `measure/results/faithful/post2-${safe}.json`;
+  // ONLY=deck or ONLY=words re-runs one test. Keep the other test's section
+  // from the existing file instead of dropping it, and say which run it came from.
+  const only = process.env.ONLY;
+  if (only && existsSync(file)) {
+    const prev = JSON.parse(readFileSync(file, "utf8")) as Record<string, unknown>;
+    const keep = only === "deck" ? "words" : "deck";
+    if (prev[keep]) results[keep] = { ...(prev[keep] as object), keptFrom: prev.date ?? "an earlier run" };
+  }
   writeFileSync(file, JSON.stringify(results, null, 2));
   console.log(`wrote ${file} (${results.minutes} min)`);
 })().catch((e) => { console.error("FAILED:", e); process.exit(1); });

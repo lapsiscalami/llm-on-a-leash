@@ -38,22 +38,29 @@ const h = (t: string) => console.log(`\n${"═".repeat(72)}\n  ${t}\n${"═".rep
 
 // ─── Luck probabilities ───────────────────────────────────────────────────
 // p = the chance of a gap at least this big, in this direction, if the change
-// did nothing (one-sided). Exact where the counts allow it; the deck's topic
-// count uses a shuffle test with a fixed seed so every run prints the same p.
+// did nothing (one-sided). Every test here is paired, because every test runs
+// both arms on the same items: the deck plays the same 20 game setups both
+// ways, and the words test asks about the same 20 things both ways. All exact.
 const choose = (n: number, k: number) => { let r = 1; for (let i = 1; i <= k; i++) r = (r * (n - k + i)) / i; return r; };
-/** Separate samples (Fisher's exact): chance arm x gets `x` or more of the pooled hits. */
-const fisher = (x: number, nx: number, y: number, ny: number) => { const k = x + y; let p = 0; for (let i = x; i <= Math.min(k, nx); i++) p += (choose(nx, i) * choose(ny, k - i)) / choose(nx + ny, k); return p; };
 /** Same items both ways (exact sign test on the items that changed): chance `up` or more of them moved up. */
 const signTest = (up: number, down: number) => { let p = 0; for (let i = up; i <= up + down; i++) p += choose(up + down, i) / 2 ** (up + down); return p; };
-function shuffleTest<T>(before: T[], after: T[], stat: (xs: T[]) => number, runs = 10_000): number {
-  let s = 20260924; const rand = () => (s = (s * 48271) % 2147483647) / 2147483647;
-  const pool = [...before, ...after], gap = stat(after) - stat(before);
+/**
+ * Paired swap test for the deck's topic count. Each game was played both ways
+ * on the same setup, and its second question depends on its first, so the unit
+ * that can be swapped is a whole game, never a single question. Enumerates all
+ * 2^games before/after assignments (exact): chance the after arm covers at
+ * least `gap` more topics than the before arm if the arm made no difference.
+ */
+function pairedGameSwap(games: { before: number; after: number }[]): number {
+  const bits = (m: number) => { let c = 0; for (; m; m &= m - 1) c++; return c; };
+  const orAll = (pick: (g: { before: number; after: number }, swapped: boolean) => number, mask: number) =>
+    games.reduce((acc, g, i) => acc | pick(g, ((mask >> i) & 1) === 1), 0);
+  const gapFor = (mask: number) =>
+    bits(orAll((g, sw) => (sw ? g.before : g.after), mask)) - bits(orAll((g, sw) => (sw ? g.after : g.before), mask));
+  const observed = gapFor(0), total = 2 ** games.length;
   let hits = 0;
-  for (let r = 0; r < runs; r++) {
-    for (let i = pool.length - 1; i > 0; i--) { const j = Math.floor(rand() * (i + 1)); [pool[i], pool[j]] = [pool[j]!, pool[i]!]; }
-    if (stat(pool.slice(before.length)) - stat(pool.slice(0, before.length)) >= gap) hits++;
-  }
-  return (hits + 1) / (runs + 1);
+  for (let mask = 0; mask < total; mask++) if (gapFor(mask) >= observed) hits++;
+  return hits / total;
 }
 const fmtP = (p: number) => (p < 0.001 ? "<0.001" : p.toFixed(3));
 // Sections are numbered to match the entries in PATTERNS.md (there is no
@@ -65,7 +72,8 @@ h(`1. DECK — topics across ${QUESTIONS} questions (target ~${RANDOM_DISTINCT} 
 console.log(`${"model".padEnd(34)} ${"topics b→a (p)".padEnd(20)} ${"repeat games b→a (p)".padEnd(22)} ${"stayed on dealt".padEnd(16)} prompt tok / reply tok / time (median, b→a)`);
 for (const m of MODELS) {
   const f = `post2-${m.key}.json`; if (!files.includes(f)) continue;
-  const rows = load(f).deck.rows as { variant: string; game: number; q: number; dealt: string | null; topic: string | null; promptTokens: number; outputTokens: number; ms: number }[];
+  const rows = load(f).deck?.rows as { variant: string; game: number; q: number; dealt: string | null; topic: string | null; promptTokens: number; outputTokens: number; ms: number }[] | undefined;
+  if (!rows) continue; // a words-only run
   const stat = (v: string) => {
     const r = rows.filter((x) => x.variant === v);
     const distinct = new Set(r.map((x) => x.topic).filter(Boolean)).size;
@@ -75,9 +83,16 @@ for (const m of MODELS) {
   };
   const b = stat("before"), a = stat("after");
   const stayed = a.r.filter((x) => x.topic === x.dealt).length;
-  const distinct = (xs: (string | null)[]) => new Set(xs.filter(Boolean)).size;
-  const pTopics = shuffleTest(b.r.map((x) => x.topic), a.r.map((x) => x.topic), distinct);
-  const pRep = fisher(b.rep, GAMES, a.rep, GAMES); // fewer repeats after = more of them landed before
+  // Pair by game: topics as a bitmask per game per arm, repeats per game per arm.
+  const TOPIC_IDS = [...new Set(rows.map((x) => x.topic).filter(Boolean))] as string[];
+  const mask = (v: string, g: number) => rows.filter((x) => x.variant === v && x.game === g && x.topic)
+    .reduce((m, x) => m | (1 << TOPIC_IDS.indexOf(x.topic!)), 0);
+  const repeated = (v: string, g: number) => { const t = rows.filter((x) => x.variant === v && x.game === g).map((x) => x.topic); return !!t[0] && t[0] === t[1]; };
+  const gameIds = [...Array(GAMES).keys()];
+  const pTopics = pairedGameSwap(gameIds.map((g) => ({ before: mask("before", g), after: mask("after", g) })));
+  // Fewer repeats after is the improvement: games that repeated only before vs only after.
+  const pRep = signTest(gameIds.filter((g) => repeated("before", g) && !repeated("after", g)).length,
+                        gameIds.filter((g) => !repeated("before", g) && repeated("after", g)).length);
   console.log(`${m.label.padEnd(34)} ${`${b.distinct} → ${a.distinct} (${fmtP(pTopics)})`.padEnd(20)} ${`${b.rep} → ${a.rep} (${fmtP(pRep)})`.padEnd(22)} ${`${stayed}/${a.r.length}`.padEnd(16)} ${b.pt}→${a.pt} / ${b.ot}→${a.ot} / ${(b.ms / 1000).toFixed(1)}s→${(a.ms / 1000).toFixed(1)}s`);
 }
 
@@ -111,7 +126,8 @@ const LEVELS = ["rare", "uncommon", "common", "everywhere"];
 const levelOf = (n: number) => (n < 0.25 ? "rare" : n < 0.5 ? "uncommon" : n < 0.75 ? "common" : "everywhere");
 for (const m of MODELS) {
   const f = `post2-${m.key}.json`; if (!files.includes(f)) continue;
-  const rows = load(f).words.rows as { intended: string; variant: string; raw: string }[];
+  const rows = load(f).words?.rows as { thing: string; intended: string; variant: string; raw: string }[] | undefined;
+  if (!rows) continue; // a deck-only run
   const read = (r: (typeof rows)[number]) => {
     const v = extractJson(r.raw)?.amount;
     if (r.variant === "number") { const n = typeof v === "number" ? v : parseFloat(String(v)); return Number.isFinite(n) && n >= 0 && n <= 1 ? levelOf(n) : null; }
@@ -122,8 +138,12 @@ for (const m of MODELS) {
     const by = Object.fromEntries(LEVELS.map((l) => [l, r.filter((x) => read(x) === l).length]));
     return `${r.filter((x) => read(x) === x.intended).length}/20  [${LEVELS.map((l) => by[l]).join(" / ")}]`;
   };
-  const right = (v: string) => rows.filter((x) => x.variant === v && read(x) === x.intended).length;
-  console.log(`${m.label.padEnd(34)} numbers ${line("number").padEnd(24)} words ${line("word")}  (p ${fmtP(fisher(right("word"), 20, right("number"), 20))})`);
+  // The same 20 things were asked both ways, so pair by thing.
+  const ok = (v: string, thing: string) => rows.some((x) => x.variant === v && x.thing === thing && read(x) === x.intended);
+  const things = [...new Set(rows.map((x) => x.thing))];
+  const improved = things.filter((t) => ok("word", t) && !ok("number", t)).length;
+  const worsened = things.filter((t) => !ok("word", t) && ok("number", t)).length;
+  console.log(`${m.label.padEnd(34)} numbers ${line("number").padEnd(24)} words ${line("word")}  (paired: ${improved} better, ${worsened} worse, p ${fmtP(signTest(improved, worsened))})`);
 }
 console.log(`${"".padEnd(34)} (bracket = answers per level: rare / uncommon / common / everywhere)`);
 
@@ -135,7 +155,7 @@ for (const m of MODELS) {
   const note = (s: boolean, f: boolean, sample: unknown) => { n++; if (s) strict++; if (f) forgiving++; if (!s && f) { const k = JSON.stringify(sample).slice(0, 24); thrown.set(k, (thrown.get(k) ?? 0) + 1); } };
   const firstWord = (v: unknown) => String(v ?? "").trim().toLowerCase().match(/^[a-z]+/)?.[0];
   const p2 = `post2-${m.key}.json`;
-  if (files.includes(p2)) for (const r of load(p2).words.rows as { variant: string; raw: string }[]) {
+  if (files.includes(p2)) for (const r of (load(p2).words?.rows ?? []) as { variant: string; raw: string }[]) {
     if (r.variant === "number") continue;
     const v = extractJson(r.raw)?.amount;
     note(typeof v === "string" && LEVELS.includes(v), LEVELS.includes(firstWord(v) ?? ""), v);

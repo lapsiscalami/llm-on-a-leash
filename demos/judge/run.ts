@@ -115,7 +115,10 @@ runDemo(async () => {
       const j = extractJson(raw) as Record<string, unknown>;
       q = pick(j.quality, ["excellent", "good", "adequate", "poor"] as const, "adequate");
       void yn(j.specific); // the criteria exist to make the grade legible, not to be summed here
-    } catch { /* safe default */ }
+    } catch (e) {
+      // Safe default, but never a silent one: say when the grade is a fallback.
+      console.log(`    (plan ${p.id}: reply unreadable, graded "adequate" by default: ${(e as Error).message.slice(0, 60)})`);
+    }
     grades.set(p.id, q);
     const val = valueFromQuality(q, "place");
     const init = initFromQuality(q, "place", hashString(p.text));
