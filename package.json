@@ -11,6 +11,7 @@
     "demo:deck": "tsx demos/deck/run.ts",
     "demo:fences": "tsx demos/fences/run.ts",
     "demo:judge": "tsx demos/judge/run.ts",
+    "charts": "tsx measure/readme-charts.ts",
     "typecheck": "tsc --noEmit",
     "test:skill": "tsx .claude/skills/small-model-prompt-review/test/run.ts",
     "test:pin": "tsx .claude/skills/pin-the-fix/test/run.ts",

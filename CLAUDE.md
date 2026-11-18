@@ -31,6 +31,7 @@ measure/faithful.ts          copied-example (+ weak/borderline countercheck), pi
 measure/classify-topics.ts   labels deck questions with one fixed classifier (run after generation)
 measure/faithful-report.ts   npm run report: every table, from saved replies; sections are numbered like PATTERNS.md entries
 measure/results/faithful/    saved replies (canonical data); temperature/ holds the T=0.1 check
+measure/readme-charts.ts     npm run charts: the README dumbbell SVGs (light + dark) in assets/charts/; values copied from the report
 fixtures/                    real replies that demos replay without --live
 src/llm.ts                   replay (default) / live / --live --record clients for demos
 src/ollama.ts                ensureModel(): pulls the Ollama model if missing (play in place)

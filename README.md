@@ -29,37 +29,25 @@ npm run measure
 
 Models, least capable first: **Gemma 4 E2B**, **Llama 3.1 8B** and **Gemma 4 E4B**
 
-Each result below is **before → after** on the same test: blue bars are before, green bars are after. The gray line on each chart is the target: what a perfect prompt, or picking at random, would give. The *p* under each chart is the chance of a gap at least that big if the change did nothing, comparing the same games or items both ways. Small is convincing; above about 0.1 it could easily be luck. GitHub draws the charts; other viewers show their source.
+Each result below is **before → after** on the same test: the gray dot is before, the blue dot is after. The dashed line on each chart is the target: what a perfect prompt, or picking at random, would give. The *p* under each chart is the chance of a gap at least that big if the change did nothing, comparing the same games or items both ways. Small is convincing; above about 0.1 it could easily be luck.
 
 ### Dealing topics from a shuffled deck beats asking for variety, on every model.
 
 How many of the 20 topics got used across 40 questions. Picking at random you'd expect about **17.4**.
 
-```mermaid
-%%{init: {"themeVariables": {"xyChart": {"plotColorPalette": "#3987e5, #008300, #898781"}}}}%%
-xychart-beta
-  title "Topics used across 40 questions (of 20, higher is better)"
-  x-axis ["E2B before", "E2B after", "Llama before", "Llama after", "E4B before", "E4B after"]
-  y-axis "topics used" 0 --> 20
-  bar [8, -1, 8, -1, 9, -1]
-  bar [-1, 13, -1, 16, -1, 14]
-  line [17.4, 17.4, 17.4, 17.4, 17.4, 17.4]
-```
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/charts/deck-topics-dark.svg">
+  <img src="assets/charts/deck-topics-light.svg" width="520" alt="Dumbbell chart of distinct topics used out of 20. Asked for variety vs shuffled topic deck: E2B 8 to 13, Llama 3.1 8 to 16, E4B 9 to 14. Random sampling would give about 17.4.">
+</picture>
 
 *p*: E2B 0.005, Llama 3.1 0.011, E4B 0.010. Small on all three models.
 
 How many of 20 games asked about the same topic twice in a row. Picking at random you'd expect about **1**.
 
-```mermaid
-%%{init: {"themeVariables": {"xyChart": {"plotColorPalette": "#3987e5, #008300, #898781"}}}}%%
-xychart-beta
-  title "Games that repeated a topic (of 20, lower is better)"
-  x-axis ["E2B before", "E2B after", "Llama before", "Llama after", "E4B before", "E4B after"]
-  y-axis "games" 0 --> 20
-  bar [11, -1, 6, -1, 5, -1]
-  bar [-1, 2, -1, 0, -1, 1]
-  line [1, 1, 1, 1, 1, 1]
-```
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/charts/deck-repeats-dark.svg">
+  <img src="assets/charts/deck-repeats-light.svg" width="520" alt="Dumbbell chart of games that repeated a topic, out of 20. Asked for variety vs shuffled topic deck: E2B 11 to 2, Llama 3.1 6 to 0, E4B 5 to 1. Random sampling would give about 1.">
+</picture>
 
 *p*: E2B 0.011, Llama 3.1 0.016, E4B 0.109. E4B repeated least to begin with, so its gap is the least certain: at 0.109 it could be luck.
 
@@ -67,16 +55,10 @@ xychart-beta
 
 Twenty things with an obvious level (five each of rare, uncommon, common, everywhere). A perfect answer places all **20**. Before, the model gave a number from 0 to 1; after, one of the four words.
 
-```mermaid
-%%{init: {"themeVariables": {"xyChart": {"plotColorPalette": "#3987e5, #008300, #898781"}}}}%%
-xychart-beta
-  title "Things placed at the right level (of 20, higher is better)"
-  x-axis ["E2B before", "E2B after", "Llama before", "Llama after", "E4B before", "E4B after"]
-  y-axis "right level" 0 --> 20
-  bar [10, -1, 10, -1, 13, -1]
-  bar [-1, 17, -1, 15, -1, 13]
-  line [20, 20, 20, 20, 20, 20]
-```
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/charts/words-numbers-dark.svg">
+  <img src="assets/charts/words-numbers-light.svg" width="520" alt="Dumbbell chart of things placed at the right level, out of 20. Asked for a number vs asked for a word: E2B 10 to 17, Llama 3.1 10 to 15, E4B 13 both ways. A perfect answer is 20.">
+</picture>
 
 *p*: E2B 0.008, Llama 3.1 0.090, E4B 0.688. Asked for a number, E2B never once landed in the middle two levels. E4B held up either way, so for it this is insurance, not a fix.
 
@@ -84,16 +66,10 @@ xychart-beta
 
 How many of 10 strong answers the judge scored 4 of 5 or better. A fair judge would score all **10**. Before, the format example showed `false` in every slot; after, it described each slot.
 
-```mermaid
-%%{init: {"themeVariables": {"xyChart": {"plotColorPalette": "#3987e5, #008300, #898781"}}}}%%
-xychart-beta
-  title "Strong answers scored 4+ of 5 (of 10, higher is better)"
-  x-axis ["E2B before", "E2B after", "Llama before", "Llama after", "E4B before", "E4B after"]
-  y-axis "answers" 0 --> 10
-  bar [7, -1, 7, -1, 10, -1]
-  bar [-1, 9, -1, 7, -1, 10]
-  line [10, 10, 10, 10, 10, 10]
-```
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/charts/describe-example-dark.svg">
+  <img src="assets/charts/describe-example-light.svg" width="520" alt="Dumbbell chart of strong answers scored 4 or more of 5, out of 10. Example shows false vs example describes the answer: E2B 7 to 9, Llama 3.1 7 both ways, E4B 10 both ways. A fair judge scores all 10.">
+</picture>
 
 Same answers judged both ways, counting criteria passed of 5: E2B 2 rose, 0 fell, net +4 (*p* 0.25); Llama 3.1 1 rose, 1 fell, net 0 (*p* 0.75); E4B none moved. E2B's gain is consistent in direction, but 10 answers are too few to rule out luck. It didn't make the judge easier to please either: no weak answer reached 4 on any model. Test it on yours.
 
