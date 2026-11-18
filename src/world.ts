@@ -1,12 +1,13 @@
 /**
- * A deliberately tiny toy world, shared by all four demos.
+ * A deliberately tiny toy world, shared by the demos.
  *
  * The point of this file is what it does NOT contain: there is no LLM
  * anywhere in it. Board state, scoring, and outcome are plain functions.
- * The model never gets to touch any of it.
+ * The model's only input is a quality word; the functions below decide
+ * what that word is worth and cap how far it can move a card.
  */
 
-/** The 20-card domain deck (demo 01). Real game uses exactly this list. */
+/** The 20-card domain deck (demo 01). The real game uses exactly this list. */
 export const DOMAINS = [
   "governance", "economy", "law", "religion", "family",
   "labor", "class", "warfare", "travel", "ecology",
@@ -16,20 +17,16 @@ export const DOMAINS = [
 ] as const;
 export type Domain = (typeof DOMAINS)[number];
 
-/** Two lanes. Internal ids are genre-agnostic; display names come from the
- *  model per-world, which is the ONLY thing the model decides here. */
-export type LaneId = "aLayer" | "bLayer";
-
-/** What a card does on the board. Derived server-side (demo 02) — never
- *  asked of the model as a single N-way choice. */
+/** What a card does on the board. Decided in code from the judge's answers,
+ *  never asked of the model as a single N-way choice. */
 export type RewardMode = "place" | "capture" | "trap";
 
 /** The judge's one scalar. A word, never a number. */
 export type Quality = "excellent" | "good" | "adequate" | "poor";
 
 // ─── Deterministic RNG ───────────────────────────────────────────────────
-// One LCG, one hash, used everywhere. (In the real codebase this drifted
-// into four near-copies with different masks — see docs/lessons.md.)
+// One LCG, one hash, used everywhere. (In the real codebase this once
+// drifted into four near-copies with different masks. Keep one.)
 
 /** djb2 string hash → 32-bit unsigned. */
 export function hashString(s: string): number {
@@ -79,17 +76,17 @@ export function modeForQuality(mode: RewardMode, q: Quality): RewardMode | null 
   return mode;
 }
 
-// ─── Narrative scale: hex counts → words, before the prompt is built ──────
+// ─── Narrative scale: tile counts → words, before the prompt is built ──────
 
 export type NarrativeScale = "none" | "minor" | "solid" | "major" | "decisive";
 
-/** The model is handed THIS, never the hex count. It cannot anchor on a
+/** The model is handed THIS, never the tile count. It cannot anchor on a
  *  number it never sees, and it has no field in which to change one. */
-export function scaleFromHexes(hexesGained: number, failed = false): NarrativeScale {
-  if (failed || hexesGained <= 0) return "none";
-  if (hexesGained === 1) return "minor";
-  if (hexesGained <= 3) return "solid";
-  if (hexesGained <= 5) return "major";
+export function scaleFromTiles(tilesGained: number, failed = false): NarrativeScale {
+  if (failed || tilesGained <= 0) return "none";
+  if (tilesGained === 1) return "minor";
+  if (tilesGained <= 3) return "solid";
+  if (tilesGained <= 5) return "major";
   return "decisive";
 }
 

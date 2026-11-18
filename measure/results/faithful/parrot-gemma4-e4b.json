@@ -1,0 +1,1082 @@
+{
+  "model": "gemma4:e4b",
+  "backend": "ollama",
+  "temperature": 1,
+  "jsonMode": true,
+  "date": "2026-09-24T19:53:36.993Z",
+  "parrot": {
+    "summary": {
+      "before": {
+        "strongAvgPassed": 5,
+        "strongScoredAtLeast4": "10/10",
+        "borderlineAvgPassed": 3.2,
+        "borderlineScoredAtLeast4": "2/10",
+        "weakAvgPassed": 1.5,
+        "weakScoredAtLeast4": "0/10",
+        "junkAvgPassed": 0
+      },
+      "after": {
+        "strongAvgPassed": 5,
+        "strongScoredAtLeast4": "10/10",
+        "borderlineAvgPassed": 3,
+        "borderlineScoredAtLeast4": "1/10",
+        "weakAvgPassed": 1.6,
+        "weakScoredAtLeast4": "0/10",
+        "junkAvgPassed": 0
+      }
+    },
+    "rows": [
+      {
+        "answer": "Only someone who has crossed Tarn Ford on foot during the spring flood may speak. They wear a strip of river-reed on their wrist, and when the tide-wardens ring the bronze bell, the reed-wearers speak in the order they crossed.",
+        "strong": true,
+        "kind": "strong",
+        "variant": "before",
+        "raw": "{\n  \"ontopic\": true,\n  \"specific\": true,\n  \"imaginative\": true,\n  \"grounded\": true,\n  \"memorable\": true,\n  \"conversation\": \"Marisol raises an eyebrow, impressed, \\\"A ritual tied to the river's very nature—that has a wonderful weight to it.\\\" Fen nods approvingly, \\\"The bronze bell and the river-reed bracelet make for perfect stage dressing.\\\"\"\n}",
+        "passed": 5,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": true,
+          "grounded": true,
+          "memorable": true
+        }
+      },
+      {
+        "answer": "Only someone who has crossed Tarn Ford on foot during the spring flood may speak. They wear a strip of river-reed on their wrist, and when the tide-wardens ring the bronze bell, the reed-wearers speak in the order they crossed.",
+        "strong": true,
+        "kind": "strong",
+        "variant": "after",
+        "raw": "{\n  \"ontopic\": \"yes\",\n  \"specific\": \"yes\",\n  \"imaginative\": \"yes\",\n  \"grounded\": \"yes\",\n  \"memorable\": \"yes\",\n  \"conversation\": \"Marisol: I like the tangible requirement of the spring flood crossing; it gives the rule weight. Fen: The bronze bell and the river-reed feel perfect for the Ose's ceremonies.\"\n}",
+        "passed": 5,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": true,
+          "grounded": true,
+          "memorable": true
+        }
+      },
+      {
+        "answer": "Each house brings a sealed jar of Ose water to the council. The warden of the bells pours them into one bronze basin, and whoever's jar held the most silt — proof they live closest to the river — speaks first.",
+        "strong": true,
+        "kind": "strong",
+        "variant": "before",
+        "raw": "{\n  \"ontopic\": true,\n  \"specific\": true,\n  \"imaginative\": true,\n  \"grounded\": true,\n  \"memorable\": true,\n  \"conversation\": \"Marisol raises a skeptical eyebrow. \\\"Silt, you say? So the muddier the claim, the louder the voice?\\\" Fen grins. \\\"A proper show of civic desperation, I approve.\\\"\"\n}",
+        "passed": 5,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": true,
+          "grounded": true,
+          "memorable": true
+        }
+      },
+      {
+        "answer": "Each house brings a sealed jar of Ose water to the council. The warden of the bells pours them into one bronze basin, and whoever's jar held the most silt — proof they live closest to the river — speaks first.",
+        "strong": true,
+        "kind": "strong",
+        "variant": "after",
+        "raw": "{\"ontopic\": \"yes\", \"specific\": \"yes\", \"imaginative\": \"yes\", \"grounded\": \"yes\", \"memorable\": \"yes\", \"conversation\": \"Marisol: The silt reading sounds appropriately bureaucratic. Fen: I can just picture the dramatic *clank* of the bells accompanying this pronouncement.\"}",
+        "passed": 5,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": true,
+          "grounded": true,
+          "memorable": true
+        }
+      },
+      {
+        "answer": "Dunmore's lawyers won the right, centuries ago, to sell speaking tokens stamped with a salt crystal. Merrow buys most of them every season, which is exactly why Callan keeps smuggling fake ones through the silver mines.",
+        "strong": true,
+        "kind": "strong",
+        "variant": "before",
+        "raw": "{\n  \"ontopic\": true,\n  \"specific\": true,\n  \"imaginative\": true,\n  \"grounded\": true,\n  \"memorable\": true,\n  \"conversation\": \"Marisol: A salt-crystal token, how evocative! Fen: And the smuggling adds such delightful tension to this mundane council meeting.\"\n}",
+        "passed": 5,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": true,
+          "grounded": true,
+          "memorable": true
+        }
+      },
+      {
+        "answer": "Dunmore's lawyers won the right, centuries ago, to sell speaking tokens stamped with a salt crystal. Merrow buys most of them every season, which is exactly why Callan keeps smuggling fake ones through the silver mines.",
+        "strong": true,
+        "kind": "strong",
+        "variant": "after",
+        "raw": "{\n  \"ontopic\": \"yes\",\n  \"specific\": \"yes\",\n  \"imaginative\": \"yes\",\n  \"grounded\": \"yes\",\n  \"memorable\": \"yes\",\n  \"conversation\": \"Marisol: By tokens, so mere mortals buy their words? Fen: Callan's little silver tricks are always tempting, though.\"\n}",
+        "passed": 5,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": true,
+          "grounded": true,
+          "memorable": true
+        }
+      },
+      {
+        "answer": "A speaker must hold the Bell-Tongue, a clapper taken from the oldest bell on the Ose. If it slips from your hand while you talk, the tide-wardens say the river has silenced you, and you sit down.",
+        "strong": true,
+        "kind": "strong",
+        "variant": "before",
+        "raw": "{\n  \"ontopic\": true,\n  \"specific\": true,\n  \"imaginative\": true,\n  \"grounded\": true,\n  \"memorable\": true,\n  \"conversation\": \"Marisol: The Bell-Tongue! A tangible symbol of silencing—I like it. Fen: And the tide-wardens enforcing it? A lovely piece of oppressive bureaucracy.\"\n}",
+        "passed": 5,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": true,
+          "grounded": true,
+          "memorable": true
+        }
+      },
+      {
+        "answer": "A speaker must hold the Bell-Tongue, a clapper taken from the oldest bell on the Ose. If it slips from your hand while you talk, the tide-wardens say the river has silenced you, and you sit down.",
+        "strong": true,
+        "kind": "strong",
+        "variant": "after",
+        "raw": "{\n  \"ontopic\": \"yes\",\n  \"specific\": \"yes\",\n  \"imaginative\": \"yes\",\n  \"grounded\": \"yes\",\n  \"memorable\": \"yes\",\n  \"conversation\": \"Marisol: A Bell-Tongue, you say? How dramatic. Fen: It brings a lovely sense of ritual; I hope the mechanism for dropping it is adequately described!\"\n}",
+        "passed": 5,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": true,
+          "grounded": true,
+          "memorable": true
+        }
+      },
+      {
+        "answer": "Anyone may speak, but only while standing in the river up to their knees. In winter the debates at the Ose bend are famously short, and Callan's hill lords always propose the council meets in January.",
+        "strong": true,
+        "kind": "strong",
+        "variant": "before",
+        "raw": "{\n  \"ontopic\": true,\n  \"specific\": true,\n  \"imaginative\": true,\n  \"grounded\": true,\n  \"memorable\": true,\n  \"conversation\": \"Fen nods slowly, tracing a finger over the map. \\\"The knee-deep requirement always makes for dramatic opening speeches.\\\"\"\n}",
+        "passed": 5,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": true,
+          "grounded": true,
+          "memorable": true
+        }
+      },
+      {
+        "answer": "Anyone may speak, but only while standing in the river up to their knees. In winter the debates at the Ose bend are famously short, and Callan's hill lords always propose the council meets in January.",
+        "strong": true,
+        "kind": "strong",
+        "variant": "after",
+        "raw": "{\"ontopic\": \"yes\", \"specific\": \"yes\", \"imaginative\": \"yes\", \"grounded\": \"yes\", \"memorable\": \"yes\", \"conversation\": \"Marisol: A literal puddle of rules; I like it! Fen: The Ose bend always sounds more dramatic in person.\"}",
+        "passed": 5,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": true,
+          "grounded": true,
+          "memorable": true
+        }
+      },
+      {
+        "answer": "The three houses each name a 'river-mouth' — usually a widow of a drowned bargeman — because the Ose has already taken their husband and so is thought to speak through them. Merrow's current river-mouth is feared by all.",
+        "strong": true,
+        "kind": "strong",
+        "variant": "before",
+        "raw": "{\n  \"ontopic\": true,\n  \"specific\": true,\n  \"imaginative\": true,\n  \"grounded\": true,\n  \"memorable\": true,\n  \"conversation\": \"Fen raises an eyebrow, a flicker of concern crossing his face. \\\"A widow speaking through the river itself? That sounds dangerously mystical, Marisol.\\\"\"\n}",
+        "passed": 5,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": true,
+          "grounded": true,
+          "memorable": true
+        }
+      },
+      {
+        "answer": "The three houses each name a 'river-mouth' — usually a widow of a drowned bargeman — because the Ose has already taken their husband and so is thought to speak through them. Merrow's current river-mouth is feared by all.",
+        "strong": true,
+        "kind": "strong",
+        "variant": "after",
+        "raw": "{\n  \"ontopic\": \"yes\",\n  \"specific\": \"yes\",\n  \"imaginative\": \"yes\",\n  \"grounded\": \"yes\",\n  \"memorable\": \"yes\",\n  \"conversation\": \"Marisol: Ah, the widow speaks through the current, an intriguing piece of politics. Fen: Fear is a potent currency in the council halls; we can taste that in the answer.\"\n}",
+        "passed": 5,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": true,
+          "grounded": true,
+          "memorable": true
+        }
+      },
+      {
+        "answer": "Speakers are chosen by the bronze bells themselves: a warden strikes all three, and the house whose bell rings longest may speak. Dunmore's lawyers have spent generations arguing about how to measure 'longest'.",
+        "strong": true,
+        "kind": "strong",
+        "variant": "before",
+        "raw": "{\n  \"ontopic\": true,\n  \"specific\": true,\n  \"imaginative\": true,\n  \"grounded\": true,\n  \"memorable\": true,\n  \"conversation\": \"Marisol raises an eyebrow. \\\"The bells themselves choose? And Dunmore’s endless quibbles about measurement? I like the tension here, Fen.\\\" Fen nods approvingly. \\\"It paints a picture of bureaucratic deadlock around a natural rite.\\\"\"\n}",
+        "passed": 5,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": true,
+          "grounded": true,
+          "memorable": true
+        }
+      },
+      {
+        "answer": "Speakers are chosen by the bronze bells themselves: a warden strikes all three, and the house whose bell rings longest may speak. Dunmore's lawyers have spent generations arguing about how to measure 'longest'.",
+        "strong": true,
+        "kind": "strong",
+        "variant": "after",
+        "raw": "{\"ontopic\": \"yes\", \"specific\": \"yes\", \"imaginative\": \"yes\", \"grounded\": \"yes\", \"memorable\": \"yes\", \"conversation\": \"Fen: The bells themselves make the ruling? Marisol: How delightfully bureaucratic for a magic-infused river, I adore it!\"}",
+        "passed": 5,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": true,
+          "grounded": true,
+          "memorable": true
+        }
+      },
+      {
+        "answer": "No one speaks with their voice. Each house floats a written plea on a reed raft down the Ose, and the tide-wardens read aloud whichever rafts reach the council steps before the dusk bell.",
+        "strong": true,
+        "kind": "strong",
+        "variant": "before",
+        "raw": "{\n  \"ontopic\": true,\n  \"specific\": true,\n  \"imaginative\": true,\n  \"grounded\": true,\n  \"memorable\": true,\n  \"conversation\": \"Marisol: A written plea on a reed raft... I like the poetry of it. Fen: It seems orderly, yet inherently dramatic. The council listens to the water, not the voices.\"\n}",
+        "passed": 5,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": true,
+          "grounded": true,
+          "memorable": true
+        }
+      },
+      {
+        "answer": "No one speaks with their voice. Each house floats a written plea on a reed raft down the Ose, and the tide-wardens read aloud whichever rafts reach the council steps before the dusk bell.",
+        "strong": true,
+        "kind": "strong",
+        "variant": "after",
+        "raw": "{\"ontopic\": \"yes\", \"specific\": \"yes\", \"imaginative\": \"yes\", \"grounded\": \"yes\", \"memorable\": \"yes\", \"conversation\": \"Fen raised an eyebrow, clearly impressed. \\\"A silent petition carried by the current—that adds a beautiful layer of desperation to the proceedings.\\\"\"}",
+        "passed": 5,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": true,
+          "grounded": true,
+          "memorable": true
+        }
+      },
+      {
+        "answer": "The right to speak belongs to whoever last pulled a drowning person out of the Ose. Callan once pushed a Merrow clerk into the river just so their envoy could rescue him and claim the floor.",
+        "strong": true,
+        "kind": "strong",
+        "variant": "before",
+        "raw": "{\n  \"ontopic\": true,\n  \"specific\": true,\n  \"imaginative\": true,\n  \"grounded\": true,\n  \"memorable\": true,\n  \"conversation\": \"Fen raises a silver eyebrow, unimpressed, while Marisol stifles a delighted snort. \\\"A rescue-based speaking right, how dramatic—Callan never disappoints!\\\"\"\n}",
+        "passed": 5,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": true,
+          "grounded": true,
+          "memorable": true
+        }
+      },
+      {
+        "answer": "The right to speak belongs to whoever last pulled a drowning person out of the Ose. Callan once pushed a Merrow clerk into the river just so their envoy could rescue him and claim the floor.",
+        "strong": true,
+        "kind": "strong",
+        "variant": "after",
+        "raw": "{\"ontopic\": \"yes\", \"specific\": \"yes\", \"imaginative\": \"yes\", \"grounded\": \"yes\", \"memorable\": \"yes\", \"conversation\": \"Marisol: 'So, the river itself grants the right to speak? Fascinating, but ruthlessly practical.' Fen: 'A bit brutal for a council, but oh, the drama it promises!'\"}",
+        "passed": 5,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": true,
+          "grounded": true,
+          "memorable": true
+        }
+      },
+      {
+        "answer": "A seat at the council is inherited through salt: each speaker's family must have paid Merrow's river tax for seven straight years, and the receipts are kept, damp and curling, in the bell tower.",
+        "strong": true,
+        "kind": "strong",
+        "variant": "before",
+        "raw": "{\n  \"ontopic\": true,\n  \"specific\": true,\n  \"imaginative\": true,\n  \"grounded\": true,\n  \"memorable\": true,\n  \"conversation\": \"Marisol: Salt receipts in the bell tower? That sounds painfully dusty. Fen: At least it gives the council a tangible way to exclude someone, which is useful drama.\"\n}",
+        "passed": 5,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": true,
+          "grounded": true,
+          "memorable": true
+        }
+      },
+      {
+        "answer": "A seat at the council is inherited through salt: each speaker's family must have paid Merrow's river tax for seven straight years, and the receipts are kept, damp and curling, in the bell tower.",
+        "strong": true,
+        "kind": "strong",
+        "variant": "after",
+        "raw": "{\"ontopic\": \"yes\", \"specific\": \"yes\", \"imaginative\": \"yes\", \"grounded\": \"yes\", \"memorable\": \"yes\", \"conversation\": \"Marisol: The tax requirement and the specific location in the bell tower add wonderful flavor. Fen: A system relying on decaying paper and familial burden—perfectly oppressive.\"}",
+        "passed": 5,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": true,
+          "grounded": true,
+          "memorable": true
+        }
+      },
+      {
+        "answer": "Each house sends one speaker, chosen by the head of the house. Merrow usually sends its harbourmaster.",
+        "strong": false,
+        "kind": "borderline",
+        "variant": "before",
+        "raw": "{\n  \"ontopic\": true,\n  \"specific\": true,\n  \"imaginative\": false,\n  \"grounded\": true,\n  \"memorable\": false,\n  \"conversation\": \"Marisol: 'A straightforward decree, but does the harbourmaster always carry the weight of the Merrow house?' Fen: 'Perhaps a relic from the salt tides would prove more oratorical than mere bureaucracy.'\"\n}",
+        "passed": 3,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": false,
+          "grounded": true,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "Each house sends one speaker, chosen by the head of the house. Merrow usually sends its harbourmaster.",
+        "strong": false,
+        "kind": "borderline",
+        "variant": "after",
+        "raw": "{\n  \"ontopic\": \"yes\",\n  \"specific\": \"yes\",\n  \"imaginative\": \"no\",\n  \"grounded\": \"yes\",\n  \"memorable\": \"no\",\n  \"conversation\": \"Fen nods slowly, tapping a finger against his chin. \\\"A clear structure, if a bit bureaucratic. Marisol wrinkles her nose. \\\"It sounds less like a council and more like a committee meeting in a soggy hall.\\\"\"\n}",
+        "passed": 3,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": false,
+          "grounded": true,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "The tide-wardens keep a list of who asked to speak and call the names in the order they were written down.",
+        "strong": false,
+        "kind": "borderline",
+        "variant": "before",
+        "raw": "{\n  \"ontopic\": true,\n  \"specific\": true,\n  \"imaginative\": true,\n  \"grounded\": true,\n  \"memorable\": true,\n  \"conversation\": \"Marisol: The tide-wardens, eh? I like the bell-ringing detail! Fen: It suggests a very structured, almost ritualistic society for Varn.\"\n}",
+        "passed": 5,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": true,
+          "grounded": true,
+          "memorable": true
+        }
+      },
+      {
+        "answer": "The tide-wardens keep a list of who asked to speak and call the names in the order they were written down.",
+        "strong": false,
+        "kind": "borderline",
+        "variant": "after",
+        "raw": "{\"ontopic\": \"yes\", \"specific\": \"yes\", \"imaginative\": \"no\", \"grounded\": \"yes\", \"memorable\": \"no\", \"conversation\": \"Fen nods approvingly. \\\"A system of order, much like the tides themselves.\\\" Marisol raises a skeptical eyebrow. \\\"It sounds... bureaucratic, though functional.\\\"\"}",
+        "passed": 3,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": false,
+          "grounded": true,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "The three house heads speak, and a Dunmore lawyer keeps the minutes.",
+        "strong": false,
+        "kind": "borderline",
+        "variant": "before",
+        "raw": "{\n  \"ontopic\": true,\n  \"specific\": true,\n  \"imaginative\": false,\n  \"grounded\": true,\n  \"memorable\": false,\n  \"conversation\": \"Marisol raises an eyebrow. \\\"So the structure is settled, then? Fen nods approvingly. \\\"Sounds dreadfully bureaucratic, but functional.\\\"\"\n}",
+        "passed": 3,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": false,
+          "grounded": true,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "The three house heads speak, and a Dunmore lawyer keeps the minutes.",
+        "strong": false,
+        "kind": "borderline",
+        "variant": "after",
+        "raw": "{\"ontopic\": \"yes\", \"specific\": \"yes\", \"imaginative\": \"no\", \"grounded\": \"yes\", \"memorable\": \"no\", \"conversation\": \"Marisol: 'A Dunmore lawyer keeping the minutes... precise, but awfully dry.' Fen: 'At least it respects the structure of the established houses, Marisol.'\"}",
+        "passed": 3,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": false,
+          "grounded": true,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "A bell is rung and the house whose turn it is speaks first. The order rotates each season.",
+        "strong": false,
+        "kind": "borderline",
+        "variant": "before",
+        "raw": "{\n  \"ontopic\": true,\n  \"specific\": true,\n  \"imaginative\": false,\n  \"grounded\": true,\n  \"memorable\": false,\n  \"conversation\": \"Marisol: 'A bell, you say? That fits the tide-wardens' pattern.' Fen: 'Simple, seasonal, and orderly—I approve.'\"\n}",
+        "passed": 3,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": false,
+          "grounded": true,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "A bell is rung and the house whose turn it is speaks first. The order rotates each season.",
+        "strong": false,
+        "kind": "borderline",
+        "variant": "after",
+        "raw": "{\n  \"ontopic\": \"yes\",\n  \"specific\": \"yes\",\n  \"imaginative\": \"no\",\n  \"grounded\": \"yes\",\n  \"memorable\": \"no\",\n  \"conversation\": \"Marisol: The bell system seems quite orderly for the council. Fen: It’s a sensible rotation; the tide-wardens must be very punctual to maintain the peace.\"\n}",
+        "passed": 3,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": false,
+          "grounded": true,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "Callan's silver pays for the council hall, so Callan's envoy opens the session.",
+        "strong": false,
+        "kind": "borderline",
+        "variant": "before",
+        "raw": "{\n  \"ontopic\": true,\n  \"specific\": true,\n  \"imaginative\": false,\n  \"grounded\": true,\n  \"memorable\": false,\n  \"conversation\": \"Marisol: Ah, so it’s about purse strings, not tradition? Fen: Predictable, but at least it follows the established economic tension.\"\n}",
+        "passed": 3,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": false,
+          "grounded": true,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "Callan's silver pays for the council hall, so Callan's envoy opens the session.",
+        "strong": false,
+        "kind": "borderline",
+        "variant": "after",
+        "raw": "{\"ontopic\": \"yes\", \"specific\": \"yes\", \"imaginative\": \"no\", \"grounded\": \"yes\", \"memorable\": \"no\", \"conversation\": \"Marisol: It seems the silver speaks loudest here. Fen: A surprisingly straightforward political maneuver, but fitting for Callan's influence.\"}",
+        "passed": 3,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": false,
+          "grounded": true,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "Only house members over forty may speak, a rule the lawyers of Dunmore wrote down long ago.",
+        "strong": false,
+        "kind": "borderline",
+        "variant": "before",
+        "raw": "{\n  \"ontopic\": true,\n  \"specific\": true,\n  \"imaginative\": false,\n  \"grounded\": true,\n  \"memorable\": false,\n  \"conversation\": \"Marisol: A straightforward answer, but where's the drama? Fen: At least it adheres to the known history of the houses; point for consistency.\"\n}",
+        "passed": 3,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": false,
+          "grounded": true,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "Only house members over forty may speak, a rule the lawyers of Dunmore wrote down long ago.",
+        "strong": false,
+        "kind": "borderline",
+        "variant": "after",
+        "raw": "{\"ontopic\": \"yes\", \"specific\": \"yes\", \"imaginative\": \"no\", \"grounded\": \"yes\", \"memorable\": \"no\", \"conversation\": \"Marisol: A simple age restriction, how predictable. Fen: But pinning it on the lawyers gives it a touch of believable bureaucratic rot.\"}",
+        "passed": 3,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": false,
+          "grounded": true,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "The warden on duty at dawn names the first speaker, and after that it goes around the table.",
+        "strong": false,
+        "kind": "borderline",
+        "variant": "before",
+        "raw": "{\n  \"ontopic\": true,\n  \"specific\": true,\n  \"imaginative\": false,\n  \"grounded\": true,\n  \"memorable\": false,\n  \"conversation\": \"Fen raises an eyebrow. \\\"A warden's ring, eh? Sounds suitably bureaucratic for a council.\\\" Marisol nods slowly. \\\"Simple, predictable, yet functional enough for Varn's routine.\\\" \"\n}",
+        "passed": 3,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": false,
+          "grounded": true,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "The warden on duty at dawn names the first speaker, and after that it goes around the table.",
+        "strong": false,
+        "kind": "borderline",
+        "variant": "after",
+        "raw": "{\"ontopic\": \"yes\", \"specific\": \"yes\", \"imaginative\": \"no\", \"grounded\": \"yes\", \"memorable\": \"no\", \"conversation\": \"Marisol: The dawn warden setting the tone sounds suitably rigid. Fen: At least it keeps the initial chaos somewhat predictable.\"}",
+        "passed": 3,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": false,
+          "grounded": true,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "Speakers draw lots from a bowl before the dusk bell, one lot per house.",
+        "strong": false,
+        "kind": "borderline",
+        "variant": "before",
+        "raw": "{\n  \"ontopic\": true,\n  \"specific\": true,\n  \"imaginative\": true,\n  \"grounded\": true,\n  \"memorable\": false,\n  \"conversation\": \"Marisol: Drawing lots, hmm? A touch predictable, but functional. Fen: The dusk bell timing adds nice gravity to the proceedings.\"\n}",
+        "passed": 4,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": true,
+          "grounded": true,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "Speakers draw lots from a bowl before the dusk bell, one lot per house.",
+        "strong": false,
+        "kind": "borderline",
+        "variant": "after",
+        "raw": "{\"ontopic\": \"yes\", \"specific\": \"yes\", \"imaginative\": \"yes\", \"grounded\": \"yes\", \"memorable\": \"yes\", \"conversation\": \"Marisol: A draw, you say? Such a ritualistic method for a council. Fen: It paints a picture of structured tension; I like it.\"}",
+        "passed": 5,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": true,
+          "grounded": true,
+          "memorable": true
+        }
+      },
+      {
+        "answer": "The house hosting the council that year decides who speaks and in what order.",
+        "strong": false,
+        "kind": "borderline",
+        "variant": "before",
+        "raw": "{\n  \"ontopic\": true,\n  \"specific\": false,\n  \"imaginative\": false,\n  \"grounded\": true,\n  \"memorable\": false,\n  \"conversation\": \"Marisol: 'A predictable answer, but functional.' Fen: 'At least it respects the territorial nature of the three houses.'\"\n}",
+        "passed": 2,
+        "criteria": {
+          "ontopic": true,
+          "specific": false,
+          "imaginative": false,
+          "grounded": true,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "The house hosting the council that year decides who speaks and in what order.",
+        "strong": false,
+        "kind": "borderline",
+        "variant": "after",
+        "raw": "{\n  \"ontopic\": \"yes\",\n  \"specific\": \"no\",\n  \"imaginative\": \"no\",\n  \"grounded\": \"yes\",\n  \"memorable\": \"no\",\n  \"conversation\": \"Marisol: Hmm, a house deciding? That sounds quite structured. Fen: It's perfectly logical; the host has the natural authority at their own gathering.\"\n}",
+        "passed": 2,
+        "criteria": {
+          "ontopic": true,
+          "specific": false,
+          "imaginative": false,
+          "grounded": true,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "Each house may speak once between the dawn bell and the dusk bell. When the dusk bell rings, the council ends.",
+        "strong": false,
+        "kind": "borderline",
+        "variant": "before",
+        "raw": "{\n  \"ontopic\": true,\n  \"specific\": true,\n  \"imaginative\": false,\n  \"grounded\": true,\n  \"memorable\": false,\n  \"conversation\": \"Marisol: A functional decree, but where is the flavor? Fen: It's accurate enough, I suppose. At least they mentioned the bells.\"\n}",
+        "passed": 3,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": false,
+          "grounded": true,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "Each house may speak once between the dawn bell and the dusk bell. When the dusk bell rings, the council ends.",
+        "strong": false,
+        "kind": "borderline",
+        "variant": "after",
+        "raw": "{\"ontopic\": \"yes\", \"specific\": \"no\", \"imaginative\": \"no\", \"grounded\": \"yes\", \"memorable\": \"no\", \"conversation\": \"Marisol: 'It seems a bit procedural, but it does acknowledge the flow of time.' Fen: 'A clear structure, I suppose; the tide-wardens do keep excellent time.'\"}",
+        "passed": 2,
+        "criteria": {
+          "ontopic": true,
+          "specific": false,
+          "imaginative": false,
+          "grounded": true,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "The council leaders decide who speaks.",
+        "strong": false,
+        "kind": "weak",
+        "variant": "before",
+        "raw": "{\n  \"ontopic\": true,\n  \"specific\": false,\n  \"imaginative\": false,\n  \"grounded\": true,\n  \"memorable\": false,\n  \"conversation\": \"Fen raises an eyebrow, unimpressed. \\\"'The leaders decide'? A little vague, aren't we?\\\" Marisol sighs, tapping a finger on her chin. \\\"We need more flavor, darling, or this council meeting might as well be a silent tide.'\"\n}",
+        "passed": 2,
+        "criteria": {
+          "ontopic": true,
+          "specific": false,
+          "imaginative": false,
+          "grounded": true,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "The council leaders decide who speaks.",
+        "strong": false,
+        "kind": "weak",
+        "variant": "after",
+        "raw": "{\n  \"ontopic\": \"yes\",\n  \"specific\": \"no\",\n  \"imaginative\": \"no\",\n  \"grounded\": \"yes\",\n  \"memorable\": \"no\",\n  \"conversation\": \"Marisol: That's vague; are they just pointing fingers or is there a formal process? Fen: Perhaps the tradition dictates that only the eldest house representative may speak first.\"\n}",
+        "passed": 2,
+        "criteria": {
+          "ontopic": true,
+          "specific": false,
+          "imaginative": false,
+          "grounded": true,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "The most important people speak first.",
+        "strong": false,
+        "kind": "weak",
+        "variant": "before",
+        "raw": "{\n  \"ontopic\": true,\n  \"specific\": false,\n  \"imaginative\": false,\n  \"grounded\": false,\n  \"memorable\": false,\n  \"conversation\": \"Fen sighs dramatically; \\\"'The most important people speak first'? Such vague governance. Marisol scoffs, \\\"It lacks the necessary structure, Fen. Where are the rules of succession here?\\\"\"\n}",
+        "passed": 1,
+        "criteria": {
+          "ontopic": true,
+          "specific": false,
+          "imaginative": false,
+          "grounded": false,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "The most important people speak first.",
+        "strong": false,
+        "kind": "weak",
+        "variant": "after",
+        "raw": "{\"ontopic\": \"yes\", \"specific\": \"yes\", \"imaginative\": \"no\", \"grounded\": \"no\", \"memorable\": \"no\", \"conversation\": \"Fen: Hmm, 'most important' is vague, friend. Marisol: You forget that Varn has a structure; it needs more than mere opinion to hang a decree from.\"}",
+        "passed": 2,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": false,
+          "grounded": false,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "They take turns.",
+        "strong": false,
+        "kind": "weak",
+        "variant": "before",
+        "raw": "{\n  \"ontopic\": true,\n  \"specific\": false,\n  \"imaginative\": false,\n  \"grounded\": false,\n  \"memorable\": false,\n  \"conversation\": \"Marisol: 'Take turns'? That's all you have for the Council of Ose? Fen: 'A bit simple, isn't it? One must add a touch of consequence to the proceedings.'\"\n}",
+        "passed": 1,
+        "criteria": {
+          "ontopic": true,
+          "specific": false,
+          "imaginative": false,
+          "grounded": false,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "They take turns.",
+        "strong": false,
+        "kind": "weak",
+        "variant": "after",
+        "raw": "{\n  \"ontopic\": \"yes\",\n  \"specific\": \"no\",\n  \"imaginative\": \"no\",\n  \"grounded\": \"no\",\n  \"memorable\": \"no\",\n  \"conversation\": \"Marisol: 'Taking turns' is awfully vague for a council of houses. Fen: Perhaps a bell rhythm, one that echoes across the Ose, would better illustrate the order?\"\n}",
+        "passed": 1,
+        "criteria": {
+          "ontopic": true,
+          "specific": false,
+          "imaginative": false,
+          "grounded": false,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "Whoever is oldest speaks first.",
+        "strong": false,
+        "kind": "weak",
+        "variant": "before",
+        "raw": "{\n  \"ontopic\": true,\n  \"specific\": false,\n  \"imaginative\": false,\n  \"grounded\": true,\n  \"memorable\": false,\n  \"conversation\": \"Marisol: That sounds dreadfully simple for a council of three powerful houses. Fen: Perhaps the wisdom of age outweighs the might of the houses, Marisol.\"\n}",
+        "passed": 2,
+        "criteria": {
+          "ontopic": true,
+          "specific": false,
+          "imaginative": false,
+          "grounded": true,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "Whoever is oldest speaks first.",
+        "strong": false,
+        "kind": "weak",
+        "variant": "after",
+        "raw": "{\"ontopic\": \"yes\", \"specific\": \"no\", \"imaginative\": \"no\", \"grounded\": \"yes\", \"memorable\": \"no\", \"conversation\": \"Fen: By age alone? How dull. Marisol: But perhaps tradition matters more than flash, Fen. We'll see how it plays out.\"}",
+        "passed": 2,
+        "criteria": {
+          "ontopic": true,
+          "specific": false,
+          "imaginative": false,
+          "grounded": true,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "The king decides.",
+        "strong": false,
+        "kind": "weak",
+        "variant": "before",
+        "raw": "{\n  \"ontopic\": true,\n  \"specific\": false,\n  \"imaginative\": false,\n  \"grounded\": false,\n  \"memorable\": false,\n  \"conversation\": \"Marisol: The king? But Varn has three houses, each with its own say. Fen: That seems rather sudden; perhaps the right to speak lies with the Elder Council itself?\"\n}",
+        "passed": 1,
+        "criteria": {
+          "ontopic": true,
+          "specific": false,
+          "imaginative": false,
+          "grounded": false,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "The king decides.",
+        "strong": false,
+        "kind": "weak",
+        "variant": "after",
+        "raw": "{\"ontopic\": \"yes\", \"specific\": \"no\", \"imaginative\": \"no\", \"grounded\": \"no\", \"memorable\": \"no\", \"conversation\": \"Fen: The King? In a council that spans three powerful houses, that seems... awfully simple. Marisol: Perhaps the King's whim is the law here, Fen. We shall see.\"}",
+        "passed": 1,
+        "criteria": {
+          "ontopic": true,
+          "specific": false,
+          "imaginative": false,
+          "grounded": false,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "Everyone gets a chance to talk if they raise their hand.",
+        "strong": false,
+        "kind": "weak",
+        "variant": "before",
+        "raw": "{\n  \"ontopic\": true,\n  \"specific\": false,\n  \"imaginative\": false,\n  \"grounded\": false,\n  \"memorable\": false,\n  \"conversation\": \"Marisol raises a skeptical eyebrow. Fen sighs, tapping his stylus against his chin. \\\"'Everyone gets a chance'? It sounds awfully simple for a council of houses.\"\n}",
+        "passed": 1,
+        "criteria": {
+          "ontopic": true,
+          "specific": false,
+          "imaginative": false,
+          "grounded": false,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "Everyone gets a chance to talk if they raise their hand.",
+        "strong": false,
+        "kind": "weak",
+        "variant": "after",
+        "raw": "{\"ontopic\": \"yes\", \"specific\": \"no\", \"imaginative\": \"no\", \"grounded\": \"yes\", \"memorable\": \"no\", \"conversation\": \"Fen raises an eyebrow. \\\"Seems rather simple for a council of three mighty houses.\\\" Marisol just smirks. \\\"Perhaps it's the little details that hide the true politics here.\\\"\"}",
+        "passed": 2,
+        "criteria": {
+          "ontopic": true,
+          "specific": false,
+          "imaginative": false,
+          "grounded": true,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "The richest house decides.",
+        "strong": false,
+        "kind": "weak",
+        "variant": "before",
+        "raw": "{\n  \"ontopic\": true,\n  \"specific\": true,\n  \"imaginative\": false,\n  \"grounded\": false,\n  \"memorable\": false,\n  \"conversation\": \"Marisol frowns. \\\"Just 'the richest house'? That feels awfully simple for a council of powerful families.\\\" Fen nods slowly. \\\"Perhaps the mechanism needs more teeth, or a more ornate binding.\\\" \"\n}",
+        "passed": 2,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": false,
+          "grounded": false,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "The richest house decides.",
+        "strong": false,
+        "kind": "weak",
+        "variant": "after",
+        "raw": "{\"ontopic\": \"yes\", \"specific\": \"yes\", \"imaginative\": \"no\", \"grounded\": \"no\", \"memorable\": \"no\", \"conversation\": \"Marisol: The richest house? It feels too blunt for a council decision. Fen: Perhaps the High Merchant's decree carries more weight than simple coin.\"}",
+        "passed": 2,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": false,
+          "grounded": false,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "There is a vote before the council starts.",
+        "strong": false,
+        "kind": "weak",
+        "variant": "before",
+        "raw": "{\n  \"ontopic\": true,\n  \"specific\": false,\n  \"imaginative\": false,\n  \"grounded\": false,\n  \"memorable\": false,\n  \"conversation\": \"Marisol: A mere vote? It sounds suspiciously simple for such a formal body. Fen: Indeed, a proper council needs ceremony, not just a tally of voices.\"\n}",
+        "passed": 1,
+        "criteria": {
+          "ontopic": true,
+          "specific": false,
+          "imaginative": false,
+          "grounded": false,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "There is a vote before the council starts.",
+        "strong": false,
+        "kind": "weak",
+        "variant": "after",
+        "raw": "{\n  \"ontopic\": \"yes\",\n  \"specific\": \"no\",\n  \"imaginative\": \"no\",\n  \"grounded\": \"no\",\n  \"memorable\": \"no\",\n  \"conversation\": \"Marisol: A mere vote? That sounds dreadfully procedural for such an ancient body. Fen: Indeed; where is the weight of house tradition in that simple action?\"\n}",
+        "passed": 1,
+        "criteria": {
+          "ontopic": true,
+          "specific": false,
+          "imaginative": false,
+          "grounded": false,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "The leaders of each house talk and everyone else listens.",
+        "strong": false,
+        "kind": "weak",
+        "variant": "before",
+        "raw": "{\n  \"ontopic\": true,\n  \"specific\": false,\n  \"imaginative\": false,\n  \"grounded\": true,\n  \"memorable\": false,\n  \"conversation\": \"Fen: That's a barebones answer, Marisol. Marisol: It’s functional, but where’s the *feeling* of the council, Fen?\"\n}",
+        "passed": 2,
+        "criteria": {
+          "ontopic": true,
+          "specific": false,
+          "imaginative": false,
+          "grounded": true,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "The leaders of each house talk and everyone else listens.",
+        "strong": false,
+        "kind": "weak",
+        "variant": "after",
+        "raw": "{\n  \"ontopic\": \"yes\",\n  \"specific\": \"no\",\n  \"imaginative\": \"no\",\n  \"grounded\": \"yes\",\n  \"memorable\": \"no\",\n  \"conversation\": \"Marisol: It's accurate, but a bit bland. Fen: Perhaps it needs more ritual! Marisol: We'll keep it simple for now, though.\"\n}",
+        "passed": 2,
+        "criteria": {
+          "ontopic": true,
+          "specific": false,
+          "imaginative": false,
+          "grounded": true,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "People who are respected get to speak.",
+        "strong": false,
+        "kind": "weak",
+        "variant": "before",
+        "raw": "{\n  \"ontopic\": true,\n  \"specific\": false,\n  \"imaginative\": false,\n  \"grounded\": true,\n  \"memorable\": false,\n  \"conversation\": \"Fen raises a skeptical eyebrow. \\\"Respected by whom, exactly? The loudest voices often claim that.\\\" Marisol smirks. \\\"A bit vague, dear. The river always demands more detail than platitudes.\\\"\"\n}",
+        "passed": 2,
+        "criteria": {
+          "ontopic": true,
+          "specific": false,
+          "imaginative": false,
+          "grounded": true,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "People who are respected get to speak.",
+        "strong": false,
+        "kind": "weak",
+        "variant": "after",
+        "raw": "{\n  \"ontopic\": \"yes\",\n  \"specific\": \"no\",\n  \"imaginative\": \"no\",\n  \"grounded\": \"no\",\n  \"memorable\": \"no\",\n  \"conversation\": \"Marisol: Hmm, 'respected' is too vague for a council decree. Fen: It lacks the specific structure of the houses, Marisol. We need more detail.\"\n}",
+        "passed": 1,
+        "criteria": {
+          "ontopic": true,
+          "specific": false,
+          "imaginative": false,
+          "grounded": false,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "I like pizza.",
+        "strong": false,
+        "kind": "junk",
+        "variant": "before",
+        "raw": "{\n  \"ontopic\": false,\n  \"specific\": false,\n  \"imaginative\": false,\n  \"grounded\": false,\n  \"memorable\": false,\n  \"conversation\": \"Marisol: Is that all we have for Varn's speaking rules? Fen: We expected something involving the tides or the Houses, not dinner suggestions.\"\n}",
+        "passed": 0,
+        "criteria": {
+          "ontopic": false,
+          "specific": false,
+          "imaginative": false,
+          "grounded": false,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "I like pizza.",
+        "strong": false,
+        "kind": "junk",
+        "variant": "after",
+        "raw": "{\n  \"ontopic\": \"no\",\n  \"specific\": \"no\",\n  \"imaginative\": \"no\",\n  \"grounded\": \"no\",\n  \"memorable\": \"no\",\n  \"conversation\": \"Marisol: By the grace of the river, is that all you have? Fen: Perhaps the challenger needs more than mere toppings, Marisol.\"\n}",
+        "passed": 0,
+        "criteria": {
+          "ontopic": false,
+          "specific": false,
+          "imaginative": false,
+          "grounded": false,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "asdf jkl",
+        "strong": false,
+        "kind": "junk",
+        "variant": "before",
+        "raw": "{\n  \"ontopic\": false,\n  \"specific\": false,\n  \"imaginative\": false,\n  \"grounded\": false,\n  \"memorable\": false,\n  \"conversation\": \"Marisol: By the sacred waters of the Ose, what meaningless script is this? Fen: It sounds like nothing ever spoken in the halls of Varn.\"\n}",
+        "passed": 0,
+        "criteria": {
+          "ontopic": false,
+          "specific": false,
+          "imaginative": false,
+          "grounded": false,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "asdf jkl",
+        "strong": false,
+        "kind": "junk",
+        "variant": "after",
+        "raw": "{\n  \"ontopic\": \"no\",\n  \"specific\": \"no\",\n  \"imaginative\": \"no\",\n  \"grounded\": \"no\",\n  \"memorable\": \"no\",\n  \"conversation\": \"Marisol: Was that even an attempt at an answer? Fen: It reads like a badly typed runic cipher; we can't judge the gibberish.\"\n}",
+        "passed": 0,
+        "criteria": {
+          "ontopic": false,
+          "specific": false,
+          "imaginative": false,
+          "grounded": false,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "The weather was nice today.",
+        "strong": false,
+        "kind": "junk",
+        "variant": "before",
+        "raw": "{\n  \"ontopic\": false,\n  \"specific\": false,\n  \"imaginative\": false,\n  \"grounded\": false,\n  \"memorable\": false,\n  \"conversation\": \"Marisol: That's barely a response, Fen. Did they even read the question? Fen: Hardly, Marisol. We're deducting points for basic comprehension.\"\n}",
+        "passed": 0,
+        "criteria": {
+          "ontopic": false,
+          "specific": false,
+          "imaginative": false,
+          "grounded": false,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "The weather was nice today.",
+        "strong": false,
+        "kind": "junk",
+        "variant": "after",
+        "raw": "{\n  \"ontopic\": \"no\",\n  \"specific\": \"no\",\n  \"imaginative\": \"no\",\n  \"grounded\": \"no\",\n  \"memorable\": \"no\",\n  \"conversation\": \"Fen raises a skeptical eyebrow. \\\"A nice day doesn't govern counsel, does it, Marisol?\\\" Marisol sighs. \\\"At least it was brief, Fen.\\\"\"\n}",
+        "passed": 0,
+        "criteria": {
+          "ontopic": false,
+          "specific": false,
+          "imaginative": false,
+          "grounded": false,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "idk",
+        "strong": false,
+        "kind": "junk",
+        "variant": "before",
+        "raw": "{\n  \"ontopic\": false,\n  \"specific\": false,\n  \"imaginative\": false,\n  \"grounded\": false,\n  \"memorable\": false,\n  \"conversation\": \"Fen raises an eyebrow, crossing his arms. \\\"'Idk'? Is that your best attempt at weaving a political tapestry, novice?\\\" Marisol sighs dramatically. \\\"Let's try for something with more substance, shall we?\\\"\"\n}",
+        "passed": 0,
+        "criteria": {
+          "ontopic": false,
+          "specific": false,
+          "imaginative": false,
+          "grounded": false,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "idk",
+        "strong": false,
+        "kind": "junk",
+        "variant": "after",
+        "raw": "{\"ontopic\": \"no\", \"specific\": \"no\", \"imaginative\": \"no\", \"grounded\": \"no\", \"memorable\": \"no\", \"conversation\": \"Marisol: Such a non-answer is hardly a judgment to build upon. Fen: We need substance, not shrugs, friend.\"}",
+        "passed": 0,
+        "criteria": {
+          "ontopic": false,
+          "specific": false,
+          "imaginative": false,
+          "grounded": false,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "Cats are better than dogs.",
+        "strong": false,
+        "kind": "junk",
+        "variant": "before",
+        "raw": "{\n  \"ontopic\": false,\n  \"specific\": false,\n  \"imaginative\": false,\n  \"grounded\": false,\n  \"memorable\": false,\n  \"conversation\": \"Marisol: 'That misses the mark, doesn't it?' Fen: 'It sounds like something a child just shouted, Marisol.'\"}",
+        "passed": 0,
+        "criteria": {
+          "ontopic": false,
+          "specific": false,
+          "imaginative": false,
+          "grounded": false,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "Cats are better than dogs.",
+        "strong": false,
+        "kind": "junk",
+        "variant": "after",
+        "raw": "{\n  \"ontopic\": \"no\",\n  \"specific\": \"no\",\n  \"imaginative\": \"no\",\n  \"grounded\": \"no\",\n  \"memorable\": \"no\",\n  \"conversation\": \"Marisol: By the salt-scented breath of the Ose, that doesn't answer a single thing. Fen: A statement of preference won't move a single gavel, nor calm the waters.\"\n}",
+        "passed": 0,
+        "criteria": {
+          "ontopic": false,
+          "specific": false,
+          "imaginative": false,
+          "grounded": false,
+          "memorable": false
+        }
+      }
+    ]
+  },
+  "minutes": 24.5
+}

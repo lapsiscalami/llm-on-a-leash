@@ -1,10 +1,15 @@
 /**
- * DEMO 01 — Deal from a deck, don't ask for variety.
+ * DEMO — Deal from a deck, don't ask for variety.
  *
  * Ask a model for "a fresh world-building topic" twenty times and it
- * converges on a handful of favourites. That is mode collapse, and no
- * amount of "be creative!" fixes it, because the model has no memory of
- * what it already said and no incentive to spread out.
+ * converges on a handful of favourites. That is mode collapse, and on
+ * small models no amount of "be creative!" fixes it.
+ *
+ * This demo is stateless: no history in the prompt, and it collapses
+ * anyway. In the game it was worse, because each question was written
+ * with the earlier questions and answers in context. A small model reads
+ * that history as "this is what we talk about", so it narrows further.
+ * This demo does not measure that effect.
  *
  * So don't ask. Hash the game id, Fisher-Yates a deck of 20 domains, deal
  * card n for question n. Variety is guaranteed by construction.
@@ -17,16 +22,6 @@ import { getClient, extractJson, isLive, header, section, bar, runDemo } from ".
 const NAIVE_PROMPT = `You are running a world-building game. Suggest ONE fresh
 topic for the next question about this world. Be creative and vary your answer.
 Return RAW JSON only: {"topic": "a single lowercase word"}`;
-
-/** Recorded from a real run: 20 calls, llama3.1:8b-class, temperature 0.7.
- *  Governance and religion eat over half the draws. This is not a strawman;
- *  it is what the model actually does. */
-const RECORDED_NAIVE = [
-  "governance", "religion", "governance", "warfare", "religion",
-  "economy", "governance", "religion", "warfare", "governance",
-  "technology", "religion", "governance", "economy", "warfare",
-  "governance", "religion", "governance", "religion", "economy",
-];
 
 // ── The deck ─────────────────────────────────────────────────────────────
 
@@ -67,16 +62,17 @@ function distribution(label: string, picks: string[]): void {
 
 // ── Run ──────────────────────────────────────────────────────────────────
 
-const client = getClient((_p, call) =>
-  JSON.stringify({ topic: RECORDED_NAIVE[call % RECORDED_NAIVE.length] }));
+const client = getClient("deck");
 
 runDemo(async () => {
-  header("DEMO 01 — Deal from a deck, don't ask for variety", client);
+  header("DEMO — Deal from a deck, don't ask for variety", client);
 
   section("Asking the model for variety (20 calls)");
   const naive: string[] = [];
   for (let i = 0; i < 20; i++) {
-    const raw = await client.complete(NAIVE_PROMPT);
+    // A writing prompt runs warm (pattern 6). The recording predates this
+    // option and was made at the shim's default of 0.7.
+    const raw = await client.complete(NAIVE_PROMPT, { temperature: 0.8 });
     try {
       const { topic } = extractJson(raw) as { topic: string };
       naive.push(String(topic).toLowerCase().trim());
@@ -85,18 +81,9 @@ runDemo(async () => {
     }
   }
   distribution("NAIVE — model picks the topic", naive);
-  if (!isLive) {
-    console.log(`
-  ^ replayed from a recorded llama3.1:8b run. Pass --live to`);
-    console.log(`    watch your own model do it — and expect DIFFERENT numbers.`);
-  } else {
-    console.log(`
-  ^ your model's own collapse. The SHAPE matters more than the`);
-    console.log(`    number: models collapse toward different attractors.`);
-    console.log(`    llama3.1:8b favoured concrete domains (governance, religion);`);
-    console.log(`    gemma4:e2b favoured abstract nouns (resonance, silence).`);
-    console.log(`    Neither spreads across a 20-topic space on its own.`);
-  }
+  console.log(`\n  ^ ${isLive ? "your model, this run" : "real replies, replayed"}.` +
+              ` Different models collapse onto different favourites;`);
+  console.log(`    the point is that none of them spread out on their own.`);
 
   section("Dealing from a shuffled deck (no LLM involved)");
   const dealt = Array.from({ length: 20 }, (_, i) => assignedDomain("game_7fka2", i));

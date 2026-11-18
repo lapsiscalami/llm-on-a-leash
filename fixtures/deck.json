@@ -1,0 +1,86 @@
+{
+  "model": "gemma4:e2b-it-q4_K_M",
+  "recordedAt": "2026-09-23T16:39:53.136Z",
+  "calls": [
+    {
+      "prompt": "You are running a world-building game. Suggest ONE fresh\ntopic for the next question about this world. Be creative and vary your answer.\nReturn RAW JSON only: {\"topic\": \"a single lowercase word\"}",
+      "reply": "```json\n{\n  \"topic\": \"chronology\"\n}\n```"
+    },
+    {
+      "prompt": "You are running a world-building game. Suggest ONE fresh\ntopic for the next question about this world. Be creative and vary your answer.\nReturn RAW JSON only: {\"topic\": \"a single lowercase word\"}",
+      "reply": "```json\n{\n  \"topic\": \"infrastructure\"\n}\n```"
+    },
+    {
+      "prompt": "You are running a world-building game. Suggest ONE fresh\ntopic for the next question about this world. Be creative and vary your answer.\nReturn RAW JSON only: {\"topic\": \"a single lowercase word\"}",
+      "reply": "```json\n{\n  \"topic\": \"resonance\"\n}\n```"
+    },
+    {
+      "prompt": "You are running a world-building game. Suggest ONE fresh\ntopic for the next question about this world. Be creative and vary your answer.\nReturn RAW JSON only: {\"topic\": \"a single lowercase word\"}",
+      "reply": "```json\n{\n  \"topic\": \"resonance\"\n}\n```"
+    },
+    {
+      "prompt": "You are running a world-building game. Suggest ONE fresh\ntopic for the next question about this world. Be creative and vary your answer.\nReturn RAW JSON only: {\"topic\": \"a single lowercase word\"}",
+      "reply": "```json\n{\n  \"topic\": \"symbiosis\"\n}\n```"
+    },
+    {
+      "prompt": "You are running a world-building game. Suggest ONE fresh\ntopic for the next question about this world. Be creative and vary your answer.\nReturn RAW JSON only: {\"topic\": \"a single lowercase word\"}",
+      "reply": "```json\n{\n  \"topic\": \"ecology\"\n}\n```"
+    },
+    {
+      "prompt": "You are running a world-building game. Suggest ONE fresh\ntopic for the next question about this world. Be creative and vary your answer.\nReturn RAW JSON only: {\"topic\": \"a single lowercase word\"}",
+      "reply": "```json\n{\n  \"topic\": \"chronology\"\n}\n```"
+    },
+    {
+      "prompt": "You are running a world-building game. Suggest ONE fresh\ntopic for the next question about this world. Be creative and vary your answer.\nReturn RAW JSON only: {\"topic\": \"a single lowercase word\"}",
+      "reply": "```json\n{\n  \"topic\": \"symbiosis\"\n}\n```"
+    },
+    {
+      "prompt": "You are running a world-building game. Suggest ONE fresh\ntopic for the next question about this world. Be creative and vary your answer.\nReturn RAW JSON only: {\"topic\": \"a single lowercase word\"}",
+      "reply": "```json\n{\n  \"topic\": \"chronology\"\n}\n```"
+    },
+    {
+      "prompt": "You are running a world-building game. Suggest ONE fresh\ntopic for the next question about this world. Be creative and vary your answer.\nReturn RAW JSON only: {\"topic\": \"a single lowercase word\"}",
+      "reply": "```json\n{\n  \"topic\": \"ecology\"\n}\n```"
+    },
+    {
+      "prompt": "You are running a world-building game. Suggest ONE fresh\ntopic for the next question about this world. Be creative and vary your answer.\nReturn RAW JSON only: {\"topic\": \"a single lowercase word\"}",
+      "reply": "```json\n{\n  \"topic\": \"resonance\"\n}\n```"
+    },
+    {
+      "prompt": "You are running a world-building game. Suggest ONE fresh\ntopic for the next question about this world. Be creative and vary your answer.\nReturn RAW JSON only: {\"topic\": \"a single lowercase word\"}",
+      "reply": "```json\n{\n  \"topic\": \"echoes\"\n}\n```"
+    },
+    {
+      "prompt": "You are running a world-building game. Suggest ONE fresh\ntopic for the next question about this world. Be creative and vary your answer.\nReturn RAW JSON only: {\"topic\": \"a single lowercase word\"}",
+      "reply": "```json\n{\n\"topic\": \"resonance\"\n}\n```"
+    },
+    {
+      "prompt": "You are running a world-building game. Suggest ONE fresh\ntopic for the next question about this world. Be creative and vary your answer.\nReturn RAW JSON only: {\"topic\": \"a single lowercase word\"}",
+      "reply": "```json\n{\n  \"topic\": \"symbiosis\"\n}\n```"
+    },
+    {
+      "prompt": "You are running a world-building game. Suggest ONE fresh\ntopic for the next question about this world. Be creative and vary your answer.\nReturn RAW JSON only: {\"topic\": \"a single lowercase word\"}",
+      "reply": "```json\n{\n  \"topic\": \"entropy\"\n}\n```"
+    },
+    {
+      "prompt": "You are running a world-building game. Suggest ONE fresh\ntopic for the next question about this world. Be creative and vary your answer.\nReturn RAW JSON only: {\"topic\": \"a single lowercase word\"}",
+      "reply": "```json\n{\n  \"topic\": \"resonance\"\n}\n```"
+    },
+    {
+      "prompt": "You are running a world-building game. Suggest ONE fresh\ntopic for the next question about this world. Be creative and vary your answer.\nReturn RAW JSON only: {\"topic\": \"a single lowercase word\"}",
+      "reply": "```json\n{\n  \"topic\": \"symbiosis\"\n}\n```"
+    },
+    {
+      "prompt": "You are running a world-building game. Suggest ONE fresh\ntopic for the next question about this world. Be creative and vary your answer.\nReturn RAW JSON only: {\"topic\": \"a single lowercase word\"}",
+      "reply": "```json\n{\n  \"topic\": \"symbiosis\"\n}\n```"
+    },
+    {
+      "prompt": "You are running a world-building game. Suggest ONE fresh\ntopic for the next question about this world. Be creative and vary your answer.\nReturn RAW JSON only: {\"topic\": \"a single lowercase word\"}",
+      "reply": "```json\n{\n  \"topic\": \"resonance\"\n}\n```"
+    },
+    {
+      "prompt": "You are running a world-building game. Suggest ONE fresh\ntopic for the next question about this world. Be creative and vary your answer.\nReturn RAW JSON only: {\"topic\": \"a single lowercase word\"}",
+      "reply": "```json\n{\n  \"topic\": \"entropy\"\n}\n```"
+    }
+  ]
+}

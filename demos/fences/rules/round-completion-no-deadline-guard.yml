@@ -10,22 +10,25 @@ note: |
   rounds, and rounds start resolving out from under players who are still
   typing. The fix is to never let that line land.
 
+  The match is scoped INSIDE checkRoundCompletion. A deadline comparison
+  in some other function (a scheduler, a UI countdown) is that function's
+  business and must not trip this fence.
+
   NOTE the `pattern` below rather than a regex: an earlier draft of this
   rule used `regex: 'Date\.now\(\)\s*>'` and fired on the guard's own
   EXPLANATORY COMMENT, which mentions the very code it forbids. Structural
   matching reads the syntax tree, so prose is invisible to it. That is the
   argument for ast-grep over grep in one example.
 rule:
-  kind: program
-  all:
-    - has:
-        stopBy: end
-        regex: "checkRoundCompletion"
-    - has:
-        stopBy: end
-        any:
-          - pattern: Date.now() > $$$
-          - pattern: $$$ > $DEADLINE.deadline
-          - pattern: $OBJ.isExpired
+  any:
+    - pattern: Date.now() > $$$
+    - pattern: $$$ > $DEADLINE.deadline
+    - pattern: $OBJ.isExpired
+  inside:
+    stopBy: end
+    kind: function_declaration
+    has:
+      field: name
+      regex: "^checkRoundCompletion$"
 files:
-  - "demos/04-fences/guarded/rounds.ts"
+  - "demos/fences/guarded/rounds.ts"

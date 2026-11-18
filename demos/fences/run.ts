@@ -1,5 +1,5 @@
 /**
- * DEMO 04 — Pin the fix.
+ * DEMO — Pin the fix.
  *
  * You find a subtle race. You fix it with one line. Six months later
  * someone refactors that function and the line quietly disappears,
@@ -18,8 +18,8 @@ import { execFileSync } from "node:child_process";
 import { readFileSync, writeFileSync, copyFileSync, rmSync } from "node:fs";
 import { header, section } from "../../src/llm.js";
 
-const GUARDED = "demos/04-fences/guarded/rounds.ts";
-const BACKUP = "demos/04-fences/guarded/.rounds.backup";
+const GUARDED = "demos/fences/guarded/rounds.ts";
+const BACKUP = "demos/fences/guarded/.rounds.backup";
 
 /** Run the real ast-grep scanner. Exit code 0 = clean, 1 = rule fired. */
 function scan(): { clean: boolean; firedRules: string[] } {
@@ -61,6 +61,20 @@ const MUTATIONS: Mutation[] = [
     why: "the fence is pinned to a name; renaming needs a deliberate rule update",
   },
   {
+    label: "move the guard to a sibling function",
+    apply: (s) =>
+      s
+        .replace(/\s*if \(game\.currentRound >= nextRoundNumber\) return;\n/, "\n")
+        .replace(
+          "export function checkRoundCompletion",
+          "export function skipIfAdvanced(game: Game, nextRoundNumber: number): void {\n" +
+            "  if (game.currentRound >= nextRoundNumber) return;\n}\n\n" +
+            "export function checkRoundCompletion",
+        ),
+    expect: "caught",
+    why: "the line still exists in the file, just not where it matters; a file-level check would pass this",
+  },
+  {
     label: "add a deadline check",
     apply: (s) => s.replace(
       "return players.every((p) => p.submitted);",
@@ -68,6 +82,16 @@ const MUTATIONS: Mutation[] = [
     ),
     expect: "caught",
     why: "the INVERTED fence — fires when forbidden code appears",
+  },
+  {
+    label: "a deadline check in a different function",
+    apply: (s) => s.replace(
+      "export function checkRoundCompletion",
+      "export function isOverdue(deadline: number): boolean {\n  return Date.now() > deadline;\n}\n\n" +
+        "export function checkRoundCompletion",
+    ),
+    expect: "clean",
+    why: "the inverted fence is scoped to checkRoundCompletion; other functions may consult the clock",
   },
   {
     label: "harmless comment edit",
@@ -86,7 +110,7 @@ const MUTATIONS: Mutation[] = [
   },
 ];
 
-header("DEMO 04 — Pin the fix (regression fences)");
+header("DEMO — Pin the fix (regression fences)");
 
 const original = readFileSync(GUARDED, "utf8");
 copyFileSync(GUARDED, BACKUP);
@@ -101,7 +125,7 @@ try {
   }
 
   section("Mutating the file and re-scanning");
-  console.log(`    ${"mutation".padEnd(34)} ${"fence".padEnd(9)} ${"expected".padEnd(9)} verdict`);
+  console.log(`    ${"mutation".padEnd(41)} ${"fence".padEnd(9)} ${"expected".padEnd(9)} verdict`);
   let pass = 0;
   for (const m of MUTATIONS) {
     writeFileSync(GUARDED, m.apply(original), "utf8");
@@ -110,10 +134,10 @@ try {
     const good = got === m.expect;
     if (good) pass++;
     console.log(
-      `    ${m.label.padEnd(34)} ${got.padEnd(9)} ${m.expect.padEnd(9)} ${good ? "ok" : "MISMATCH"}` +
-      (r.firedRules.length ? `\n      ${"".padEnd(34)} fired: ${r.firedRules.join(", ")}` : ""),
+      `    ${m.label.padEnd(41)} ${got.padEnd(9)} ${m.expect.padEnd(9)} ${good ? "ok" : "MISMATCH"}` +
+      (r.firedRules.length ? `\n      ${"".padEnd(41)} fired: ${r.firedRules.join(", ")}` : ""),
     );
-    console.log(`      ${"".padEnd(34)} ${m.why}`);
+    console.log(`      ${"".padEnd(41)} ${m.why}`);
   }
   console.log(`\n    ${pass}/${MUTATIONS.length} behaved as expected.`);
 } finally {
@@ -138,6 +162,8 @@ console.log(`  in the rule's note as the argument for ast-grep over grep.`);
 section("The habit worth stealing");
 console.log(`  · When you fix something subtle, ask: "what stops this from`);
 console.log(`    being deleted?" If the answer is "nothing", add a fence.`);
+console.log(`  · The pin-the-fix skill in .claude/skills writes one, with the`);
+console.log(`    rule test that proves it fires: say which line to pin.`);
 console.log(`  · Put the INCIDENT in the rule's note — a date, a game id, a`);
 console.log(`    symptom. A rule that explains itself survives; one that just`);
 console.log(`    says "don't do this" gets deleted by the next person.`);

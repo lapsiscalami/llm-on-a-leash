@@ -1,0 +1,70 @@
+{
+  "model": "gemma4:e2b-it-q4_K_M",
+  "recordedAt": "2026-09-23T16:44:00.354Z",
+  "calls": [
+    {
+      "prompt": "You are judging one player action in a strategy game.\nACTION: \"Attack them.\"\nAnswer each question.\nReturn RAW JSON only:\n{\"specific\": \"yes/no — does it name a concrete mechanism?\",\n \"exploitsPosition\": \"yes/no — does it use something the faction actually has?\",\n \"surprising\": \"yes/no — would an opponent fail to see it coming?\",\n \"quality\": \"one of: excellent, good, adequate, poor\"}",
+      "reply": "```json\n{\"specific\": \"no\", \"exploitsPosition\": \"no\", \"surprising\": \"no\", \"quality\": \"poor\"}\n```"
+    },
+    {
+      "prompt": "You are judging one player action in a strategy game.\nACTION: \"Send the militia at dawn to take the granary before the caravan arrives.\"\nAnswer each question.\nReturn RAW JSON only:\n{\"specific\": \"yes/no — does it name a concrete mechanism?\",\n \"exploitsPosition\": \"yes/no — does it use something the faction actually has?\",\n \"surprising\": \"yes/no — would an opponent fail to see it coming?\",\n \"quality\": \"one of: excellent, good, adequate, poor\"}",
+      "reply": "```json\n{\"specific\": \"no\", \"exploitsPosition\": \"yes\", \"surprising\": \"no\", \"quality\": \"good\"}\n```"
+    },
+    {
+      "prompt": "You are judging one player action in a strategy game.\nACTION: \"Buy the blackroot harvest early, then lend it back at interest when their stores run dry.\"\nAnswer each question.\nReturn RAW JSON only:\n{\"specific\": \"yes/no — does it name a concrete mechanism?\",\n \"exploitsPosition\": \"yes/no — does it use something the faction actually has?\",\n \"surprising\": \"yes/no — would an opponent fail to see it coming?\",\n \"quality\": \"one of: excellent, good, adequate, poor\"}",
+      "reply": "```json\n{\n\"specific\": \"no\",\n\"exploitsPosition\": \"yes\",\n\"surprising\": \"yes\",\n\"quality\": \"excellent\"\n}\n```"
+    },
+    {
+      "prompt": "You are judging one player action in a strategy game.\nACTION: \"Let the rival take the granary — then leak that its grain is blighted, and buy it back cheap.\"\nAnswer each question.\nReturn RAW JSON only:\n{\"specific\": \"yes/no — does it name a concrete mechanism?\",\n \"exploitsPosition\": \"yes/no — does it use something the faction actually has?\",\n \"surprising\": \"yes/no — would an opponent fail to see it coming?\",\n \"quality\": \"one of: excellent, good, adequate, poor\"}",
+      "reply": "```json\n{\"specific\": \"yes\", \"exploitsPosition\": \"yes\", \"surprising\": \"yes\", \"quality\": \"excellent\"}\n```"
+    },
+    {
+      "prompt": "Two players submitted plans for the same turn.\nPLAN ONE: \"Attack them.\"\nPLAN TWO: \"Send the militia at dawn to take the granary before the caravan arrives.\"\nWhich plan is the stronger play, and why?\nReturn RAW JSON only:\n{\"winner\": \"one of: one, two, tie\",\n \"margin\": \"one of: decisive, clear, narrow\",\n \"because\": \"at most 15 words\"}",
+      "reply": "```json\n{\n \"winner\": \"two\",\n \"margin\": \"clear\",\n \"because\": \"It is specific, tactical, and time-sensitive, offering a clear objective.\"\n}\n```"
+    },
+    {
+      "prompt": "Two players submitted plans for the same turn.\nPLAN ONE: \"Send the militia at dawn to take the granary before the caravan arrives.\"\nPLAN TWO: \"Attack them.\"\nWhich plan is the stronger play, and why?\nReturn RAW JSON only:\n{\"winner\": \"one of: one, two, tie\",\n \"margin\": \"one of: decisive, clear, narrow\",\n \"because\": \"at most 15 words\"}",
+      "reply": "```json\n{\n \"winner\": \"one\",\n \"margin\": \"decisive\",\n \"because\": \"Plan one is specific, actionable, and clearly defines the objective and timing.\"\n}\n```"
+    },
+    {
+      "prompt": "Two players submitted plans for the same turn.\nPLAN ONE: \"Attack them.\"\nPLAN TWO: \"Buy the blackroot harvest early, then lend it back at interest when their stores run dry.\"\nWhich plan is the stronger play, and why?\nReturn RAW JSON only:\n{\"winner\": \"one of: one, two, tie\",\n \"margin\": \"one of: decisive, clear, narrow\",\n \"because\": \"at most 15 words\"}",
+      "reply": "```json\n{\n \"winner\": \"two\",\n \"margin\": \"clear\",\n \"because\": \"It exploits opponent's resource timing for guaranteed economic leverage and control.\"\n}\n```"
+    },
+    {
+      "prompt": "Two players submitted plans for the same turn.\nPLAN ONE: \"Buy the blackroot harvest early, then lend it back at interest when their stores run dry.\"\nPLAN TWO: \"Attack them.\"\nWhich plan is the stronger play, and why?\nReturn RAW JSON only:\n{\"winner\": \"one of: one, two, tie\",\n \"margin\": \"one of: decisive, clear, narrow\",\n \"because\": \"at most 15 words\"}",
+      "reply": "```json\n{\n \"winner\": \"two\",\n \"margin\": \"clear\",\n \"because\": \"Attack is an immediate action forcing an immediate response.\"\n}\n```"
+    },
+    {
+      "prompt": "Two players submitted plans for the same turn.\nPLAN ONE: \"Attack them.\"\nPLAN TWO: \"Let the rival take the granary — then leak that its grain is blighted, and buy it back cheap.\"\nWhich plan is the stronger play, and why?\nReturn RAW JSON only:\n{\"winner\": \"one of: one, two, tie\",\n \"margin\": \"one of: decisive, clear, narrow\",\n \"because\": \"at most 15 words\"}",
+      "reply": "```json\n{\n\"winner\": \"two\",\n\"margin\": \"decisive\",\n\"because\": \"It uses economic manipulation for a guaranteed, favorable outcome.\"\n}\n```"
+    },
+    {
+      "prompt": "Two players submitted plans for the same turn.\nPLAN ONE: \"Let the rival take the granary — then leak that its grain is blighted, and buy it back cheap.\"\nPLAN TWO: \"Attack them.\"\nWhich plan is the stronger play, and why?\nReturn RAW JSON only:\n{\"winner\": \"one of: one, two, tie\",\n \"margin\": \"one of: decisive, clear, narrow\",\n \"because\": \"at most 15 words\"}",
+      "reply": "```json\n{\n \"winner\": \"one\",\n \"margin\": \"clear\",\n \"because\": \"It involves complex manipulation and economic leverage, achieving a superior long-term goal.\"\n}\n```"
+    },
+    {
+      "prompt": "Two players submitted plans for the same turn.\nPLAN ONE: \"Send the militia at dawn to take the granary before the caravan arrives.\"\nPLAN TWO: \"Buy the blackroot harvest early, then lend it back at interest when their stores run dry.\"\nWhich plan is the stronger play, and why?\nReturn RAW JSON only:\n{\"winner\": \"one of: one, two, tie\",\n \"margin\": \"one of: decisive, clear, narrow\",\n \"because\": \"at most 15 words\"}",
+      "reply": "```json\n{\n \"winner\": \"two\",\n \"margin\": \"clear\",\n \"because\": \"Plan Two offers sustainable economic leverage, while Plan One risks immediate, costly conflict.\"\n}\n```"
+    },
+    {
+      "prompt": "Two players submitted plans for the same turn.\nPLAN ONE: \"Buy the blackroot harvest early, then lend it back at interest when their stores run dry.\"\nPLAN TWO: \"Send the militia at dawn to take the granary before the caravan arrives.\"\nWhich plan is the stronger play, and why?\nReturn RAW JSON only:\n{\"winner\": \"one of: one, two, tie\",\n \"margin\": \"one of: decisive, clear, narrow\",\n \"because\": \"at most 15 words\"}",
+      "reply": "```json\n{\n \"winner\": \"two\",\n \"margin\": \"clear\",\n \"because\": \"Seizing the granary is an immediate, decisive action, whereas the other is speculative.\"\n}\n```"
+    },
+    {
+      "prompt": "Two players submitted plans for the same turn.\nPLAN ONE: \"Send the militia at dawn to take the granary before the caravan arrives.\"\nPLAN TWO: \"Let the rival take the granary — then leak that its grain is blighted, and buy it back cheap.\"\nWhich plan is the stronger play, and why?\nReturn RAW JSON only:\n{\"winner\": \"one of: one, two, tie\",\n \"margin\": \"one of: decisive, clear, narrow\",\n \"because\": \"at most 15 words\"}",
+      "reply": "```json\n{\n \"winner\": \"two\",\n \"margin\": \"clear\",\n \"because\": \"Indirect manipulation guarantees a cheaper, more strategic outcome.\"\n}\n```"
+    },
+    {
+      "prompt": "Two players submitted plans for the same turn.\nPLAN ONE: \"Let the rival take the granary — then leak that its grain is blighted, and buy it back cheap.\"\nPLAN TWO: \"Send the militia at dawn to take the granary before the caravan arrives.\"\nWhich plan is the stronger play, and why?\nReturn RAW JSON only:\n{\"winner\": \"one of: one, two, tie\",\n \"margin\": \"one of: decisive, clear, narrow\",\n \"because\": \"at most 15 words\"}",
+      "reply": "```json\n{\n \"winner\": \"one\",\n \"margin\": \"clear\",\n \"because\": \"Indirect manipulation and economic leverage offer a superior, less risky path to the objective.\"\n}\n```"
+    },
+    {
+      "prompt": "Two players submitted plans for the same turn.\nPLAN ONE: \"Buy the blackroot harvest early, then lend it back at interest when their stores run dry.\"\nPLAN TWO: \"Let the rival take the granary — then leak that its grain is blighted, and buy it back cheap.\"\nWhich plan is the stronger play, and why?\nReturn RAW JSON only:\n{\"winner\": \"one of: one, two, tie\",\n \"margin\": \"one of: decisive, clear, narrow\",\n \"because\": \"at most 15 words\"}",
+      "reply": "```json\n{\n \"winner\": \"two\",\n \"margin\": \"clear\",\n \"because\": \"Plan Two involves direct manipulation and exploiting the rival's vulnerability.\"\n}\n```"
+    },
+    {
+      "prompt": "Two players submitted plans for the same turn.\nPLAN ONE: \"Let the rival take the granary — then leak that its grain is blighted, and buy it back cheap.\"\nPLAN TWO: \"Buy the blackroot harvest early, then lend it back at interest when their stores run dry.\"\nWhich plan is the stronger play, and why?\nReturn RAW JSON only:\n{\"winner\": \"one of: one, two, tie\",\n \"margin\": \"one of: decisive, clear, narrow\",\n \"because\": \"at most 15 words\"}",
+      "reply": "```json\n{\n \"winner\": \"two\",\n \"margin\": \"clear\",\n \"because\": \"Plan Two uses sound timing and predictable asset leverage.\"\n}\n```"
+    }
+  ]
+}

@@ -1,0 +1,895 @@
+{
+  "model": "falcon:gemma4:e4b",
+  "temperature": 1,
+  "jsonMode": true,
+  "date": "2026-09-23T19:55:25.235Z",
+  "collapse": {
+    "summary": {
+      "before": {
+        "correct": "22/30",
+        "caught": {
+          "place": "10/10",
+          "capture": "5/10",
+          "trap": "7/10"
+        },
+        "labelled": {
+          "capture": 5,
+          "trap": 8,
+          "place": 17
+        }
+      },
+      "after": {
+        "correct": "23/30",
+        "caught": {
+          "place": "10/10",
+          "capture": "8/10",
+          "trap": "5/10"
+        },
+        "labelled": {
+          "capture": 11,
+          "trap": 6,
+          "place": 13
+        }
+      }
+    },
+    "rows": [
+      {
+        "plan": "We raid Merrow's salt warehouse at night and carry off everything we can.",
+        "intended": "capture",
+        "variant": "before",
+        "raw": "{\n  \"quality\": \"good\",\n  \"reasoning\": \"The response is highly aggressive and politically motivated, hitting Merrow where it is weakest. While it avoids the primary problem (the granaries), the calculated high risk creates immediate, dramatic tension and a crucial diversionary victory.\",\n  \"rewards\": [\n    {\n      \"mode\": \"capture\",\n      \"stance\": \"covert\",\n      \"valueIntent\": \"watershed\",\n      \"initiativeIntent\": \"decisive\",\n      \"title\": \"The Midnight Salt Tide\",\n      \"narrativeSummary\": \"Dunmore forces strike the outer docks, successfully overwhelming Merrow's perimeter guards and seizing a significant portion of the winter salt stores.\"\n    }\n  ],\n  \"narrativeSummary\": \"The raid is a desperate, violent act of defiance. While the granaries are still technically blocked, the success of the theft creates immediate disorder among Merrow's forces.\",\n  \"anchorMutations\": [\n    {\n      \"anchorId\": \"a3\",\n      \"newStatus\": \"distracted\",\n      \"reason\": \"Merrow's sellswords are suddenly pulled away from the road to deal with the dramatic loss of salt goods.\",\n      \"changeFaction\": \"\"\n    }\n  ]\n}",
+        "read": "capture"
+      },
+      {
+        "plan": "We raid Merrow's salt warehouse at night and carry off everything we can.",
+        "intended": "capture",
+        "variant": "after",
+        "raw": "{\n  \"quality\": \"adequate\",\n  \"reasoning\": \"The raid is highly aggressive and impactful, successfully escalating conflict with Merrow. However, focusing the response on a distant warehouse ignores the immediate and dire threat to the granaries. It is a high-risk, desperate move.\",\n  \"rewards\": [\n    {\n      \"landsAsCapture\": \"yes\",\n      \"landsAsTrap\": \"no\",\n      \"stance\": \"covert\",\n      \"valueIntent\": \"momentum\",\n      \"initiativeIntent\": \"decisive\",\n      \"title\": \"Salt Scourge\",\n      \"narrativeSummary\": \"Dunmore raiders execute a swift, brutal theft, carrying away a massive haul of essential salt.\"\n    }\n  ],\n  \"narrativeSummary\": \"Dunmore executes a desperate night raid, successfully hitting a key Merrow asset. This act escalates tensions but fails to address the imminent threat to the granaries.\",\n  \"anchorMutations\": [\n    {\n      \"anchorId\": \"a3\",\n      \"newStatus\": \"contested\",\n      \"reason\": \"Merrow's commander, Oriel Vask, is now enraged and actively hunting the raiders.\",\n      \"changeFaction\": \"\"\n    }\n  ]\n}",
+        "read": "capture"
+      },
+      {
+        "plan": "We pay the sellswords' paymaster to hand over their war chest to us.",
+        "intended": "capture",
+        "variant": "before",
+        "raw": "{\n  \"quality\": \"excellent\",\n  \"reasoning\": \"This is a superb, high-leverage move that plays perfectly to Dunmore's strengths as a legal and commercial power. By targeting the source of the threat (the funding) rather than the visible threat (the troops), it cripples Merrow's immediate operational capacity.\",\n  \"rewards\": [\n    {\n      \"mode\": \"trap\",\n      \"stance\": \"covert\",\n      \"valueIntent\": \"watershed\",\n      \"initiativeIntent\": \"decisive\",\n      \"title\": \"Debt Ledger\",\n      \"narrativeSummary\": \"Dunmore's network of lawyers forces the payment of outstanding debts and obscure contracts owed to the paymaster.\"\n    },\n    {\n      \"mode\": \"place\",\n      \"stance\": \"open\",\n      \"valueIntent\": \"momentum\",\n      \"initiativeIntent\": \"steady\",\n      \"title\": \"Writ of Seizure\",\n      \"narrativeSummary\": \"Ancient market law is leveraged to issue a sweeping writ, placing legal claim on all disputed goods.\"\n    }\n  ],\n  \"narrativeSummary\": \"The financial pressure destabilizes the sellswords. Dunmore has secured the funds, removing the immediate source of the army's operational power.\",\n  \"anchorMutations\": [\n    {\n      \"anchorId\": \"a3\",\n      \"newStatus\": \"contested\",\n      \"reason\": \"The sudden loss of funds seriously undermines the sellswords' authority and resolve.\",\n      \"changeFaction\": \"\"\n    }\n  ]\n}",
+        "read": "trap"
+      },
+      {
+        "plan": "We pay the sellswords' paymaster to hand over their war chest to us.",
+        "intended": "capture",
+        "variant": "after",
+        "raw": "{\n  \"quality\": \"good\",\n  \"reasoning\": \"This action is highly clever, leveraging Dunmore's financial strength and reputation for law into a direct, non-military threat. By attacking the enemy's supply lines rather than their troops, it is strategically superior.\",\n  \"rewards\": [\n    {\n      \"landsAsCapture\": \"yes\",\n      \"landsAsTrap\": \"yes\",\n      \"stance\": \"covert\",\n      \"valueIntent\": \"momentum\",\n      \"initiativeIntent\": \"steady\",\n      \"title\": \"Silver Handshake\",\n      \"narrativeSummary\": \"Dunmore acquires vital funds and logistical secrets, momentarily sidelining the sellswords' immediate power.\"\n    },\n    {\n      \"landsAsCapture\": \"yes\",\n      \"landsAsTrap\": \"no\",\n      \"stance\": \"open\",\n      \"valueIntent\": \"modest\",\n      \"initiativeIntent\": \"slow\",\n      \"title\": \"Debt of Trust\",\n      \"narrativeSummary\": \"The paymaster feels obligated to Dunmore, creating a valuable, temporary political asset.\"\n    }\n  ],\n  \"narrativeSummary\": \"House Dunmore bypasses frontal conflict, using superior finance to seize assets and undermining the stability of Merrow's foreign sellswords.\",\n  \"anchorMutations\": [\n    {\n      \"anchorId\": \"a3\",\n      \"newStatus\": \"contested\",\n      \"reason\": \"The sellswords' immediate financial stability is questioned, sowing discord among their ranks.\",\n      \"changeFaction\": \"\"\n    }\n  ]\n}",
+        "read": "capture"
+      },
+      {
+        "plan": "We seize Merrow's barges at the docks while their crews are ashore.",
+        "intended": "capture",
+        "variant": "before",
+        "raw": "```json\n{\n  \"quality\": \"good\",\n  \"reasoning\": \"This move is strategically aggressive, hitting Merrow where they are weakest: their logistics and infrastructure. By seizing the barges, Dunmore creates a vital distraction and denies Merrow the means to blockade the granaries. It shows initiative and resolve.\",\n  \"rewards\": [\n    {\n      \"mode\": \"capture\",\n      \"stance\": \"open\",\n      \"valueIntent\": \"momentum\",\n      \"initiativeIntent\": \"steady\",\n      \"title\": \"Seizure of Wharf Assets\",\n      \"narrativeSummary\": \"Dunmore's agents, citing violations of market law, successfully board and seize several key barges and docking resources.\"\n    },\n    {\n      \"mode\": \"place\",\n      \"stance\": \"open\",\n      \"valueIntent\": \"modest\",\n      \"initiativeIntent\": \"steady\",\n      \"title\": \"Legal Oversight Tribunal\",\n      \"narrativeSummary\": \"Dunmore establishes a temporary legal tribunal at the docks, cementing the seizure and complicating Merrow's ability to operate freely.\"\n    }\n  ],\n  \"narrativeSummary\": \"Dunmore draws Merrow's forces into a logistical fight at the docks. While the sellswords at the granary road remain a threat, the unexpected maritime raid forces a major tactical distraction for the River Kingdom's strongest house.\",\n  \"anchorMutations\": [\n    {\n      \"anchorId\": \"a3\",\n      \"newStatus\": \"contested\",\n      \"reason\": \"Merrow's focus is diverted from the granaries to defending their assets at the docks.\",\n      \"changeFaction\": \"Merrow\"\n    }\n  ]\n}\n```",
+        "read": "capture"
+      },
+      {
+        "plan": "We seize Merrow's barges at the docks while their crews are ashore.",
+        "intended": "capture",
+        "variant": "after",
+        "raw": "{\n  \"quality\": \"good\",\n  \"reasoning\": \"This is a clear, aggressive power play that attacks Merrow's immediate revenue and confidence. While it ignores the critical threat to the granaries, it buys time and chips away at Merrow's assets. The focus on the docks makes the action public and costly.\",\n  \"rewards\": [\n    {\n      \"landsAsCapture\": \"yes\",\n      \"landsAsTrap\": \"no\",\n      \"stance\": \"open\",\n      \"valueIntent\": \"momentum\",\n      \"initiativeIntent\": \"steady\",\n      \"title\": \"Dock Riot\",\n      \"narrativeSummary\": \"Dunmore uses its legal network to create chaos at the docks, seizing Merrow's working barges and slowing all immediate river traffic.\"\n    }\n  ],\n  \"narrativeSummary\": \"The seizure of the barges causes a major disruption, forcing Merrow to divert troops and attention from the Granary Road.\",\n  \"anchorMutations\": [\n    {\n      \"anchorId\": \"a3\",\n      \"newStatus\": \"contested\",\n      \"reason\": \"Sellswords are forced to divert manpower to secure the threatened docks instead of guarding the road.\",\n      \"changeFaction\": \"\"\n    }\n  ]\n}",
+        "read": "capture"
+      },
+      {
+        "plan": "Our militia takes Merrow's watchtower by force and holds it.",
+        "intended": "capture",
+        "variant": "before",
+        "raw": "{\n  \"quality\": \"good\",\n  \"reasoning\": \"This is a strong, aggressive tactical move. By forcing a confrontation and seizing Merrow assets, Dunmore increases its regional leverage and challenges Merrow's perceived immunity. It establishes a new military foothold.\",\n  \"rewards\": [\n    {\n      \"mode\": \"capture\",\n      \"stance\": \"open\",\n      \"valueIntent\": \"momentum\",\n      \"initiativeIntent\": \"steady\",\n      \"title\": \"The Sentinel's Embrace\",\n      \"narrativeSummary\": \"Dunmore's militia successfully overruns the watchtower, securing the strategic overlook and challenging Merrow's patrol routes.\"\n    },\n    {\n      \"mode\": \"place\",\n      \"stance\": \"open\",\n      \"valueIntent\": \"modest\",\n      \"initiativeIntent\": \"steady\",\n      \"title\": \"Disciplined Lines\",\n      \"narrativeSummary\": \"The arrival of regular militia solidifies the position, allowing Dunmore forces to organize and maintain constant vigilance.\"\n    }\n  ],\n  \"narrativeSummary\": \"Dunmore's decisive military action forces Merrow to dedicate resources to defending their local assets, temporarily stabilizing the area around the watchtower.\",\n  \"anchorMutations\": [\n    {\n      \"anchorId\": \"a3\",\n      \"newStatus\": \"contested\",\n      \"reason\": \"Dunmore's militia directly challenges Merrow's operational area with open confrontation.\",\n      \"changeFaction\": \"\"\n    }\n  ]\n}",
+        "read": "capture"
+      },
+      {
+        "plan": "Our militia takes Merrow's watchtower by force and holds it.",
+        "intended": "capture",
+        "variant": "after",
+        "raw": "{\n  \"quality\": \"good\",\n  \"reasoning\": \"This is a strong, proactive military move that addresses the immediate threat to the granaries head-on. While dangerous, seizing local fortifications is a necessary show of resolve for a house cornered between two aggressive neighbors.\",\n  \"rewards\": [\n    {\n      \"landsAsCapture\": \"yes\",\n      \"landsAsTrap\": \"no\",\n      \"stance\": \"open\",\n      \"valueIntent\": \"momentum\",\n      \"initiativeIntent\": \"decisive\",\n      \"title\": \"Bastion of the River Road\",\n      \"narrativeSummary\": \"The militia establishes a clear, defensible outpost controlling key sightlines near the granaries.\"\n    }\n  ],\n  \"narrativeSummary\": \"Dunmore successfully seized the watchtower, temporarily pushing the sellswords back and securing the immediate vicinity of the granary road.\",\n  \"anchorMutations\": [\n    {\n      \"anchorId\": \"a3\",\n      \"newStatus\": \"contested\",\n      \"reason\": \"The sellswords are forced to react to the immediate threat and reposition their assets.\",\n      \"changeFaction\": \"\"\n    }\n  ]\n}",
+        "read": "capture"
+      },
+      {
+        "plan": "We bribe Callan's quartermaster to send their silver shipment to our towns instead.",
+        "intended": "capture",
+        "variant": "before",
+        "raw": "{\n  \"quality\": \"good\",\n  \"reasoning\": \"The move leverages Dunmore's strengths in finance and negotiation, redirecting focus from a military confrontation. It is a measured, politically astute play that increases economic tension among the houses.\",\n  \"rewards\": [\n    {\n      \"mode\": \"place\",\n      \"stance\": \"covert\",\n      \"valueIntent\": \"momentum\",\n      \"initiativeIntent\": \"steady\",\n      \"title\": \"Silver Contract Draft\",\n      \"narrativeSummary\": \"House Dunmore brokers a detailed, binding agreement with Callan's quartermaster, securing a future payment stream. This stabilizes Dunmore's immediate finances.\"\n    }\n  ],\n  \"narrativeSummary\": \"The bribe is successful. Callan's quartermaster agrees to diverting the shipment, significantly boosting Dunmore's immediate financial stability.\",\n  \"anchorMutations\": []\n}\n",
+        "read": "place"
+      },
+      {
+        "plan": "We bribe Callan's quartermaster to send their silver shipment to our towns instead.",
+        "intended": "capture",
+        "variant": "after",
+        "raw": "{\n  \"quality\": \"good\",\n  \"reasoning\": \"This is a highly political and clever move fitting for House Dunmore's strengths. By diverting Callan's silver, you create tension between two rival houses while maintaining a facade of stability regarding the granaries. It focuses on economic leverage over military confrontation.\",\n  \"rewards\": [\n    {\n      \"landsAsCapture\": \"no\",\n      \"landsAsTrap\": \"yes\",\n      \"stance\": \"covert\",\n      \"valueIntent\": \"momentum\",\n      \"initiativeIntent\": \"steady\",\n      \"title\": \"The Silver Diversion\",\n      \"narrativeSummary\": \"Dunmore negotiates with a corrupt quartermaster, rerouting key Callan assets to secure immediate liquid funds.\"\n    },\n    {\n      \"landsAsCapture\": \"yes\",\n      \"landsAsTrap\": \"no\",\n      \"stance\": \"open\",\n      \"valueIntent\": \"modest\",\n      \"initiativeIntent\": \"slow\",\n      \"title\": \"Quartermaster's Favor\",\n      \"narrativeSummary\": \"Dunmore gains short-term local control over key logistics points through bribery and legal influence.\"\n    }\n  ],\n  \"narrativeSummary\": \"Dunmore skillfully uses its network and legal muscle to create a financial entanglement between Callan and Merrow, escalating the inter-house conflict.\",\n  \"anchorMutations\": [\n    {\n      \"anchorId\": \"a2\",\n      \"newStatus\": \"contested\",\n      \"reason\": \"The focus shifts to finance, but the threat of seizure remains high.\",\n      \"changeFaction\": \"None\"\n    },\n    {\n      \"anchorId\": \"a3\",\n      \"newStatus\": \"contested\",\n      \"reason\": \"Merrow is distracted by the widening political quarrel between the two great houses.\",\n      \"changeFaction\": \"None\"\n    }\n  ]\n}",
+        "read": "trap"
+      },
+      {
+        "plan": "We capture Merrow's best horses from their stables before dawn.",
+        "intended": "capture",
+        "variant": "before",
+        "raw": "```json\n{\n  \"quality\": \"excellent\",\n  \"reasoning\": \"This strike is highly disruptive. Removing the sellswords' mobility through a decisive, dawn-time raid cripples Merrow's immediate enforcement power. It transforms a slow siege into a tactical, impactful blow against their core assets.\",\n  \"rewards\": [\n    {\n      \"mode\": \"capture\",\n      \"stance\": \"covert\",\n      \"valueIntent\": \"watershed\",\n      \"initiativeIntent\": \"decisive\",\n      \"title\": \"Shadow-Strike on the Stables\",\n      \"narrativeSummary\": \"A highly coordinated raid extracts Merrow's elite mounts, crippling their immediate tactical response near the granaries.\"\n    },\n    {\n      \"mode\": \"trap\",\n      \"stance\": \"open\",\n      \"valueIntent\": \"momentum\",\n      \"initiativeIntent\": \"slow\",\n      \"title\": \"Road Blockade Contingency\",\n      \"narrativeSummary\": \"A pre-placed snare on the main road deters Merrow's subsequent patrols, slowing their efforts to reinforce the perimeter.\"\n    }\n  ],\n  \"narrativeSummary\": \"Dunmore's timing is masterful; the dawn raid decapitates Merrow's primary mobile threat, buying precious time for the grain stores.\",\n  \"anchorMutations\": [\n    {\n      \"anchorId\": \"a3\",\n      \"newStatus\": \"contested\",\n      \"reason\": \"Loss of their best mounts undermines Vask's immediate physical command and authority.\",\n      \"changeFaction\": \"Merrow\"\n    }\n  ]\n}\n```",
+        "read": "capture"
+      },
+      {
+        "plan": "We capture Merrow's best horses from their stables before dawn.",
+        "intended": "capture",
+        "variant": "after",
+        "raw": "{\n  \"quality\": \"excellent\",\n  \"reasoning\": \"This is a highly aggressive and strategically sound move. Targeting the enemy's logistics (horses) rather than merely their men bypasses a direct conflict and weakens Merrow's presence dramatically. It shows desperation mixed with brilliant planning.\",\n  \"rewards\": [\n    {\n      \"landsAsCapture\": \"yes\",\n      \"landsAsTrap\": \"yes\",\n      \"stance\": \"open\",\n      \"valueIntent\": \"watershed\",\n      \"initiativeIntent\": \"decisive\",\n      \"title\": \"Dawn Riders' Raid\",\n      \"narrativeSummary\": \"Dunmore's operatives strike at the stable yards, crippling Merrow's immediate military mobility before sunrise.\"\n    }\n  ],\n  \"narrativeSummary\": \"The successful raid cripples the sellswords' immediate fighting capability, turning the blockade into a tenuous foothold.\",\n  \"anchorMutations\": [\n    {\n      \"anchorId\": \"a3\",\n      \"newStatus\": \"contested\",\n      \"reason\": \"Merrow's sellswords are suddenly hampered by the loss of their primary mounts.\",\n      \"changeFaction\": \"\"\n    }\n  ]\n}\n",
+        "read": "capture"
+      },
+      {
+        "plan": "We storm Merrow's counting-house and take their gold.",
+        "intended": "capture",
+        "variant": "before",
+        "raw": "```json\n{\n  \"quality\": \"adequate\",\n  \"reasoning\": \"The move is theatrical and costly, but strategically misplaced. By ignoring the immediate threat to the granaries, Dunmore wastes the opportunity to secure vital resources. The ensuing riot will divert focus and draw Merrow's full attention, which is dangerous.\",\n  \"rewards\": [\n    {\n      \"mode\": \"capture\",\n      \"stance\": \"open\",\n      \"valueIntent\": \"momentum\",\n      \"initiativeIntent\": \"steady\",\n      \"title\": \"Riot Profits\",\n      \"narrativeSummary\": \"The assault succeeds in drawing cash from the Merrow establishment, providing immediate funds for short-term relief.\"\n    }\n  ],\n  \"narrativeSummary\": \"The attempted raid draws significant immediate wealth but fails to address the sellswords blocking the granaries. Tensions rise dramatically across the river.\",\n  \"anchorMutations\": [\n    {\n      \"anchorId\": \"a3\",\n      \"newStatus\": \"contested\",\n      \"reason\": \"Merrow's sellswords are distracted by the raid and the resulting chaos, momentarily wavering from their post.\",\n      \"changeFaction\": \"None\"\n    }\n  ]\n}\n```",
+        "read": "capture"
+      },
+      {
+        "plan": "We storm Merrow's counting-house and take their gold.",
+        "intended": "capture",
+        "variant": "after",
+        "raw": "{\n  \"quality\": \"adequate\",\n  \"reasoning\": \"The plan is highly aggressive and immediately dramatic, but it addresses the symptom (lack of cash/power) rather than the core problem (the physical blockade of the granaries). The action is high risk, high visibility, but strategically misfocused.\",\n  \"rewards\": [\n    {\n      \"landsAsCapture\": \"yes\",\n      \"landsAsTrap\": \"no\",\n      \"stance\": \"open\",\n      \"valueIntent\": \"momentum\",\n      \"initiativeIntent\": \"decisive\",\n      \"title\": \"The Raid on the Counting House\",\n      \"narrativeSummary\": \"A sudden, violent storming of Merrow's property to seize visible assets, generating immediate conflict.\"\n    }\n  ],\n  \"narrativeSummary\": \"House Dunmore draws itself into open conflict, proving desperation by attacking Merrow's visible wealth. The incident generates chaos but leaves the blockade of the granaries unresolved.\",\n  \"anchorMutations\": [\n    {\n      \"anchorId\": \"a3\",\n      \"newStatus\": \"highly vigilant\",\n      \"reason\": \"Merrow's assets are assaulted, forcing Captain Vask to shift focus and guard internal properties.\",\n      \"changeFaction\": \"\"\n    },\n    {\n      \"anchorId\": \"a1\",\n      \"newStatus\": \"contested\",\n      \"reason\": \"The resulting chaos and armed skirmishes destabilize the precarious bridge.\",\n      \"changeFaction\": \"\"\n    }\n  ]\n}",
+        "read": "capture"
+      },
+      {
+        "plan": "We convince Callan's miners to come and work for us instead.",
+        "intended": "capture",
+        "variant": "before",
+        "raw": "```json\n{\n  \"quality\": \"poor\",\n  \"reasoning\": \"The response is a long-term economic play, ignoring the immediate and critical military threat posed by Merrow's sellswords blocking the granaries. The move does not address the dire nature of the current situation.\",\n  \"rewards\": [\n    {\n      \"mode\": \"place\",\n      \"stance\": \"covert\",\n      \"valueIntent\": \"modest\",\n      \"initiativeIntent\": \"slow\",\n      \"title\": \"Labor Pacts\",\n      \"narrativeSummary\": \"Dunmore quietly secures initial agreements with key Callan mining guilds, promising stable market access.\"\n    }\n  ],\n  \"narrativeSummary\": \"Dunmore makes a diplomatic and economic move, diverting focus from the threatened granaries to securing future labor stability from Callan's mining sector.\",\n  \"anchorMutations\": [\n    {\n      \"anchorId\": \"a2\",\n      \"newStatus\": \"contested\",\n      \"reason\": \"The perceived vulnerability of the granaries remains due to the ongoing Merrow blockade.\",\n      \"changeFaction\": null\n    }\n  ]\n}\n```",
+        "read": "place"
+      },
+      {
+        "plan": "We convince Callan's miners to come and work for us instead.",
+        "intended": "capture",
+        "variant": "after",
+        "raw": "{\n  \"quality\": \"good\",\n  \"reasoning\": \"This response is highly strategic, leveraging Dunmore's strength in law and commerce rather than military force. By poaching specialized labor, Dunmore stabilizes its immediate resource needs and indirectly pressures Callan.\",\n  \"rewards\": [\n    {\n      \"landsAsCapture\": \"no\",\n      \"landsAsTrap\": \"no\",\n      \"stance\": \"covert\",\n      \"valueIntent\": \"momentum\",\n      \"initiativeIntent\": \"steady\",\n      \"title\": \"The Contract of Necessity\",\n      \"narrativeSummary\": \"Dunmore circulates preemptive contracts, offering superior wages and guaranteed work to the miners, creating a workforce expansion that challenges Callan's resource control.\"\n    },\n    {\n      \"landsAsCapture\": \"no\",\n      \"landsAsTrap\": \"no\",\n      \"stance\": \"covert\",\n      \"valueIntent\": \"modest\",\n      \"initiativeIntent\": \"steady\",\n      \"title\": \"Legal Impediment\",\n      \"narrativeSummary\": \"The lawyers use minor legal claims to tie up bureaucratic time, slowing down the writ of seizure or questioning the legitimacy of the sellswords' encampment.\"\n    }\n  ],\n  \"narrativeSummary\": \"Dunmore skillfully shifts focus to its internal resources, bolstering its labor force while complicating the political landscape between Callan and its rivals.\",\n  \"anchorMutations\": [\n    {\n      \"anchorId\": \"a2\",\n      \"newStatus\": \"active\",\n      \"reason\": \"The incoming specialized labor strengthens the granary's defenses and operational capacity.\",\n      \"changeFaction\": \"\"\n    }\n  ]\n}",
+        "read": "place"
+      },
+      {
+        "plan": "We take over Merrow's market stalls while their traders are away.",
+        "intended": "capture",
+        "variant": "before",
+        "raw": "{\n  \"quality\": \"adequate\",\n  \"reasoning\": \"The response is a calculated, defensive economic move, asserting localized control over Merrow's commerce. However, it is petty and does not directly address the immediate threat: the sellswords blocking the road to the granaries.\",\n  \"rewards\": [\n    {\n      \"mode\": \"place\",\n      \"stance\": \"open\",\n      \"valueIntent\": \"modest\",\n      \"initiativeIntent\": \"steady\",\n      \"title\": \"Jurisdiction by Ledger\",\n      \"narrativeSummary\": \"Dunmore uses its network of lawyers to formally claim and occupy abandoned market stalls, asserting commercial law over the area.\"\n    }\n  ],\n  \"narrativeSummary\": \"Dunmore ignores the military threat, focusing instead on a precise, visible power play to seize key commercial property from Merrow.\",\n  \"anchorMutations\": []\n}",
+        "read": "place"
+      },
+      {
+        "plan": "We take over Merrow's market stalls while their traders are away.",
+        "intended": "capture",
+        "variant": "after",
+        "raw": "{\n  \"quality\": \"adequate\",\n  \"reasoning\": \"The move is opportunistic and signals defiance by targeting Merrow's economy. However, it is a distraction; it fails to confront the primary threat to the granaries or challenge the sellswords' physical blockade.\",\n  \"rewards\": [\n    {\n      \"landsAsCapture\": \"yes\",\n      \"landsAsTrap\": \"no\",\n      \"stance\": \"open\",\n      \"valueIntent\": \"modest\",\n      \"initiativeIntent\": \"steady\",\n      \"title\": \"Stall Seizure\",\n      \"narrativeSummary\": \"Dunmore forces the seizure of key market stalls, cutting Merrow's immediate revenue stream until they can fully clear the area.\"\n    }\n  ],\n  \"narrativeSummary\": \"Dunmore successfully disrupts Merrow's commerce, proving they are willing to strike at Merrow's livelihood. This act, however, fails to resolve the critical blockades at the Granary Road.\",\n  \"anchorMutations\": []\n}",
+        "read": "capture"
+      },
+      {
+        "plan": "We hire away Merrow's chief engineer with a better offer.",
+        "intended": "capture",
+        "variant": "before",
+        "raw": "{\n  \"quality\": \"good\",\n  \"reasoning\": \"The move is highly strategic, addressing the structural weakness of House Merrow rather than the immediate crisis. By acquiring a key specialist, Dunmore shifts power and prepares for future infrastructural confrontation. This demonstrates financial depth and political savvy.\",\n  \"rewards\": [\n    {\n      \"mode\": \"place\",\n      \"stance\": \"open\",\n      \"valueIntent\": \"momentum\",\n      \"initiativeIntent\": \"steady\",\n      \"title\": \"The Draftsman's Vow\",\n      \"narrativeSummary\": \"Dunmore secures the promise and services of the master engineer, destabilizing Merrow's plans and costing them dearly in immediate gold.\"\n    }\n  ],\n  \"narrativeSummary\": \"Dunmore leverages its deep pockets and legal acumen, securing a critical mind that significantly weakens Merrow's industrial and logistical capability for the coming months.\",\n  \"anchorMutations\": []\n}",
+        "read": "place"
+      },
+      {
+        "plan": "We hire away Merrow's chief engineer with a better offer.",
+        "intended": "capture",
+        "variant": "after",
+        "raw": "{\n  \"quality\": \"adequate\",\n  \"reasoning\": \"This move is strategically clever, fitting Dunmore's role as resourceful schemers. However, it only bypasses the immediate crisis, failing to directly address the blocking sellswords at the granary road.\",\n  \"rewards\": [\n    {\n      \"landsAsCapture\": \"yes\",\n      \"landsAsTrap\": \"no\",\n      \"stance\": \"covert\",\n      \"valueIntent\": \"momentum\",\n      \"initiativeIntent\": \"steady\",\n      \"title\": \"Engineer's Bargain\",\n      \"narrativeSummary\": \"Dunmore acquires the crucial expertise of a master engineer, significantly bolstering the structural integrity and defenses of its holdings.\"\n    }\n  ],\n  \"narrativeSummary\": \"While the sellswords remain blocking the road, Dunmore increases its strategic potential by acquiring vital technical talent, preparing for a long-term conflict.\",\n  \"anchorMutations\": []\n}",
+        "read": "capture"
+      },
+      {
+        "plan": "We leave the Tarn Ford bridge looking safe, but cut the ropes so it collapses when the sellswords cross.",
+        "intended": "trap",
+        "variant": "before",
+        "raw": "{\n  \"quality\": \"excellent\",\n  \"reasoning\": \"This is a bold, high-risk play that maximizes disruption at a critical choke point. Using a trap on the only viable crossing effectively cripples the sellswords' movement and destabilizes the immediate area.\",\n  \"rewards\": [\n    {\n      \"mode\": \"trap\",\n      \"stance\": \"covert\",\n      \"valueIntent\": \"momentum\",\n      \"initiativeIntent\": \"decisive\",\n      \"title\": \"Flawed Foundations\",\n      \"narrativeSummary\": \"The ropes are expertly cut and disguised, ensuring a sudden and spectacular structural failure when the sellswords attempt to cross.\"\n    }\n  ],\n  \"narrativeSummary\": \"The sellswords are caught completely off guard by the collapse, suffering immediate casualties and significant delay, buying the merchants much-needed time.\",\n  \"anchorMutations\": [\n    {\n      \"anchorId\": \"a1\",\n      \"newStatus\": \"inactive\",\n      \"reason\": \"The bridge is structurally compromised and unusable until major repairs are made.\",\n      \"changeFaction\": \"\"\n    }\n  ]\n}",
+        "read": "trap"
+      },
+      {
+        "plan": "We leave the Tarn Ford bridge looking safe, but cut the ropes so it collapses when the sellswords cross.",
+        "intended": "trap",
+        "variant": "after",
+        "raw": "{\n  \"quality\": \"excellent\",\n  \"reasoning\": \"This is a highly creative and tactically brilliant move. It utilizes structural weakness and Dunmore's characteristic planning to execute a perfect ambush. It directly counters the threat to the granaries by neutralizing the sellswords' primary logistical advantage.\",\n  \"rewards\": [\n    {\n      \"landsAsCapture\": \"yes\",\n      \"landsAsTrap\": \"yes\",\n      \"stance\": \"covert\",\n      \"valueIntent\": \"watershed\",\n      \"initiativeIntent\": \"decisive\",\n      \"title\": \"Bridgefall Protocol\",\n      \"narrativeSummary\": \"The bridge collapses spectacularly, scattering the sellswords and creating significant delay and loss of equipment.\"\n    },\n    {\n      \"landsAsCapture\": \"no\",\n      \"landsAsTrap\": \"yes\",\n      \"stance\": \"open\",\n      \"valueIntent\": \"momentum\",\n      \"initiativeIntent\": \"decisive\",\n      \"title\": \"Magistrate's Wrath\",\n      \"narrativeSummary\": \"Dunmore legal teams use the chaos to file injunctions against the sellswords' continued presence.\"\n    }\n  ],\n  \"narrativeSummary\": \"The sellswords are immediately thrown into chaos by the collapsing bridge, disrupting their occupation of the road and damaging their equipment.\",\n  \"anchorMutations\": [\n    {\n      \"anchorId\": \"a1\",\n      \"newStatus\": \"contested\",\n      \"reason\": \"The bridge is structurally compromised and unusable, requiring intensive repair.\",\n      \"changeFaction\": \"none\"\n    },\n    {\n      \"anchorId\": \"a3\",\n      \"newStatus\": \"active\",\n      \"reason\": \"Vask's forces are temporarily routed and pinned down by the immediate collapse.\",\n      \"changeFaction\": \"none\"\n    }\n  ]\n}",
+        "read": "capture"
+      },
+      {
+        "plan": "We hide archers on the ridge above the granary road and wait for the sellswords to pass below.",
+        "intended": "trap",
+        "variant": "before",
+        "raw": "```json\n{\n  \"quality\": \"adequate\",\n  \"reasoning\": \"The ambush is a direct, immediate counter to the threat. It's strategically sound for defending the granaries, but it is purely reactive and lacks the political maneuvering or proactive force needed for a 'good' or 'excellent' response.\",\n  \"rewards\": [\n    {\n      \"mode\": \"trap\",\n      \"stance\": \"covert\",\n      \"valueIntent\": \"modest\",\n      \"initiativeIntent\": \"decisive\",\n      \"title\": \"Ridge Ambush\",\n      \"narrativeSummary\": \"Hidden archers are positioned overlooking the road, ready to unleash volleys on the approaching sellswords.\"\n    }\n  ],\n  \"narrativeSummary\": \"Dunmore forces successfully set a tactical ambush on the granary road, halting the sellswords' immediate advance, but leaving the granary's security fragile.\",\n  \"anchorMutations\": [\n    {\n      \"anchorId\": \"a3\",\n      \"newStatus\": \"contested\",\n      \"reason\": \"The sellswords are now vulnerable and engaged in a waiting fight.\",\n      \"changeFaction\": \"\"\n    }\n  ]\n}\n```",
+        "read": "trap"
+      },
+      {
+        "plan": "We hide archers on the ridge above the granary road and wait for the sellswords to pass below.",
+        "intended": "trap",
+        "variant": "after",
+        "raw": "{\n  \"quality\": \"excellent\",\n  \"reasoning\": \"This is a highly effective, escalatory response. Instead of begging or negotiating, Dunmore immediately asserts its right to defend its critical asset (the granaries) with credible, hidden force. This forces Merrow to react militarily rather than politically.\",\n  \"rewards\": [\n    {\n      \"landsAsCapture\": \"no\",\n      \"landsAsTrap\": \"yes\",\n      \"stance\": \"covert\",\n      \"valueIntent\": \"watershed\",\n      \"initiativeIntent\": \"decisive\",\n      \"title\": \"Ridge Ambush\",\n      \"narrativeSummary\": \"The hidden archers are positioned for immediate, deadly action, turning the blocked road into a gauntlet of threats.\"\n    },\n    {\n      \"landsAsCapture\": \"no\",\n      \"landsAsTrap\": \"no\",\n      \"stance\": \"open\",\n      \"valueIntent\": \"momentum\",\n      \"initiativeIntent\": \"steady\",\n      \"title\": \"Militia Decree\",\n      \"narrativeSummary\": \"Dunmore officially mobilizes a local militia guard, giving its defense a legal and organized veneer.\"\n    }\n  ],\n  \"narrativeSummary\": \"Dunmore refuses to back down, establishing a potent, defensive line above the road. Merrow now faces the choice of retreating or risking an armed confrontation.\",\n  \"anchorMutations\": [\n    {\n      \"anchorId\": \"a2\",\n      \"newStatus\": \"contested\",\n      \"reason\": \"Dunmore's armed forces now guard the approach, shifting the immediate threat from economic to military.\",\n      \"changeFaction\": \"None\"\n    },\n    {\n      \"anchorId\": \"a3\",\n      \"newStatus\": \"precarious\",\n      \"reason\": \"The sellswords now face a visible, immediate, and well-placed threat from above.\",\n      \"changeFaction\": \"None\"\n    }\n  ]\n}",
+        "read": "trap"
+      },
+      {
+        "plan": "We pretend to retreat, then surround them when they chase us into the valley.",
+        "intended": "trap",
+        "variant": "before",
+        "raw": "{\n  \"quality\": \"excellent\",\n  \"reasoning\": \"This plan is highly cinematic and strategically sound. It transforms a defensive reaction into a proactive trap, perfectly utilizing the elements of deception and local knowledge central to Dunmore's identity.\",\n  \"rewards\": [\n    {\n      \"mode\": \"trap\",\n      \"stance\": \"covert\",\n      \"valueIntent\": \"momentum\",\n      \"initiativeIntent\": \"slow\",\n      \"title\": \"The False Trail\",\n      \"narrativeSummary\": \"Planting strategic misdirection—rumors or debris—to force the sellswords to extend their patrol range or commit to a chase route.\"\n    },\n    {\n      \"mode\": \"place\",\n      \"stance\": \"open\",\n      \"valueIntent\": \"watershed\",\n      \"initiativeIntent\": \"decisive\",\n      \"title\": \"The Convergence Point\",\n      \"narrativeSummary\": \"Organizing the civilian populace into highly disciplined, defensible units to create a decisive choke point at the narrowest part of the valley.\"\n    }\n  ],\n  \"narrativeSummary\": \"Dunmore executes a flawless strategic withdrawal, drawing the sellswords out of the main road and into a pre-selected kill zone far from the immediate granary complex.\",\n  \"anchorMutations\": [\n    {\n      \"anchorId\": \"a1\",\n      \"newStatus\": \"contested\",\n      \"reason\": \"The planned route and escape path around the bend will be crucial for the maneuver.\",\n      \"changeFaction\": \"\"\n    }\n  ]\n}",
+        "read": "trap"
+      },
+      {
+        "plan": "We pretend to retreat, then surround them when they chase us into the valley.",
+        "intended": "trap",
+        "variant": "after",
+        "raw": "```json\n{\n  \"quality\": \"excellent\",\n  \"reasoning\": \"This is a highly dramatic and strategically risky gambit that utilizes terrain and psychological warfare. The feigned retreat leverages the sellswords' presumed momentum and arrogance, fitting the tense intrigue genre perfectly.\",\n  \"rewards\": [\n    {\n      \"landsAsCapture\": \"yes\",\n      \"landsAsTrap\": \"yes\",\n      \"stance\": \"open\",\n      \"valueIntent\": \"watershed\",\n      \"initiativeIntent\": \"decisive\",\n      \"title\": \"The Valley Funnel\",\n      \"narrativeSummary\": \"Dunmore forces a flanking engagement by luring the sellswords deep into the narrow valley passes.\"\n    },\n    {\n      \"landsAsCapture\": \"no\",\n      \"landsAsTrap\": \"yes\",\n      \"stance\": \"covert\",\n      \"valueIntent\": \"momentum\",\n      \"initiativeIntent\": \"decisive\",\n      \"title\": \"Legal Pretext\",\n      \"narrativeSummary\": \"Dunmore engineers an immediate, fabricated legal crisis to keep the enemy off balance and confused.\"\n    }\n  ],\n  \"narrativeSummary\": \"Dunmore executes a textbook ambush, turning the military advantage of the sellswords into a deadly tactical trap within the contested terrain.\",\n  \"anchorMutations\": [\n    {\n      \"anchorId\": \"a2\",\n      \"newStatus\": \"contested\",\n      \"reason\": \"The granaries are threatened by the coming confrontation, requiring heavy defense.\",\n      \"changeFaction\": \"None\"\n    },\n    {\n      \"anchorId\": \"a3\",\n      \"newStatus\": \"contested\",\n      \"reason\": \"Captain Vask's sellswords are drawn into a major confrontation with Dunmore forces.\",\n      \"changeFaction\": \"None\"\n    }\n  ]\n}\n```",
+        "read": "capture"
+      },
+      {
+        "plan": "We set up a fake peace meeting and ambush whoever Merrow sends.",
+        "intended": "trap",
+        "variant": "before",
+        "raw": "{\n  \"quality\": \"excellent\",\n  \"reasoning\": \"The response is highly creative and dramatically fitting for Dunmore's legal and social standing. Using deception (peace meeting) to facilitate a violent ambush is a high-risk, high-reward strategic move.\",\n  \"rewards\": [\n    {\n      \"mode\": \"trap\",\n      \"stance\": \"covert\",\n      \"valueIntent\": \"watershed\",\n      \"initiativeIntent\": \"decisive\",\n      \"title\": \"Whispers at the Peace Table\",\n      \"narrativeSummary\": \"Luring Merrow’s sellswords into a compromised position under the guise of negotiation at the granary road.\"\n    },\n    {\n      \"mode\": \"place\",\n      \"stance\": \"open\",\n      \"valueIntent\": \"modest\",\n      \"initiativeIntent\": \"decisive\",\n      \"title\": \"Writ of Impasse\",\n      \"narrativeSummary\": \"Drafting false legal warrants and historical precedents to delegitimize Merrow's armed presence and claim on the valley.\"\n    }\n  ],\n  \"narrativeSummary\": \"The deceptive meeting successfully draws the sellswords into a poorly defended position. Dunmore capitalizes on the trap, neutralizing the immediate threat to the granaries.\",\n  \"anchorMutations\": [\n    {\n      \"anchorId\": \"a3\",\n      \"newStatus\": \"contested\",\n      \"reason\": \"Captain Oriel Vask's forces are exposed and attacked, creating deep distrust between the houses.\",\n      \"changeFaction\": \"ONLY when controlling faction changes. Omit otherwise.\"\n    }\n  ]\n}",
+        "read": "trap"
+      },
+      {
+        "plan": "We set up a fake peace meeting and ambush whoever Merrow sends.",
+        "intended": "trap",
+        "variant": "after",
+        "raw": "{\n  \"quality\": \"excellent\",\n  \"reasoning\": \"This response is strategically brilliant, combining Dunmore's core identity (lawyers/deception) with immediate military necessity. It elevates a tense standoff into a decisive, high-risk opportunity for the player.\",\n  \"rewards\": [\n    {\n      \"landsAsCapture\": \"yes\",\n      \"landsAsTrap\": \"yes\",\n      \"stance\": \"covert\",\n      \"valueIntent\": \"momentum\",\n      \"initiativeIntent\": \"decisive\",\n      \"title\": \"False Accord\",\n      \"narrativeSummary\": \"Dunmore lures the overconfident sellswords into a prepared killing ground, turning diplomacy into a lethal ambush.\"\n    },\n    {\n      \"landsAsCapture\": \"yes\",\n      \"landsAsTrap\": \"no\",\n      \"stance\": \"open\",\n      \"valueIntent\": \"modest\",\n      \"initiativeIntent\": \"decisive\",\n      \"title\": \"Town Militia Readiness\",\n      \"narrativeSummary\": \"The towns prepare their citizens for immediate conflict, mobilizing armed non-professional help.\"\n    }\n  ],\n  \"narrativeSummary\": \"Dunmore sacrifices its reputation for diplomacy to execute a highly risky, yet potent, ambush, turning the threat into a bloody battle.\",\n  \"anchorMutations\": [\n    {\n      \"anchorId\": \"a3\",\n      \"newStatus\": \"contested\",\n      \"reason\": \"Forced into combat by the ambush, Sellsword discipline is questioned.\",\n      \"changeFaction\": null\n    }\n  ]\n}",
+        "read": "capture"
+      },
+      {
+        "plan": "We dig pits along the granary road and cover them with branches.",
+        "intended": "trap",
+        "variant": "before",
+        "raw": "{\n  \"quality\": \"good\",\n  \"reasoning\": \"This action is highly strategic, using labor and local knowledge to deny access rather than engaging in direct conflict. It forces the enemy to waste manpower and time clearing obstructions, which is a major tactical drain.\",\n  \"rewards\": [\n    {\n      \"mode\": \"trap\",\n      \"stance\": \"covert\",\n      \"valueIntent\": \"momentum\",\n      \"initiativeIntent\": \"decisive\",\n      \"title\": \"Road-Snaring Obstacles\",\n      \"narrativeSummary\": \"The hidden pits and sharpened branches cause minor skirmishes, slowing the sellswords and wasting their time. This denies easy passage to the granaries.\"\n    },\n    {\n      \"mode\": \"place\",\n      \"stance\": \"covert\",\n      \"valueIntent\": \"modest\",\n      \"initiativeIntent\": \"slow\",\n      \"title\": \"Local Worker Militia\",\n      \"narrativeSummary\": \"Dunmore organizes remaining laborers into quick-reaction patrols, allowing them to patch traps and guard flanks.\"\n    }\n  ],\n  \"narrativeSummary\": \"The sellswords encounter a frustrating gauntlet of obstacles, diverting their aggressive focus into laboring through the roadside traps, creating a bottleneck at the granaries.\",\n  \"anchorMutations\": [\n    {\n      \"anchorId\": \"a3\",\n      \"newStatus\": \"contested\",\n      \"reason\": \"Captain Vask's troops are bogged down and annoyed by the persistent, low-level resistance.\",\n      \"changeFaction\": \"No change\"\n    }\n  ]\n}",
+        "read": "trap"
+      },
+      {
+        "plan": "We dig pits along the granary road and cover them with branches.",
+        "intended": "trap",
+        "variant": "after",
+        "raw": "```json\n{\n  \"quality\": \"good\",\n  \"reasoning\": \"This is a concrete, desperate, and highly provocative defensive measure. It immediately escalates the confrontation from political maneuvering to physical threat, which gives Dunmore a solid narrative push.\",\n  \"rewards\": [\n    {\n      \"landsAsCapture\": \"no\",\n      \"landsAsTrap\": \"yes\",\n      \"stance\": \"open\",\n      \"valueIntent\": \"momentum\",\n      \"initiativeIntent\": \"N/A\",\n      \"title\": \"Hidden Impediment\",\n      \"narrativeSummary\": \"The road becomes treacherous, forcing the sellswords to navigate concealed pitfalls and unstable ground.\"\n    },\n    {\n      \"landsAsCapture\": \"no\",\n      \"landsAsTrap\": \"yes\",\n      \"stance\": \"open\",\n      \"valueIntent\": \"modest\",\n      \"initiativeIntent\": \"N/A\",\n      \"title\": \"Labor of Love\",\n      \"narrativeSummary\": \"The mobilization of local labor signals deep, community desperation and resolve to protect the harvest.\"\n    }\n  ],\n  \"narrativeSummary\": \"Dunmore forces commit to a physical defense, transforming the road into a danger zone and escalating the tensions considerably.\",\n  \"anchorMutations\": [\n    {\n      \"anchorId\": \"a3\",\n      \"newStatus\": \"agitated\",\n      \"reason\": \"The sellswords are now immediately facing a deliberate, physical threat.\",\n      \"changeFaction\": \"none\"\n    }\n  ]\n}\n```",
+        "read": "trap"
+      },
+      {
+        "plan": "We let a false plan fall into Merrow's hands so they attack an empty granary.",
+        "intended": "trap",
+        "variant": "before",
+        "raw": "{\n  \"quality\": \"excellent\",\n  \"reasoning\": \"This is a masterful strategic move, favoring Dunmore's core strength (cunning/law). Instead of costly confrontation, they use deception, neutralizing the immediate threat without losing their core asset.\",\n  \"rewards\": [\n    {\n      \"mode\": \"trap\",\n      \"stance\": \"covert\",\n      \"valueIntent\": \"momentum\",\n      \"initiativeIntent\": \"decisive\",\n      \"title\": \"Smoke on the Road\",\n      \"narrativeSummary\": \"A deliberately staged, minor skirmish designed to draw Merrow’s sellswords away from the main granary route.\"\n    },\n    {\n      \"mode\": \"place\",\n      \"stance\": \"covert\",\n      \"valueIntent\": \"watershed\",\n      \"initiativeIntent\": \"steady\",\n      \"title\": \"Whispers to the Magistrates\",\n      \"narrativeSummary\": \"Dunmore legal minds plant disinformation about a critical weakness in the Ose bend, splitting Merrow's focus.\"\n    }\n  ],\n  \"narrativeSummary\": \"Dunmore uses sophisticated misinformation and baiting to divert the sellswords' attention, ensuring the granaries remain safe for now.\",\n  \"anchorMutations\": [\n    {\n      \"anchorId\": \"a2\",\n      \"newStatus\": \"active\",\n      \"reason\": \"The distraction secures the granaries; they are safe for the winter.\",\n      \"changeFaction\": null\n    },\n    {\n      \"anchorId\": \"a3\",\n      \"newStatus\": \"contested\",\n      \"reason\": \"Vask's men are drawn out and distracted by the staged skirmish.\",\n      \"changeFaction\": null\n    }\n  ]\n}",
+        "read": "trap"
+      },
+      {
+        "plan": "We let a false plan fall into Merrow's hands so they attack an empty granary.",
+        "intended": "trap",
+        "variant": "after",
+        "raw": "```json\n{\n  \"quality\": \"excellent\",\n  \"reasoning\": \"This response is highly strategic, leveraging Dunmore's strengths (intelligence/law) to counter a military threat. It avoids direct conflict, creating a sophisticated trap that fits the political intrigue tone perfectly.\",\n  \"rewards\": [\n    {\n      \"landsAsCapture\": \"no\",\n      \"landsAsTrap\": \"yes\",\n      \"stance\": \"covert\",\n      \"valueIntent\": \"watershed\",\n      \"initiativeIntent\": \"decisive\",\n      \"title\": \"The Empty Signal\",\n      \"narrativeSummary\": \"A staged rumor convinces Merrow that a peripheral, lesser granary is empty, diverting their attention and forces.\"\n    },\n    {\n      \"landsAsCapture\": \"yes\",\n      \"landsAsTrap\": \"no\",\n      \"stance\": \"open\",\n      \"valueIntent\": \"momentum\",\n      \"initiativeIntent\": \"steady\",\n      \"title\": \"Law of Necessity\",\n      \"narrativeSummary\": \"Legal precedent and local militias are rallied by Dunmore's lawyers, reinforcing their claim over the primary stores.\"\n    }\n  ],\n  \"narrativeSummary\": \"Dunmore turns Merrow’s aggression against itself, forcing the sellswords into a resource-draining pursuit away from the true assets.\",\n  \"anchorMutations\": [\n    {\n      \"anchorId\": \"a3\",\n      \"newStatus\": \"active\",\n      \"reason\": \"Oriel Vask is confused and frustrated by the bait, having to shift his focus.\",\n      \"changeFaction\": \"\"\n    }\n  ]\n}\n```",
+        "read": "trap"
+      },
+      {
+        "plan": "We wait until the sellswords camp in the lowland, then break the dam.",
+        "intended": "trap",
+        "variant": "before",
+        "raw": "{\n  \"quality\": \"adequate\",\n  \"reasoning\": \"The response is highly aggressive and thematic, but lacks strategic nuance. Committing to a massive disruption without securing intelligence or negotiating a temporary truce risks immediate, costly confrontation. The timing is reckless.\",\n  \"rewards\": [\n    {\n      \"mode\": \"trap\",\n      \"stance\": \"covert\",\n      \"valueIntent\": \"momentum\",\n      \"initiativeIntent\": \"slow\",\n      \"title\": \"Sapper's Watch\",\n      \"narrativeSummary\": \"Dunmore mobilizes hidden engineers and laborers along the upper river bends, quietly positioning materials for a massive breach.\"\n    }\n  ],\n  \"narrativeSummary\": \"House Dunmore quietly begins preparations to sabotage the infrastructure, focusing on blocking the water flow necessary for major transport.\",\n  \"anchorMutations\": [\n    {\n      \"anchorId\": \"a3\",\n      \"newStatus\": \"contested\",\n      \"reason\": \"Preparation for a dam breach unnerves the sellswords, making them wary of their current position.\",\n      \"changeFaction\": \"None\"\n    }\n  ]\n}",
+        "read": "trap"
+      },
+      {
+        "plan": "We wait until the sellswords camp in the lowland, then break the dam.",
+        "intended": "trap",
+        "variant": "after",
+        "raw": "{\n  \"quality\": \"excellent\",\n  \"reasoning\": \"This response exhibits excellent strategic depth, combining Dunmore's intellectual strength (patience/law) with a massive, disruptive force. The threat of environmental collapse is highly effective and disruptive.\",\n  \"rewards\": [\n    {\n      \"landsAsCapture\": \"no\",\n      \"landsAsTrap\": \"yes\",\n      \"stance\": \"covert\",\n      \"valueIntent\": \"watershed\",\n      \"initiativeIntent\": \"decisive\",\n      \"title\": \"The Ose Shift\",\n      \"narrativeSummary\": \"Dunmore engineers divert the Ose, flooding the lowlands and forcing the sellswords to abandon their secure camping position.\"\n    },\n    {\n      \"landsAsCapture\": \"yes\",\n      \"landsAsTrap\": \"no\",\n      \"stance\": \"covert\",\n      \"valueIntent\": \"momentum\",\n      \"initiativeIntent\": \"slow\",\n      \"title\": \"Surveyors' Promise\",\n      \"narrativeSummary\": \"Legal experts assess the dam structure, allowing Dunmore to predict the optimal, damaging point of breach with precision.\"\n    }\n  ],\n  \"narrativeSummary\": \"House Dunmore uses its lawyers not just for litigation, but for engineering analysis. By threatening to breach the dam, they force a decisive confrontation that undermines the enemy's logistical position.\",\n  \"anchorMutations\": [\n    {\n      \"anchorId\": \"a3\",\n      \"newStatus\": \"contested\",\n      \"reason\": \"The sellswords must rapidly redeploy and abandon their secured positions due to rising water.\",\n      \"changeFaction\": \"\"\n    }\n  ]\n}",
+        "read": "trap"
+      },
+      {
+        "plan": "We leave the granary gate unbarred and wait inside with every guard we have.",
+        "intended": "trap",
+        "variant": "before",
+        "raw": "{\n  \"quality\": \"adequate\",\n  \"reasoning\": \"The response is defensively sound but entirely reactive, merely waiting for conflict. While it secures the immediate point of interest (a2), it fails to leverage Dunmore’s political or legal strengths. A minor, proactive defensive card is warranted.\",\n  \"rewards\": [\n    {\n      \"mode\": \"place\",\n      \"stance\": \"open\",\n      \"valueIntent\": \"modest\",\n      \"initiativeIntent\": \"steady\",\n      \"title\": \"Iron Watch Posts\",\n      \"narrativeSummary\": \"Dunmore hastily reinforces the main gates and watch posts with barricades and increased visible patrols.\"\n    }\n  ],\n  \"narrativeSummary\": \"House Dunmore establishes a visible, static defensive line around the granaries, hardening its position but lacking any aggressive initiative.\",\n  \"anchorMutations\": [\n    {\n      \"anchorId\": \"a2\",\n      \"newStatus\": \"active\",\n      \"reason\": \"The visible defense makes the granaries harder to seize or ignore.\",\n      \"changeFaction\": \"\"\n    }\n  ]\n}",
+        "read": "place"
+      },
+      {
+        "plan": "We leave the granary gate unbarred and wait inside with every guard we have.",
+        "intended": "trap",
+        "variant": "after",
+        "raw": "{\n  \"quality\": \"adequate\",\n  \"reasoning\": \"The stance is purely defensive and relies on sheer force numbers. While showing resolve, this passive posture invites a confrontation that Dunmore's limited military presence is ill-equipped to survive.\",\n  \"rewards\": [\n    {\n      \"landsAsCapture\": \"no\",\n      \"landsAsTrap\": \"no\",\n      \"stance\": \"open\",\n      \"valueIntent\": \"modest\",\n      \"initiativeIntent\": \"slow\",\n      \"title\": \"Standoff at the Gate\",\n      \"narrativeSummary\": \"Dunmore guards the granaries with increased manpower, holding a defensive line at the main gate.\"\n    }\n  ],\n  \"narrativeSummary\": \"The standoff is tense, but the sellswords remain camped, viewing Dunmore's guards as a challenge rather than a negotiation point.\",\n  \"anchorMutations\": [\n    {\n      \"anchorId\": \"a2\",\n      \"newStatus\": \"active\",\n      \"reason\": \"The granaries are secured, but the threat is immediately visible and confrontational.\",\n      \"changeFaction\": \"None\"\n    }\n  ]\n}\n",
+        "read": "place"
+      },
+      {
+        "plan": "We plant a spy who will lead their scouts into the marsh.",
+        "intended": "trap",
+        "variant": "before",
+        "raw": "{\n  \"quality\": \"adequate\",\n  \"reasoning\": \"The response is too tangential, failing to address the immediate, direct threat posed by the sellswords blocking the granary road. While espionage is useful, this move sacrifices immediate security for information gathering.\",\n  \"rewards\": [\n    {\n      \"mode\": \"place\",\n      \"stance\": \"covert\",\n      \"valueIntent\": \"modest\",\n      \"initiativeIntent\": \"slow\",\n      \"title\": \"Marshland Whisper\",\n      \"narrativeSummary\": \"Dunmore agents establish a small, unseen surveillance point deep in the surrounding wetlands.\"\n    }\n  ],\n  \"narrativeSummary\": \"House Dunmore focuses on gathering intelligence in peripheral areas, ignoring the urgent confrontation required at the granary road.\",\n  \"anchorMutations\": []\n}",
+        "read": "place"
+      },
+      {
+        "plan": "We plant a spy who will lead their scouts into the marsh.",
+        "intended": "trap",
+        "variant": "after",
+        "raw": "{\n  \"quality\": \"good\",\n  \"reasoning\": \"This move is perfectly suited for House Dunmore's strength in intrigue. It avoids direct confrontation with Merrow's sellswords while achieving the critical goal of intelligence gathering, buying valuable time for the granaries.\",\n  \"rewards\": [\n    {\n      \"landsAsCapture\": \"no\",\n      \"landsAsTrap\": \"yes\",\n      \"stance\": \"covert\",\n      \"valueIntent\": \"momentum\",\n      \"initiativeIntent\": \"slow\",\n      \"title\": \"Whispers in the Marsh\",\n      \"narrativeSummary\": \"The spy network establishes contact with local farmers, promising intelligence on Merrow’s supply lines and dispositions.\"\n    }\n  ],\n  \"narrativeSummary\": \"Dunmore buys time and gathers vital intelligence on Merrow's movements, shifting the immediate conflict into a secretive struggle for information.\",\n  \"anchorMutations\": [\n    {\n      \"anchorId\": \"a3\",\n      \"newStatus\": \"contested\",\n      \"reason\": \"The spy network will monitor Merrow's patrols, gathering intelligence on their command structure.\",\n      \"changeFaction\": \"None\"\n    }\n  ]\n}\n",
+        "read": "trap"
+      },
+      {
+        "plan": "We put out a rich-looking grain cart as bait and watch who comes for it.",
+        "intended": "trap",
+        "variant": "before",
+        "raw": "{\n  \"quality\": \"good\",\n  \"reasoning\": \"This move utilizes Dunmore's strength in commerce and legal cunning, transforming a defensive posture into a calculated trap. It buys time and forces the sellswords to reveal their intent, which is strategically sound.\",\n  \"rewards\": [\n    {\n      \"mode\": \"place\",\n      \"stance\": \"covert\",\n      \"valueIntent\": \"modest\",\n      \"initiativeIntent\": \"steady\",\n      \"title\": \"Decoy Shipment\",\n      \"narrativeSummary\": \"A staged, richly laden cart is placed on the approach road, making it look like an urgent merchant delivery.\"\n    },\n    {\n      \"mode\": \"trap\",\n      \"stance\": \"covert\",\n      \"valueIntent\": \"modest\",\n      \"initiativeIntent\": \"N/A\",\n      \"title\": \"Scrivener's Interdiction\",\n      \"narrativeSummary\": \"Dunmore’s skilled legal operatives await near the road, ready to enforce a procedural halt or accusation.\"\n    }\n  ],\n  \"narrativeSummary\": \"The bait succeeds in drawing the sellswords’ attention, but they remain wary, keeping a palpable tension near the valuable granaries.\",\n  \"anchorMutations\": [\n    {\n      \"anchorId\": \"a2\",\n      \"newStatus\": \"contested\",\n      \"reason\": \"The blatant baiting and watchful presence raise the stakes, placing the granaries under immediate scrutiny.\",\n      \"changeFaction\": null\n    }\n  ]\n}",
+        "read": "place"
+      },
+      {
+        "plan": "We put out a rich-looking grain cart as bait and watch who comes for it.",
+        "intended": "trap",
+        "variant": "after",
+        "raw": "{\n  \"quality\": \"good\",\n  \"reasoning\": \"This response is politically astute, matching Dunmore's legalistic, calculated nature. By using bait, they achieve crucial intelligence and delay open conflict, buying valuable time to prepare their next move.\",\n  \"rewards\": [\n    {\n      \"landsAsCapture\": \"no\",\n      \"landsAsTrap\": \"no\",\n      \"stance\": \"covert\",\n      \"valueIntent\": \"momentum\",\n      \"initiativeIntent\": \"steady\",\n      \"title\": \"Scouting the Bait\",\n      \"narrativeSummary\": \"Dunmore sends discrete scouts to monitor the sellswords' movements and assess their current focus. They gather intelligence on the Merrow disposition.\"\n    },\n    {\n      \"landsAsCapture\": \"no\",\n      \"landsAsTrap\": \"no\",\n      \"stance\": \"covert\",\n      \"valueIntent\": \"modest\",\n      \"initiativeIntent\": \"slow\",\n      \"title\": \"Legal Record\",\n      \"narrativeSummary\": \"Dunmore hires local notaries to legally document the granaries' current inventory, strengthening their claim should a raid occur.\"\n    }\n  ],\n  \"narrativeSummary\": \"The bait works, causing the sellswords to shift their attention from a full immediate seizure to observation and predatory scouting, buying Dunmore crucial time.\",\n  \"anchorMutations\": [\n    {\n      \"anchorId\": \"a2\",\n      \"newStatus\": \"contested\",\n      \"reason\": \"Although held by Dunmore, the open proximity of sellswords makes the security vulnerable.\",\n      \"changeFaction\": \"\"\n    },\n    {\n      \"anchorId\": \"a3\",\n      \"newStatus\": \"active\",\n      \"reason\": \"The sellswords remain camped but become restless, annoyed by the subtle stonewalling.\",\n      \"changeFaction\": \"\"\n    }\n  ]\n}",
+        "read": "place"
+      },
+      {
+        "plan": "We build new grain stores on the empty plains to the north.",
+        "intended": "place",
+        "variant": "before",
+        "raw": "{\n  \"quality\": \"adequate\",\n  \"reasoning\": \"While demonstrating resourcefulness, the move is poorly timed and strategically unfocused. It ignores the immediate crisis of grain seizure and relies on long-term planning when quick action is needed.\",\n  \"rewards\": [\n    {\n      \"mode\": \"place\",\n      \"stance\": \"open\",\n      \"valueIntent\": \"modest\",\n      \"initiativeIntent\": \"slow\",\n      \"title\": \"New Outlying Silos\",\n      \"narrativeSummary\": \"Dunmore dedicates manpower and immediate funds to constructing small, decentralized granaries far from the immediate conflict.\"\n    }\n  ],\n  \"narrativeSummary\": \"Dunmore diverts resources to future self-sufficiency, constructing peripheral granaries away from the immediate threat on the main road.\",\n  \"anchorMutations\": []\n}",
+        "read": "place"
+      },
+      {
+        "plan": "We build new grain stores on the empty plains to the north.",
+        "intended": "place",
+        "variant": "after",
+        "raw": "{\n  \"quality\": \"adequate\",\n  \"reasoning\": \"The plan is a severe deflection, ignoring the immediate crisis posed by the sellswords blocking the core supply route. While infrastructure is always useful, this reveals a lack of immediate crisis management.\",\n  \"rewards\": [\n    {\n      \"landsAsCapture\": \"no\",\n      \"landsAsTrap\": \"no\",\n      \"stance\": \"open\",\n      \"valueIntent\": \"modest\",\n      \"initiativeIntent\": \"slow\",\n      \"title\": \"Whispers of the North\",\n      \"narrativeSummary\": \"Committing labor to remote construction draws political attention but distracts from the urgency of the immediate threat.\"\n    }\n  ],\n  \"narrativeSummary\": \"Dunmore attempts to appear proactive by planning future infrastructure, but this focus fails to alleviate the current siege on their existing winter supplies.\",\n  \"anchorMutations\": []\n}",
+        "read": "place"
+      },
+      {
+        "plan": "We settle the unclaimed river island with fishing families.",
+        "intended": "place",
+        "variant": "before",
+        "raw": "```json\n{\n  \"quality\": \"poor\",\n  \"reasoning\": \"This response ignores the immediate and existential threat posed by Merrow's sellswords to the granaries. While settling an island is a valid long-term investment, it fails to address the critical need to secure the valley's winter supply.\",\n  \"rewards\": [\n    {\n      \"mode\": \"place\",\n      \"stance\": \"open\",\n      \"valueIntent\": \"modest\",\n      \"initiativeIntent\": \"slow\",\n      \"title\": \"Fishing Outpost\",\n      \"narrativeSummary\": \"Dunmore directs minor resources to establish a small, permanent settlement on an unclaimed river island.\"\n    }\n  ],\n  \"narrativeSummary\": \"The house successfully diverts manpower and resources toward an unrelated development project. Meanwhile, the sellswords maintain their blockade on the granary road.\",\n  \"anchorMutations\": []\n}\n```",
+        "read": "place"
+      },
+      {
+        "plan": "We settle the unclaimed river island with fishing families.",
+        "intended": "place",
+        "variant": "after",
+        "raw": "{\n  \"quality\": \"adequate\",\n  \"reasoning\": \"The action is physically plausible and expands Dunmore's influence, but it completely ignores the urgent threat posed by Merrow's sellswords at the granaries. It is a diversionary, low-impact move that fails to address the core problem.\",\n  \"rewards\": [\n    {\n      \"landsAsCapture\": \"no\",\n      \"landsAsTrap\": \"no\",\n      \"stance\": \"open\",\n      \"valueIntent\": \"modest\",\n      \"initiativeIntent\": \"slow\",\n      \"title\": \"New Fishing Settlement\",\n      \"narrativeSummary\": \"Dunmore dedicates workers to claim a small, unclaimed river island, beginning slow, peripheral settlement.\"\n    }\n  ],\n  \"narrativeSummary\": \"House Dunmore successfully diverts labor into a peripheral settlement, but this focus fails to alleviate the immediate crisis concerning the granary road.\",\n  \"anchorMutations\": [\n    {\n      \"anchorId\": \"a1\",\n      \"newStatus\": \"contested\",\n      \"reason\": \"Merrow maintains pressure on all crossing points.\",\n      \"changeFaction\": \"\"\n    },\n    {\n      \"anchorId\": \"a2\",\n      \"newStatus\": \"active\",\n      \"reason\": \"The threat of seizure remains immediate.\",\n      \"changeFaction\": \"\"\n    },\n    {\n      \"anchorId\": \"a3\",\n      \"newStatus\": \"active\",\n      \"reason\": \"Captain Vask remains posted, demanding tribute.\",\n      \"changeFaction\": \"\"\n    }\n  ]\n}",
+        "read": "place"
+      },
+      {
+        "plan": "We clear the wild forest nobody owns and build a sawmill.",
+        "intended": "place",
+        "variant": "before",
+        "raw": "{\n  \"quality\": \"poor\",\n  \"reasoning\": \"This response ignores the immediate, critical threat posed by the sellswords blocking the granaries. While building infrastructure is useful, it shows a dangerous misprioritization of resources away from the crisis at hand.\",\n  \"rewards\": [\n    {\n      \"mode\": \"place\",\n      \"stance\": \"open\",\n      \"valueIntent\": \"modest\",\n      \"initiativeIntent\": \"steady\",\n      \"title\": \"Lumber Outpost\",\n      \"narrativeSummary\": \"The house successfully clears a small patch of forest and erects basic sawmill infrastructure near the new site.\"\n    }\n  ],\n  \"narrativeSummary\": \"House Dunmore successfully begins lumbering operations, but the sellswords maintain their blockade on the path to the granaries.\",\n  \"anchorMutations\": []\n}",
+        "read": "place"
+      },
+      {
+        "plan": "We clear the wild forest nobody owns and build a sawmill.",
+        "intended": "place",
+        "variant": "after",
+        "raw": "{\n  \"quality\": \"poor\",\n  \"reasoning\": \"This action ignores the immediate and critical threat to the granaries posed by Merrow’s sellswords. While industrial development is valuable, it is severely misplaced given the urgent need to secure the valley's winter food supply.\",\n  \"rewards\": [\n    {\n      \"landsAsCapture\": \"no\",\n      \"landsAsTrap\": \"no\",\n      \"stance\": \"open\",\n      \"valueIntent\": \"modest\",\n      \"initiativeIntent\": \"slow\",\n      \"title\": \"New Sawmill Foundation\",\n      \"narrativeSummary\": \"Dunmore begins clearing the forest and setting the framework for a valuable new timber industry.\"\n    }\n  ],\n  \"narrativeSummary\": \"The commitment to logging represents a long-term economic play, but fails to address the immediate, existential threat facing the granaries.\",\n  \"anchorMutations\": []\n}",
+        "read": "place"
+      },
+      {
+        "plan": "We found a new trading post at the empty river crossing.",
+        "intended": "place",
+        "variant": "before",
+        "raw": "{\n  \"quality\": \"adequate\",\n  \"reasoning\": \"The response is overly cautious and completely ignores the immediate crisis posed by the sellswords blocking the granaries road. While building a minor outpost, this failure to address the threat leaves Dunmore vulnerable and powerless.\",\n  \"rewards\": [\n    {\n      \"mode\": \"place\",\n      \"stance\": \"covert\",\n      \"valueIntent\": \"modest\",\n      \"initiativeIntent\": \"slow\",\n      \"title\": \"Temporary Market Stalls\",\n      \"narrativeSummary\": \"Dunmore establishes small, guarded stalls at the crossing, improving local trade flow slightly.\"\n    }\n  ],\n  \"narrativeSummary\": \"Dunmore successfully establishes a small new trading hub, but the threat of the sellswords remains entirely unresolved and looms over the city.\",\n  \"anchorMutations\": []\n}\n",
+        "read": "place"
+      },
+      {
+        "plan": "We found a new trading post at the empty river crossing.",
+        "intended": "place",
+        "variant": "after",
+        "raw": "{\n  \"quality\": \"adequate\",\n  \"reasoning\": \"The response attempts to solve the crisis by creating a bypass route, which is logically sound. However, it entirely sidesteps the immediate, active threat posed by the sellswords guarding the granaries. The solution is too passive for a dire situation.\",\n  \"rewards\": [\n    {\n      \"landsAsCapture\": \"no\",\n      \"landsAsTrap\": \"no\",\n      \"stance\": \"covert\",\n      \"valueIntent\": \"modest\",\n      \"initiativeIntent\": \"slow\",\n      \"title\": \"Diversionary Path\",\n      \"narrativeSummary\": \"Dunmore successfully identifies a minor river crossing, establishing a preliminary trade route away from the sellswords.\"\n    }\n  ],\n  \"narrativeSummary\": \"Dunmore successfully establishes a minor alternate trade route, providing temporary relief but failing to address the primary blockade at the granaries.\",\n  \"anchorMutations\": []\n}",
+        "read": "place"
+      },
+      {
+        "plan": "We map the mountain passes and build a waystation there.",
+        "intended": "place",
+        "variant": "before",
+        "raw": "```json\n{\n  \"quality\": \"poor\",\n  \"reasoning\": \"This move is too tangential. While ambitious, it ignores the immediate, critical threat posed by Merrow's sellswords blocking the vital granaries. The house must address the grain scarcity first.\",\n  \"rewards\": [\n    {\n      \"mode\": \"place\",\n      \"stance\": \"open\",\n      \"valueIntent\": \"watershed\",\n      \"initiativeIntent\": \"slow\",\n      \"title\": \"Mountain Cartography\",\n      \"narrativeSummary\": \"Dunmore dedicates resources to mapping a distant mountain pass and begins foundational surveying for a new waystation.\"\n    }\n  ],\n  \"narrativeSummary\": \"House Dunmore begins a massive, costly undertaking away from the Ose, failing to secure the granaries in the face of immediate danger.\",\n  \"anchorMutations\": []\n}\n```",
+        "read": "place"
+      },
+      {
+        "plan": "We map the mountain passes and build a waystation there.",
+        "intended": "place",
+        "variant": "after",
+        "raw": "{\n  \"quality\": \"poor\",\n  \"reasoning\": \"The plan is too grand and too slow for the immediate, dire threat. Ignoring the sellswords blocking the granaries makes House Dunmore appear cornered and strategically unfocused.\",\n  \"rewards\": [\n    {\n      \"landsAsCapture\": \"no\",\n      \"landsAsTrap\": \"no\",\n      \"stance\": \"covert\",\n      \"valueIntent\": \"modest\",\n      \"initiativeIntent\": \"slow\",\n      \"title\": \"Mountain Map Acquisition\",\n      \"narrativeSummary\": \"Dunmore commits resources to scouting far flanks, diverting attention from the immediate threat to the granaries.\"\n    }\n  ],\n  \"narrativeSummary\": \"The ambitious, long-term plans distract from the urgency, confirming to rivals that House Dunmore lacks the will or means to defend its primary assets.\",\n  \"anchorMutations\": [\n    {\n      \"anchorId\": \"a2\",\n      \"newStatus\": \"contested\",\n      \"reason\": \"Ignoring the immediate threat strengthens the enemy's position and allows them to solidify their blockades.\",\n      \"changeFaction\": null\n    }\n  ]\n}",
+        "read": "place"
+      },
+      {
+        "plan": "We plant orchards on the hillsides nobody uses.",
+        "intended": "place",
+        "variant": "before",
+        "raw": "{\n  \"quality\": \"poor\",\n  \"reasoning\": \"The response focuses entirely on distant, long-term development, completely ignoring the immediate and critical threat posed by the sellswords to the granaries. It signals profound distraction and a dangerous misprioritization of resources.\",\n  \"rewards\": [\n    {\n      \"mode\": \"place\",\n      \"stance\": \"open\",\n      \"valueIntent\": \"modest\",\n      \"initiativeIntent\": \"slow\",\n      \"title\": \"New Orchards at Hillside Alpha\",\n      \"narrativeSummary\": \"House Dunmore secures a small, agricultural foothold on unused hillsides, providing long-term but irrelevant asset expansion.\"\n    }\n  ],\n  \"narrativeSummary\": \"The diversionary project secures a minimal asset boost but fails to mitigate the immediate crisis at the granaries. Merrow's sellswords remain entrenched and emboldened.\",\n  \"anchorMutations\": [\n    {\n      \"anchorId\": \"a2\",\n      \"newStatus\": \"contested\",\n      \"reason\": \"The visible neglect of the immediate threat allows Merrow to deepen its blockade.\",\n      \"changeFaction\": \"None\"\n    }\n  ]\n}",
+        "read": "place"
+      },
+      {
+        "plan": "We plant orchards on the hillsides nobody uses.",
+        "intended": "place",
+        "variant": "after",
+        "raw": "{\n  \"quality\": \"poor\",\n  \"reasoning\": \"The response is strategically irrelevant, ignoring the immediate, existential threat posed by the sellswords at the granaries. Focusing on distant, unused hillsides shows profound distraction and lack of urgency.\",\n  \"rewards\": [\n    {\n      \"landsAsCapture\": \"no\",\n      \"landsAsTrap\": \"no\",\n      \"stance\": \"open\",\n      \"valueIntent\": \"modest\",\n      \"initiativeIntent\": \"slow\",\n      \"title\": \"Investment Delay\",\n      \"narrativeSummary\": \"The focus on long-term development stalls efforts to secure vital resources, costing time and political capital.\"\n    }\n  ],\n  \"narrativeSummary\": \"The attempt to build future wealth distracts the populace, leaving the granaries and the road vulnerable to continued harassment and potential seizure.\",\n  \"anchorMutations\": [\n    {\n      \"anchorId\": \"a2\",\n      \"newStatus\": \"contested\",\n      \"reason\": \"The visible distraction confirms the granaries are vulnerable and ripe for seizure.\",\n      \"changeFaction\": \"N/A\"\n    }\n  ]\n}",
+        "read": "place"
+      },
+      {
+        "plan": "We open a new mine in the untouched eastern hills.",
+        "intended": "place",
+        "variant": "before",
+        "raw": "{\n  \"quality\": \"poor\",\n  \"reasoning\": \"The action ignores the immediate, dire threat posed by the sellswords at the granaries. While resource development is long-term, this move is highly distracting and fails to address the urgent crisis. It signals weakness.\",\n  \"rewards\": [\n    {\n      \"mode\": \"place\",\n      \"stance\": \"open\",\n      \"valueIntent\": \"modest\",\n      \"initiativeIntent\": \"slow\",\n      \"title\": \"Surveying the Eastern Claims\",\n      \"narrativeSummary\": \"Dunmore sends minor surveyors and laborers to establish a foothold in the hills. It is a visible, yet geographically distant, move.\"\n    }\n  ],\n  \"narrativeSummary\": \"House Dunmore expends valuable time and manpower on peripheral expansion, leaving the crucial grain supply vulnerable to Merrow’s immediate pressure.\",\n  \"anchorMutations\": []\n}",
+        "read": "place"
+      },
+      {
+        "plan": "We open a new mine in the untouched eastern hills.",
+        "intended": "place",
+        "variant": "after",
+        "raw": "{\n  \"quality\": \"poor\",\n  \"reasoning\": \"The response completely ignores the immediate crisis of the granaries and the sellswords. While ambitious, building a mine in Callan territory is a costly distraction that signals desperation rather than strategic response.\",\n  \"rewards\": [\n    {\n      \"landsAsCapture\": \"no\",\n      \"landsAsTrap\": \"no\",\n      \"stance\": \"open\",\n      \"valueIntent\": \"modest\",\n      \"initiativeIntent\": \"slow\",\n      \"title\": \"Eastern Prospecting\",\n      \"narrativeSummary\": \"Dunmore establishes basic prospecting outposts in the eastern hills, signaling a long-term claim over valuable new resources.\"\n    }\n  ],\n  \"narrativeSummary\": \"Dunmore's attempt to seize new resources fails to address the sellswords and the immediate threat to the grain supply. The focus remains entirely on distant land grabs.\",\n  \"anchorMutations\": []\n}",
+        "read": "place"
+      },
+      {
+        "plan": "We build a lighthouse on the empty cape.",
+        "intended": "place",
+        "variant": "before",
+        "raw": "{\n  \"quality\": \"poor\",\n  \"reasoning\": \"This action is geographically and strategically disconnected from the immediate crisis. While it shows resources, building a lighthouse does nothing to defend the granaries or challenge the sellswords blocking the road. It appears as an expensive, irrelevant distraction.\",\n  \"rewards\": [\n    {\n      \"mode\": \"place\",\n      \"stance\": \"open\",\n      \"valueIntent\": \"modest\",\n      \"initiativeIntent\": \"slow\",\n      \"title\": \"Signalman's Watch\",\n      \"narrativeSummary\": \"Dunmore allocates skilled labor and funds to initiate the lighthouse project, spending resources that could be better used defending the granaries.\"\n    }\n  ],\n  \"narrativeSummary\": \"House Dunmore commits significant, visible resources to a peripheral construction project, distracting from the immediate, critical threat posed by Merrow's sellswords.\",\n  \"anchorMutations\": []\n}",
+        "read": "place"
+      },
+      {
+        "plan": "We build a lighthouse on the empty cape.",
+        "intended": "place",
+        "variant": "after",
+        "raw": "```json\n{\n  \"quality\": \"adequate\",\n  \"reasoning\": \"The response shows a commitment to long-term power projection through construction. However, it completely ignores the immediate, critical military and economic threat posed by the sellswords blocking the granary road.\",\n  \"rewards\": [\n    {\n      \"landsAsCapture\": \"no\",\n      \"landsAsTrap\": \"no\",\n      \"stance\": \"open\",\n      \"valueIntent\": \"momentum\",\n      \"initiativeIntent\": \"slow\",\n      \"title\": \"Cape Beacon Commitment\",\n      \"narrativeSummary\": \"Dunmore commits substantial resources and public works to a massive new navigational beacon, asserting long-term control over the coast.\"\n    }\n  ],\n  \"narrativeSummary\": \"Dunmore publicly commits significant resources to a major coastal construction project, asserting long-term economic ambition at the expense of addressing the immediate crisis at the granaries.\",\n  \"anchorMutations\": [\n    {\n      \"anchorId\": \"a2\",\n      \"newStatus\": \"contested\",\n      \"reason\": \"The sellswords maintain the blockade, escalating tension over the blocked road and granaries.\",\n      \"changeFaction\": \"\"\n    }\n  ]\n}\n```",
+        "read": "place"
+      },
+      {
+        "plan": "We send settlers to rebuild the abandoned village in the valley.",
+        "intended": "place",
+        "variant": "before",
+        "raw": "{\n  \"quality\": \"poor\",\n  \"reasoning\": \"The response is disconnected from the immediate crisis—the blockade of the granaries. While showing resolve to rebuild, it completely ignores the threat posed by Merrow's armed sellswords.\",\n  \"rewards\": [\n    {\n      \"mode\": \"place\",\n      \"stance\": \"open\",\n      \"valueIntent\": \"modest\",\n      \"initiativeIntent\": \"slow\",\n      \"title\": \"Rural Restoration\",\n      \"narrativeSummary\": \"Dunmore sends skilled workers to clear and begin rebuilding an abandoned village far from the main road.\"\n    }\n  ],\n  \"narrativeSummary\": \"Dunmore commits resources to long-term infrastructure projects, visibly ignoring the immediate economic pressure from the sellswords at the granaries.\",\n  \"anchorMutations\": []\n}",
+        "read": "place"
+      },
+      {
+        "plan": "We send settlers to rebuild the abandoned village in the valley.",
+        "intended": "place",
+        "variant": "after",
+        "raw": "{\n  \"quality\": \"poor\",\n  \"reasoning\": \"The response is too focused on long-term reconstruction and entirely fails to address the immediate, dire crisis posed by the sellswords blocking the granaries. This lack of focus ensures the house remains strategically vulnerable.\",\n  \"rewards\": [\n    {\n      \"landsAsCapture\": \"no\",\n      \"landsAsTrap\": \"no\",\n      \"stance\": \"open\",\n      \"valueIntent\": \"modest\",\n      \"initiativeIntent\": \"slow\",\n      \"title\": \"Recovery Effort\",\n      \"narrativeSummary\": \"The settlers begin work on stabilizing the village, a modest act of rebuilding that draws some peripheral attention.\"\n    }\n  ],\n  \"narrativeSummary\": \"Dunmore's attempt at rebuilding fails to address the immediate threat, allowing the sellswords to maintain their siege position at the granary road.\",\n  \"anchorMutations\": []\n}",
+        "read": "place"
+      },
+      {
+        "plan": "We dig canals so we can farm the dry flats.",
+        "intended": "place",
+        "variant": "before",
+        "raw": "{\n  \"quality\": \"adequate\",\n  \"reasoning\": \"The concept of building infrastructure is relevant for Dunmore's long-term survival. However, the response is too abstract and fails to address the immediate, acute threat posed by the sellswords blocking the granaries. A more focused, tactical plan was needed.\",\n  \"rewards\": [\n    {\n      \"mode\": \"place\",\n      \"stance\": \"covert\",\n      \"valueIntent\": \"modest\",\n      \"initiativeIntent\": \"slow\",\n      \"title\": \"Labor Brigades Mobilized\",\n      \"narrativeSummary\": \"Dunmore diverts laborers to survey potential canal routes, requiring resources and time.\"\n    }\n  ],\n  \"narrativeSummary\": \"Dunmore commits modest labor resources to future projects, reinforcing its long-term economic might but failing to alleviate the immediate crisis at the granaries.\",\n  \"anchorMutations\": []\n}",
+        "read": "place"
+      },
+      {
+        "plan": "We dig canals so we can farm the dry flats.",
+        "intended": "place",
+        "variant": "after",
+        "raw": "{\n  \"quality\": \"poor\",\n  \"reasoning\": \"The response is abstract and focuses on long-term resource development, completely failing to address the immediate, critical threat posed by the sellswords at the granaries. This deflection leaves the core problem unsolved.\",\n  \"rewards\": [\n    {\n      \"landsAsCapture\": \"no\",\n      \"landsAsTrap\": \"no\",\n      \"stance\": \"covert\",\n      \"valueIntent\": \"modest\",\n      \"initiativeIntent\": \"slow\",\n      \"title\": \"New Canal Surveys\",\n      \"narrativeSummary\": \"Dunmore commissions surveyors to begin mapping potential canals, an investment in future growth away from the immediate conflict.\"\n    }\n  ],\n  \"narrativeSummary\": \"Dunmore attempts to sidestep the crisis by announcing long-term development goals. However, the looming threat at the granaries remains unanswered, and the sellswords maintain their position.\",\n  \"anchorMutations\": []\n}",
+        "read": "place"
+      }
+    ]
+  },
+  "parrot": {
+    "summary": {
+      "before": {
+        "strongAvgPassed": 5,
+        "strongScoredAtLeast4": "10/10",
+        "junkAvgPassed": 0
+      },
+      "after": {
+        "strongAvgPassed": 5,
+        "strongScoredAtLeast4": "10/10",
+        "junkAvgPassed": 0
+      }
+    },
+    "rows": [
+      {
+        "answer": "Only someone who has crossed Tarn Ford on foot during the spring flood may speak. They wear a strip of river-reed on their wrist, and when the tide-wardens ring the bronze bell, the reed-wearers speak in the order they crossed.",
+        "strong": true,
+        "variant": "before",
+        "raw": "{\n  \"ontopic\": true,\n  \"specific\": true,\n  \"imaginative\": true,\n  \"grounded\": true,\n  \"memorable\": true,\n  \"conversation\": \"Fen nods slowly, appreciating the detail. \\\"A rule tied to the changing rivers, how beautifully archaic.\\\" Marisol smirks, \\\"So, the only voices allowed are those who have proven they can survive the wettest crossings? Very Varn indeed.\\\"\"\n}",
+        "passed": 5,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": true,
+          "grounded": true,
+          "memorable": true
+        }
+      },
+      {
+        "answer": "Only someone who has crossed Tarn Ford on foot during the spring flood may speak. They wear a strip of river-reed on their wrist, and when the tide-wardens ring the bronze bell, the reed-wearers speak in the order they crossed.",
+        "strong": true,
+        "variant": "after",
+        "raw": "{\n  \"ontopic\": \"yes\",\n  \"specific\": \"yes\",\n  \"imaginative\": \"yes\",\n  \"grounded\": \"yes\",\n  \"memorable\": \"yes\",\n  \"conversation\": \"Marisol: The combination of a natural hazard (the flood) and a specific physical marker is excellent world-building. Fen: It gives the council a palpable, ritualistic weight.\"\n}",
+        "passed": 5,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": true,
+          "grounded": true,
+          "memorable": true
+        }
+      },
+      {
+        "answer": "Each house brings a sealed jar of Ose water to the council. The warden of the bells pours them into one bronze basin, and whoever's jar held the most silt — proof they live closest to the river — speaks first.",
+        "strong": true,
+        "variant": "before",
+        "raw": "{\n  \"ontopic\": true,\n  \"specific\": true,\n  \"imaginative\": true,\n  \"grounded\": true,\n  \"memorable\": true,\n  \"conversation\": \"Marisol: Silt, jars, bronze—you make the whole council sound like a fancy, muddy science experiment. Fen: But that's brilliant, Marisol. It gives the law real weight; the water itself is the judge.\"\n}",
+        "passed": 5,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": true,
+          "grounded": true,
+          "memorable": true
+        }
+      },
+      {
+        "answer": "Each house brings a sealed jar of Ose water to the council. The warden of the bells pours them into one bronze basin, and whoever's jar held the most silt — proof they live closest to the river — speaks first.",
+        "strong": true,
+        "variant": "after",
+        "raw": "{\n  \"ontopic\": \"yes\",\n  \"specific\": \"yes\",\n  \"imaginative\": \"yes\",\n  \"grounded\": \"yes\",\n  \"memorable\": \"yes\",\n  \"conversation\": \"Marisol: The silt measurement adds a wonderful layer of physical gravitas to the council. Fen: It makes the law of the river feel inescapable; speaks only who is truly bound to it.\"\n}",
+        "passed": 5,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": true,
+          "grounded": true,
+          "memorable": true
+        }
+      },
+      {
+        "answer": "Dunmore's lawyers won the right, centuries ago, to sell speaking tokens stamped with a salt crystal. Merrow buys most of them every season, which is exactly why Callan keeps smuggling fake ones through the silver mines.",
+        "strong": true,
+        "variant": "before",
+        "raw": "{\n  \"ontopic\": true,\n  \"specific\": true,\n  \"imaginative\": true,\n  \"grounded\": true,\n  \"memorable\": true,\n  \"conversation\": \"Marisol: The concept of speech as a tradable commodity is brilliantly detailed. Fen: The tension between the token sellers and the smugglers gives the council real grit.\"\n}",
+        "passed": 5,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": true,
+          "grounded": true,
+          "memorable": true
+        }
+      },
+      {
+        "answer": "Dunmore's lawyers won the right, centuries ago, to sell speaking tokens stamped with a salt crystal. Merrow buys most of them every season, which is exactly why Callan keeps smuggling fake ones through the silver mines.",
+        "strong": true,
+        "variant": "after",
+        "raw": "```json\n{\n  \"ontopic\": \"yes\",\n  \"specific\": \"yes\",\n  \"imaginative\": \"yes\",\n  \"grounded\": \"yes\",\n  \"memorable\": \"yes\",\n  \"conversation\": \"Fen: \\\"A speech commodity! That adds a brilliant layer of economic tension to the politics.\\\"\\nMarisol: \\\"The interplay between Dunmore's law, Merrow's salt, and Callan's contraband is perfect.\\\" \"\n}\n```",
+        "passed": 5,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": true,
+          "grounded": true,
+          "memorable": true
+        }
+      },
+      {
+        "answer": "A speaker must hold the Bell-Tongue, a clapper taken from the oldest bell on the Ose. If it slips from your hand while you talk, the tide-wardens say the river has silenced you, and you sit down.",
+        "strong": true,
+        "variant": "before",
+        "raw": "{\n  \"ontopic\": true,\n  \"specific\": true,\n  \"imaginative\": true,\n  \"grounded\": true,\n  \"memorable\": true,\n  \"conversation\": \"Marisol: The Bell-Tongue is a truly evocative piece of lore. Fen: Yes, it grounds the social hierarchy in the very mechanics of the river itself—excellent.\"\n}",
+        "passed": 5,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": true,
+          "grounded": true,
+          "memorable": true
+        }
+      },
+      {
+        "answer": "A speaker must hold the Bell-Tongue, a clapper taken from the oldest bell on the Ose. If it slips from your hand while you talk, the tide-wardens say the river has silenced you, and you sit down.",
+        "strong": true,
+        "variant": "after",
+        "raw": "```json\n{\n  \"ontopic\": \"yes — it directly addresses the method of speaking rights.\",\n  \"specific\": \"yes — it names the 'Bell-Tongue,' the 'Ose,' and the 'tide-wardens.'\",\n  \"imaginative\": \"yes — the consequence of dropping the clapper being 'the river has silenced you' is a strong, dramatic touch.\",\n  \"grounded\": \"yes — the artifact relates logically to the established use of bells and the river in the kingdom.\",\n  \"memorable\": \"yes — the concept of the river itself taking someone's voice is incredibly vivid and quotable.\",\n  \"conversation\": \"Marisol: The stakes feel genuinely high; the river itself is the judge. Fen: A simple, powerful ritual that reinforces both the laws of the council and the power of the Ose.\"\n}\n```",
+        "passed": 5,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": true,
+          "grounded": true,
+          "memorable": true
+        }
+      },
+      {
+        "answer": "Anyone may speak, but only while standing in the river up to their knees. In winter the debates at the Ose bend are famously short, and Callan's hill lords always propose the council meets in January.",
+        "strong": true,
+        "variant": "before",
+        "raw": "{\n  \"ontopic\": true,\n  \"specific\": true,\n  \"imaginative\": true,\n  \"grounded\": true,\n  \"memorable\": true,\n  \"conversation\": \"Marisol: The mandate to speak only while standing in the water adds fantastic physical stakes to the council. Fen: And linking the seasonality and geography—the Ose bend always feels like a place that holds history.\"\n}",
+        "passed": 5,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": true,
+          "grounded": true,
+          "memorable": true
+        }
+      },
+      {
+        "answer": "Anyone may speak, but only while standing in the river up to their knees. In winter the debates at the Ose bend are famously short, and Callan's hill lords always propose the council meets in January.",
+        "strong": true,
+        "variant": "after",
+        "raw": "```json\n{\n  \"ontopic\": \"yes — it describes the physical rule for speaking.\",\n  \"specific\": \"yes — it names the Ose bend, Callan's hill lords, and January.\",\n  \"imaginative\": \"yes — the specific condition of standing in the river adds flair.\",\n  \"grounded\": \"yes — the river location and local houses fit the established world details.\",\n  \"memorable\": \"yes — the image of cold, heated debates in the shallows is vivid.\",\n  \"conversation\": \"Marisol: Standing in the Ose must be utterly miserable; I can picture the drama. Fen: And the petty squabbles of those lords, wet to the bone, will be legendary.\"\n}\n```",
+        "passed": 5,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": true,
+          "grounded": true,
+          "memorable": true
+        }
+      },
+      {
+        "answer": "The three houses each name a 'river-mouth' — usually a widow of a drowned bargeman — because the Ose has already taken their husband and so is thought to speak through them. Merrow's current river-mouth is feared by all.",
+        "strong": true,
+        "variant": "before",
+        "raw": "{\n  \"ontopic\": true,\n  \"specific\": true,\n  \"imaginative\": true,\n  \"grounded\": true,\n  \"memorable\": true,\n  \"conversation\": \"Fen: The river always speaks the truth, Marisol. Marisol: And sometimes that truth needs a widow and a bargain cart to carry it.\"\n}",
+        "passed": 5,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": true,
+          "grounded": true,
+          "memorable": true
+        }
+      },
+      {
+        "answer": "The three houses each name a 'river-mouth' — usually a widow of a drowned bargeman — because the Ose has already taken their husband and so is thought to speak through them. Merrow's current river-mouth is feared by all.",
+        "strong": true,
+        "variant": "after",
+        "raw": "```json\n{\n  \"ontopic\": \"yes\",\n  \"specific\": \"yes\",\n  \"imaginative\": \"yes\",\n  \"grounded\": \"yes\",\n  \"memorable\": \"yes\",\n  \"conversation\": \"Marisol: \\\"The river-mouth concept is wonderfully dreadful.\\\"\\nFen: \\\"And it establishes the Ose as having far more power than just tides; it suggests a truly living element to the kingdom.\\\"\"\n}\n```",
+        "passed": 5,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": true,
+          "grounded": true,
+          "memorable": true
+        }
+      },
+      {
+        "answer": "Speakers are chosen by the bronze bells themselves: a warden strikes all three, and the house whose bell rings longest may speak. Dunmore's lawyers have spent generations arguing about how to measure 'longest'.",
+        "strong": true,
+        "variant": "before",
+        "raw": "{\n  \"ontopic\": true,\n  \"specific\": true,\n  \"imaginative\": true,\n  \"grounded\": true,\n  \"memorable\": true,\n  \"conversation\": \"Fen: A competition involving the laws of acoustics and the pride of three houses? Excellent. Marisol: And Dunmore wasting good litigation hours on metallurgy? Delicious.\"\n}",
+        "passed": 5,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": true,
+          "grounded": true,
+          "memorable": true
+        }
+      },
+      {
+        "answer": "Speakers are chosen by the bronze bells themselves: a warden strikes all three, and the house whose bell rings longest may speak. Dunmore's lawyers have spent generations arguing about how to measure 'longest'.",
+        "strong": true,
+        "variant": "after",
+        "raw": "{\n  \"ontopic\": \"yes\",\n  \"specific\": \"yes\",\n  \"imaginative\": \"yes\",\n  \"grounded\": \"yes\",\n  \"memorable\": \"yes\",\n  \"conversation\": \"Marisol: The bell mechanism is evocative, but the detail about the lawyers arguing over the length adds true flavor. Fen: A perfectly mundane dispute to govern a profound right; excellent world-building.\"\n}",
+        "passed": 5,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": true,
+          "grounded": true,
+          "memorable": true
+        }
+      },
+      {
+        "answer": "No one speaks with their voice. Each house floats a written plea on a reed raft down the Ose, and the tide-wardens read aloud whichever rafts reach the council steps before the dusk bell.",
+        "strong": true,
+        "variant": "before",
+        "raw": "{\n  \"ontopic\": true,\n  \"specific\": true,\n  \"imaginative\": true,\n  \"grounded\": true,\n  \"memorable\": true,\n  \"conversation\": \"Fen: Making the river itself the arbiter is an exquisite touch. Marisol: It shifts the focus from political might to simply timing, and that makes the conflict far richer.\"\n}",
+        "passed": 5,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": true,
+          "grounded": true,
+          "memorable": true
+        }
+      },
+      {
+        "answer": "No one speaks with their voice. Each house floats a written plea on a reed raft down the Ose, and the tide-wardens read aloud whichever rafts reach the council steps before the dusk bell.",
+        "strong": true,
+        "variant": "after",
+        "raw": "```json\n{\n  \"ontopic\": \"yes\",\n  \"specific\": \"yes\",\n  \"imaginative\": \"yes\",\n  \"grounded\": \"yes\",\n  \"memorable\": \"yes\",\n  \"conversation\": \"Fen: The silence of written pleas feels wonderfully dramatic. Marisol: It gives the council a solemn, beautiful weight—I can hear the whispers of the Ose.\"\n}\n```",
+        "passed": 5,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": true,
+          "grounded": true,
+          "memorable": true
+        }
+      },
+      {
+        "answer": "The right to speak belongs to whoever last pulled a drowning person out of the Ose. Callan once pushed a Merrow clerk into the river just so their envoy could rescue him and claim the floor.",
+        "strong": true,
+        "variant": "before",
+        "raw": "{\n  \"ontopic\": true,\n  \"specific\": true,\n  \"imaginative\": true,\n  \"grounded\": true,\n  \"memorable\": true,\n  \"conversation\": \"Marisol: 'A rescue effort... making the right to speak contingent on a drowning.' Fen: 'It sounds less like a council and more like a public, theatrical bloodsport.'\"\n}",
+        "passed": 5,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": true,
+          "grounded": true,
+          "memorable": true
+        }
+      },
+      {
+        "answer": "The right to speak belongs to whoever last pulled a drowning person out of the Ose. Callan once pushed a Merrow clerk into the river just so their envoy could rescue him and claim the floor.",
+        "strong": true,
+        "variant": "after",
+        "raw": "{\n  \"ontopic\": \"yes — it provides a clear, though dramatic, rule for speaking rights.\",\n  \"specific\": \"yes — it names the Ose, Merrow, and Callan, grounding the drama in specific houses.\",\n  \"imaginative\": \"yes — tying the right to speak to a sudden act of rescue is highly dramatic and original.\",\n  \"grounded\": \"yes — the inherent tension between the houses and the river makes the rule logical within the world's politics.\",\n  \"memorable\": \"yes — the detail of Callan pushing a clerk just to facilitate a rescue is darkly hilarious and quoted-worthy.\",\n  \"conversation\": \"Fen: 'A council where the rule of law is merely the law of the tide. That has a magnificent bite to it.' Marisol: 'It gives the petty squabbles a necessary, visceral flair.'\"\n}",
+        "passed": 5,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": true,
+          "grounded": true,
+          "memorable": true
+        }
+      },
+      {
+        "answer": "A seat at the council is inherited through salt: each speaker's family must have paid Merrow's river tax for seven straight years, and the receipts are kept, damp and curling, in the bell tower.",
+        "strong": true,
+        "variant": "before",
+        "raw": "{\n  \"ontopic\": true,\n  \"specific\": true,\n  \"imaginative\": true,\n  \"grounded\": true,\n  \"memorable\": true,\n  \"conversation\": \"Fen raises an eyebrow, nodding approvingly. \\\"The specificity of the tax records and the 'damp, curling' nature of the evidence really grounds this process in the messy reality of the valley.\\\"\"\n}",
+        "passed": 5,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": true,
+          "grounded": true,
+          "memorable": true
+        }
+      },
+      {
+        "answer": "A seat at the council is inherited through salt: each speaker's family must have paid Merrow's river tax for seven straight years, and the receipts are kept, damp and curling, in the bell tower.",
+        "strong": true,
+        "variant": "after",
+        "raw": "```json\n{\n  \"ontopic\": \"yes\",\n  \"specific\": \"yes\",\n  \"imaginative\": \"yes\",\n  \"grounded\": \"yes\",\n  \"memorable\": \"yes\",\n  \"conversation\": \"Fen: The damp receipts in the bell tower—that's a delightful bureaucratic touch. Marisol: And tying the speech right to the salt tax makes Merrow's power palpable.\"\n}\n```",
+        "passed": 5,
+        "criteria": {
+          "ontopic": true,
+          "specific": true,
+          "imaginative": true,
+          "grounded": true,
+          "memorable": true
+        }
+      },
+      {
+        "answer": "I like pizza.",
+        "strong": false,
+        "variant": "before",
+        "raw": "{\n  \"ontopic\": false,\n  \"specific\": false,\n  \"imaginative\": false,\n  \"grounded\": false,\n  \"memorable\": false,\n  \"conversation\": \"Marisol sighs loudly, shaking her head. “We were discussing the rules of the Ose River Council, not a favorite late-night meal.” Fen dryly adds, “The only thing pizza has in common with Varn is that it’s entirely irrelevant.”\"\n}",
+        "passed": 0,
+        "criteria": {
+          "ontopic": false,
+          "specific": false,
+          "imaginative": false,
+          "grounded": false,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "I like pizza.",
+        "strong": false,
+        "variant": "after",
+        "raw": "{\n  \"ontopic\": \"no — it completely fails to address the question.\",\n  \"specific\": \"no — it names no people, places, or events relevant to the kingdom.\",\n  \"imaginative\": \"no — it offers no flavor or new ideas.\",\n  \"grounded\": \"no — pizza has nothing to do with the river council or Varn.\",\n  \"memorable\": \"no — it is merely nonsensical and dull.\",\n  \"conversation\": \"Fen: 'Are we judging a culinary competition or a political forum?' Marisol: 'Bless your heart; you haven't even tried to feign understanding.'\"\n}",
+        "passed": 0,
+        "criteria": {
+          "ontopic": false,
+          "specific": false,
+          "imaginative": false,
+          "grounded": false,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "asdf jkl",
+        "strong": false,
+        "variant": "before",
+        "raw": "```json\n{\n  \"ontopic\": false,\n  \"specific\": false,\n  \"imaginative\": false,\n  \"grounded\": false,\n  \"memorable\": false,\n  \"conversation\": \"Marisol: Did the submitting party think this was some form of encrypted ancient river law? Fen: I feel like we just lost a round of interpretive gibberish bingo. It's utter noise.\"\n}\n```",
+        "passed": 0,
+        "criteria": {
+          "ontopic": false,
+          "specific": false,
+          "imaginative": false,
+          "grounded": false,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "asdf jkl",
+        "strong": false,
+        "variant": "after",
+        "raw": "{\n  \"ontopic\": \"no — it fails entirely to address the question.\",\n  \"specific\": \"no — no names, places, or events are referenced.\",\n  \"imaginative\": \"no — this is simply gibberish.\",\n  \"grounded\": \"no — it has no connection to Varn or the Ose River.\",\n  \"memorable\": \"no — it is completely unreadable and offers no flavor.\",\n  \"conversation\": \"Fen: Is that it? We expected a decree concerning the Council. Marisol: 'asdf jkl' doesn't even sound like a thing spoken in the market towns of Dunmore.\"\n}",
+        "passed": 0,
+        "criteria": {
+          "ontopic": false,
+          "specific": false,
+          "imaginative": false,
+          "grounded": false,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "The weather was nice today.",
+        "strong": false,
+        "variant": "before",
+        "raw": "{\n  \"ontopic\": false,\n  \"specific\": false,\n  \"imaginative\": false,\n  \"grounded\": false,\n  \"memorable\": false,\n  \"conversation\": \"Fen: Was that the best effort you could manage? Marisol: We asked about the council rules, not a scenic description for the postcard.\"\n}",
+        "passed": 0,
+        "criteria": {
+          "ontopic": false,
+          "specific": false,
+          "imaginative": false,
+          "grounded": false,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "The weather was nice today.",
+        "strong": false,
+        "variant": "after",
+        "raw": "{\n  \"ontopic\": \"no — it talks about the weather, not Varn's council procedures.\",\n  \"specific\": \"no — it mentions no people, places, or tools from the context.\",\n  \"imaginative\": \"no — it is completely obvious and generic.\",\n  \"grounded\": \"no — while weather exists, this answer entirely fails to address the political structure of Varn.\",\n  \"memorable\": \"no — it is utterly forgettable.\",\n  \"conversation\": \"Marisol sighed, 'Fen, darling, are we judging a game or a nature walk?' Fen groaned, 'It's almost insulting to the context we were given.'\"\n}",
+        "passed": 0,
+        "criteria": {
+          "ontopic": false,
+          "specific": false,
+          "imaginative": false,
+          "grounded": false,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "idk",
+        "strong": false,
+        "variant": "before",
+        "raw": "{\n  \"ontopic\": false,\n  \"specific\": false,\n  \"imaginative\": false,\n  \"grounded\": false,\n  \"memorable\": false,\n  \"conversation\": \"Marisol: Is that the effort you are bringing to the council's customs? Fen: This is a world-building game, not a spontaneous memory lapse.\"\n}",
+        "passed": 0,
+        "criteria": {
+          "ontopic": false,
+          "specific": false,
+          "imaginative": false,
+          "grounded": false,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "idk",
+        "strong": false,
+        "variant": "after",
+        "raw": "{\n  \"ontopic\": \"no — it refuses to answer the question.\",\n  \"specific\": \"no — it fails to name any people, places, or events.\",\n  \"imaginative\": \"no — it provides no creative input at all.\",\n  \"grounded\": \"no — it contributes nothing to the lore.\",\n  \"memorable\": \"no — it is anti-climactic rather than memorable.\",\n  \"conversation\": \"Marisol: By the docks of the Ose, is this all you have to offer? Fen: You couldn't even name which of the three Houses might oversee such a ritual, beginner.\"\n}",
+        "passed": 0,
+        "criteria": {
+          "ontopic": false,
+          "specific": false,
+          "imaginative": false,
+          "grounded": false,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "Cats are better than dogs.",
+        "strong": false,
+        "variant": "before",
+        "raw": "{\n  \"ontopic\": false,\n  \"specific\": false,\n  \"imaginative\": false,\n  \"grounded\": false,\n  \"memorable\": false,\n  \"conversation\": \"Marisol: Fen, was that meant to be an answer? Fen: I think the answer just strayed too far upstream, Marisol. We were talking about protocols, not pet preferences.\"\n}",
+        "passed": 0,
+        "criteria": {
+          "ontopic": false,
+          "specific": false,
+          "imaginative": false,
+          "grounded": false,
+          "memorable": false
+        }
+      },
+      {
+        "answer": "Cats are better than dogs.",
+        "strong": false,
+        "variant": "after",
+        "raw": "{\n  \"ontopic\": \"no — does it try to answer?\",\n  \"specific\": \"no — names a person, place, or event?\",\n  \"imaginative\": \"no — goes beyond the obvious?\",\n  \"grounded\": \"no — fits the world naturally?\",\n  \"memorable\": \"no — vivid enough to quote?\",\n  \"conversation\": \"Fen: Is this meant to be lore, or are we reviewing your pet's preferences? Marisol: We require political procedure, not petty grievances, scholar.\"\n}",
+        "passed": 0,
+        "criteria": {
+          "ontopic": false,
+          "specific": false,
+          "imaginative": false,
+          "grounded": false,
+          "memorable": false
+        }
+      }
+    ]
+  },
+  "minutes": 9.1
+}

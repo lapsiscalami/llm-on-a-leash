@@ -7,8 +7,15 @@
     "noUncheckedIndexedAccess": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "types": ["node"],
+    "types": [
+      "node"
+    ],
     "noEmit": true
   },
-  "include": ["src", "demos"]
+  "include": [
+    "src",
+    "demos",
+    "measure",
+    ".claude/skills"
+  ]
 }

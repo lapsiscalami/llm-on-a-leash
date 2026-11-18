@@ -3,19 +3,18 @@
   "version": "1.0.0",
   "private": false,
   "license": "MIT",
-  "description": "Constraint-first patterns for LLM games, learned on 8B models.",
+  "description": "Constraint-first patterns for LLM games, measured on three small models.",
   "type": "module",
   "scripts": {
-    "demo:deck": "tsx demos/01-deck/run.ts",
-    "demo:classify": "tsx demos/02-classify/run.ts",
-    "demo:coerce": "tsx demos/03-coerce/run.ts",
-    "demo:fences": "tsx demos/04-fences/run.ts",
-    "demo:all": "npm run demo:deck && npm run demo:classify && npm run demo:coerce && npm run demo:fences && npm run demo:judge",
+    "report": "tsx measure/faithful-report.ts",
+    "measure": "tsx measure/faithful-post2.ts && tsx measure/faithful.ts && tsx measure/faithful.ts --chain && tsx measure/classify-topics.ts",
+    "demo:deck": "tsx demos/deck/run.ts",
+    "demo:fences": "tsx demos/fences/run.ts",
+    "demo:judge": "tsx demos/judge/run.ts",
     "typecheck": "tsc --noEmit",
-    "demo:judge": "tsx demos/05-judge/run.ts"
-  },
-  "dependencies": {
-    "zod": "^4.6.5"
+    "test:skill": "tsx .claude/skills/small-model-prompt-review/test/run.ts",
+    "test:pin": "tsx .claude/skills/pin-the-fix/test/run.ts",
+    "test:skills": "npm run test:skill && npm run test:pin"
   },
   "devDependencies": {
     "@ast-grep/cli": "^0.45.3",

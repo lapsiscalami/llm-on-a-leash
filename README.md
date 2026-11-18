@@ -1,228 +1,120 @@
 # llm-on-a-leash
 
-**Constraint-first patterns for LLM games — learned the hard way on 8B models.**
+**Constraint-first patterns for LLM games, on small models.**
 
-Most LLM games are a retrieval layer wrapped around a storytelling engine. The
-model *is* the game: it narrates, it adjudicates, it decides what happened.
-That works, and when it works it is magical. But it means hallucination is a
-content problem you fight with better retrieval, and cost scales with ambition.
+Companion code for two dev blog posts from building [NextOath](https://nextoath.ai): *Keeping the LLM on a Leash* and *Small Tricks for Small Models*.
 
-I took the other tack. In [NextOath](https://nextoath.com), a deterministic
-engine owns **every** piece of mechanical truth — the board, the resolution,
-the score, who won. The LLM owns the fiction and nothing else. Not by polite
-instruction ("please don't change the score") but *structurally*: the
-resolution prompt has no field in which a board change could be expressed, and
-it never sees a number it could anchor on.
-
-This repo is the patterns that fell out of that decision, each one a small
-runnable demo.
-
-**This may not be what players want.** A tightly-leashed model writes less
-surprising stories than an unleashed one. That is a real cost and I am not
-going to pretend otherwise. But it bought determinism, replayability, a
-tutorial that can't go off the rails, and a cost profile that survives contact
-with a hobby budget. If you're building something where the rules have to
-actually be rules, the trade may be worth it for you too.
-
----
-
-## Run it
+## Quick start
 
 ```bash
 npm install
-npm run demo:deck        # or: demo:classify, demo:coerce, demo:fences
-npm run demo:all
+npm run report            # every table, from the saved replies; no model needed
 ```
 
-**Everything runs with no API key.** Each demo ships a mock client with real
-small-model failures recorded from production — a parroted `"yes/no"`, an enum
-value with the prompt hint glued to it, a classification collapsed to 0%. You
-see the failure and the fix without spending a token.
-
-Set a key and pass `--live` to run the same demo against a real model:
+To run one experiment on your own machine, install [Ollama](https://ollama.com) and:
 
 ```bash
-GOOGLE_GENERATIVE_AI_API_KEY=... npm run demo:classify -- --live
+npx tsx measure/faithful.ts                           # gemma4:e4b, downloaded if missing
+OLLAMA_MODEL=llama3.1:8b npx tsx measure/faithful.ts  # you may set your model name
+npm run report                                        # your model appears next to mine
 ```
 
----
+To run all tests.
 
-## The four patterns
+```bash
+npm run measure
+```
 
-### 1. [Deal from a deck, don't ask for variety](demos/01-deck) 🃏
+## Results
 
-Ask a model for "a creative question about this world" twenty times and you get
-governance, religion, governance, warfare, religion. Mode collapse isn't a
-prompting failure you can flatter your way out of.
+models, least capable first: **Gemma 4 E2B**, **Llama 3.1 8B** and **Gemma 4 E4B**
 
-So don't ask. Hash the game id, Fisher-Yates a deck of twenty domains, and deal
-card *n* for question *n*. Variety is guaranteed by construction, the sequence
-is reproducible from the seed, and a game can't repeat a topic until it has
-used all twenty.
+Each result below is **before → after** on the same test: blue bars are before, green bars are after. The gray line on each chart is the target: what a perfect prompt, or picking at random, would give. The *p* under each chart is the chance of a gap at least that big if the change did nothing. Small is convincing; above about 0.1 it could easily be luck. GitHub draws the charts; other viewers show their source.
 
-### 2. [Stop asking small models to classify](demos/02-classify) 🎯
+### 1. Dealing topics from a shuffled deck beats asking for variety, on every model.
 
-A three-way `mode` enum in the judge collapsed to **0% capture**. A two-way
-`lane` enum collapsed to **100% one side**. Prompt-tweaking didn't move it.
+How many of the 20 topics got used across 40 questions. Picking at random you'd expect about **17.4**.
 
-The fix was to stop asking the model to *classify* and ask it several
-independent questions it is actually good at — "does this land as a capture?",
-"is this indirect?" — then derive the category server-side from those booleans.
-Models are bad at picking one of N. They are good at emotional plausibility.
+```mermaid
+%%{init: {"themeVariables": {"xyChart": {"plotColorPalette": "#3987e5, #008300, #898781"}}}}%%
+xychart-beta
+  title "Topics used across 40 questions (of 20, higher is better)"
+  x-axis ["E2B before", "E2B after", "Llama before", "Llama after", "E4B before", "E4B after"]
+  y-axis "topics used" 0 --> 20
+  bar [8, -1, 8, -1, 9, -1]
+  bar [-1, 13, -1, 16, -1, 14]
+  line [17.4, 17.4, 17.4, 17.4, 17.4, 17.4]
+```
 
-### 3. [Coerce, never reject](demos/03-coerce) 🩹
+*p*: E2B 0.001, Llama 3.1 0.001, E4B 0.021. Small on all three models.
 
-A validator on an LLM output field that throws on a plausible near-miss is a
-bug. It forces a retry, and the retry costs more tokens than the leniency saved.
+How many of 20 games asked about the same topic twice in a row. Picking at random you'd expect about **1**.
 
-`"equilibrium (1:1 — equal)"` should parse as `equilibrium`. A blank string
-should become the safe default, not an exception.
+```mermaid
+%%{init: {"themeVariables": {"xyChart": {"plotColorPalette": "#3987e5, #008300, #898781"}}}}%%
+xychart-beta
+  title "Games that repeated a topic (of 20, lower is better)"
+  x-axis ["E2B before", "E2B after", "Llama before", "Llama after", "E4B before", "E4B after"]
+  y-axis "games" 0 --> 20
+  bar [11, -1, 6, -1, 5, -1]
+  bar [-1, 2, -1, 0, -1, 1]
+  line [1, 1, 1, 1, 1, 1]
+```
 
-**With one caveat that took an incident to learn:** coercion that *invents*
-state is worse than rejection. One field in the resolver deliberately opts out
-of the lenient parser, because coercing an unrecognized event kind would
-resurrect an event the model meant to drop. Leniency is a per-field decision,
-not a policy.
+*p*: E2B 0.003, Llama 3.1 0.010, E4B 0.091. E4B repeated least to begin with, so its gap is the least certain.
 
-And if your coercer can never fail, **log the fallback** — otherwise a field
-that is 100% fallback looks perfectly healthy. That blind spot is exactly how
-the 0%-capture collapse went unnoticed.
+### 2. Asking for a word instead of a number puts more things at the right level, on the smaller models.
 
-### 5. [Fuzzy judging — what the leash buys you](demos/05-judge) ⚖️
+Twenty things with an obvious level (five each of rare, uncommon, common, everywhere). A perfect answer places all **20**. Before, the model gave a number from 0 to 1; after, one of the four words.
 
-The other four patterns are defensive. This is the payoff.
+```mermaid
+%%{init: {"themeVariables": {"xyChart": {"plotColorPalette": "#3987e5, #008300, #898781"}}}}%%
+xychart-beta
+  title "Things placed at the right level (of 20, higher is better)"
+  x-axis ["E2B before", "E2B after", "Llama before", "Llama after", "E4B before", "E4B after"]
+  y-axis "right level" 0 --> 20
+  bar [10, -1, 10, -1, 13, -1]
+  bar [-1, 17, -1, 15, -1, 13]
+  line [20, 20, 20, 20, 20, 20]
+```
 
-Games have always adjudicated the **measurable**: did the unit reach the
-tile, was the card legal, is the number bigger. Anything fuzzy had to be
-pre-authored or thrown away — so "was that a clever plan?" stopped being a
-question games asked.
+*p*: E2B 0.020, Llama 3.1 0.095, E4B 0.629. Asked for a number, E2B never once landed in the middle two levels. E4B held up either way, so for it this is insurance, not a fix.
 
-A model can answer it. Fuzzily, with real failure modes, but fuzzily is
-enough **because the engine still owns the consequence**. The judge emits a
-word; the engine decides what that word is worth.
+### 3. Describing the answer in the format example instead of showing one helps one model and not the others.
 
-Three modes, and the useful distinction is not how much the model sees — it
-is **whether its answer decides anything**:
+How many of 10 strong answers the judge scored 4 of 5 or better. A fair judge would score all **10**. Before, the format example showed `false` in every slot; after, it described each slot.
 
-| Mode | Model sees | Model decides | Verdict |
-|---|---|---|---|
-| Isolated | one action | the grade | stable, comparable, but compresses — **2 distinct grades** across 4 plans |
-| **Comparative narration** | **everyone's actions** | **nothing** | **ships.** The engine resolves all collisions first; the model explains what happened between players |
-| Head-to-head | two actions | the winner | **3 tiers** from the same 4 plans, but order-sensitive and non-transitive |
+```mermaid
+%%{init: {"themeVariables": {"xyChart": {"plotColorPalette": "#3987e5, #008300, #898781"}}}}%%
+xychart-beta
+  title "Strong answers scored 4+ of 5 (of 10, higher is better)"
+  x-axis ["E2B before", "E2B after", "Llama before", "Llama after", "E4B before", "E4B after"]
+  y-axis "answers" 0 --> 10
+  bar [7, -1, 7, -1, 10, -1]
+  bar [-1, 9, -1, 7, -1, 10]
+  line [10, 10, 10, 10, 10, 10]
+```
 
-The middle row is the one to reach for first, and it is the mode NextOath
-actually runs. It buys the thing people want from an LLM in a game — a world
-that reacts to everyone's choices together — at none of the risk, because a
-wrong answer is a clumsy sentence rather than a wrong winner. Its prompt
-opens: *"The outcome of every action this round is ALREADY DECIDED — you only
-narrate it."*
+Same answers judged both ways, counting criteria passed of 5: E2B 2 rose, 0 fell, net +4 (*p* 0.25); Llama 3.1 1 rose, 1 fell, net 0 (*p* 0.75); E4B none moved. E2B's gain is consistent in direction, but 10 answers are too few to rule out luck. It didn't make the judge easier to please either: no weak answer reached 4 on any model. Test it on yours.
 
-The demo asks every head-to-head pair in both orders and shows the flips.
-Those flips are precisely why the third row is still worth hesitating over.
+Two more are measured and weaker: a forgiving parser rescued 40 of 260 answers on E4B and none on the other two (entry 4), and handing the judge an earlier call's guess pulled it toward the guess on both Gemmas but not firmly at 30 plans (entry 5). One is measured and did not hold: yes/no questions in place of a "pick one" field fixed one model and broke another (entry 8). The field guide has the full set, with evidence labels and numbers where measured, and the report prints every table.
 
-### 4. [Pin the fix](demos/04-fences) 📌
+## What's here
 
-You fix a subtle race. Six months later someone refactors and the guard clause
-quietly disappears. Tests catch behavior; nothing catches *"someone deleted the
-line."*
-
-So assert the line still exists. These are `ast-grep` rules that fail the build
-when a specific guard goes missing — including the inverted form, where the
-rule matches a file that *doesn't* contain what it must.
-
----
-
-## What the demos actually print
-
-Measured, not asserted — these are the numbers `npm run demo:all` produces
-on the recorded 8B output:
-
-| Demo | Before | After |
-|---|---|---|
-| 01 deck | top 2 topics = **65%** of draws, 5 distinct | **10%**, 20 distinct |
-| 02 classify | mode **100/0/0**, lane **100/0** | mode 13/38/38, lane 38/63 |
-| 03 coerce | strict schema rejects **7 of 8** near-misses | lenient rejects **0 of 8** |
-| 04 fences | — | **6/6** mutations classified correctly |
-| 05 judge | isolated: **2** distinct grades / 4 plans | head-to-head: **3** tiers, with order-bias flips surfaced (plus the shipping middle mode) |
-
-Demo 02 is the one to be careful with. Run it `--live` on gemma4:e2b and the
-*lane* enum still collapses to a perfect 100%/0%, exactly as production did —
-but the *mode* enum often spreads on its own and does **not** reproduce the
-0%-capture result. The demo measures this per run and says so.
-
-That is the honest lesson, and it is narrower than "enums collapse":
-**collapse is per-model and per-field, and you cannot predict which fields
-will go.** Deriving the taxonomy server-side removes the question instead of
-answering it.
-
----
-
-## About the numbers
-
-Every measurement here was taken against **8B-class and smaller models**.
-The production tuning target was `gemma4:e4b` (via a self-hosted OpenWebUI
-endpoint); the recorded demo output and the `--live` checks come from a local
-Ollama box.
-
-Models this work was developed and sanity-checked against, at various points:
-
-| Model | Role in this work |
+| Path | What it is |
 |---|---|
-| `gemma4:e4b` | the production tuning target — the narrative-length and anti-parroting rules are tuned to it |
-| `gemma4:e2b` | local stand-in; the `--live` numbers in demo 01/02 are from this |
-| `llama3.1:8b` | the recorded distributions in demo 01 and 02 |
-| `llama3.2` | earlier dev passes |
-| `dolphin3:8b` | uncensored-ish cross-check — useful for seeing whether a refusal was safety or confusion |
-| `nous-hermes2` | instruction-following cross-check on JSON adherence |
-| `qwen3:8b` | the reason `promptBlocks` exists — bilingual models need an explicit "Respond in English." line injected above the JSON rule |
-| `deepseek-r1:8b` | reasoning-model cross-check; thinking output competes with the visible-token budget |
+| [`PATTERNS.md`](PATTERNS.md) | **Start here.** The field guide: symptom, fix, how to check, and how much evidence is behind each entry. |
+| [`measure/`](measure/) | The tests, the saved replies, and `npm run report`. |
+| [`demos/`](demos/) | Three runnable demos that replay recorded replies (`npm run demo:deck`, `demo:judge`, `demo:fences`; add `--live` to use your model). |
+| [`.claude/skills/small-model-prompt-review/`](.claude/skills/small-model-prompt-review/SKILL.md) | A Claude Code skill that reviews a prompt and its parser against the guide. Copy it into your repo. |
+| [`.claude/skills/pin-the-fix/`](.claude/skills/pin-the-fix/SKILL.md) | A Claude Code skill that writes an ast-grep fence for a one-line fix, plus the test proving the fence fires. |
 
-They do **not** all fail the same way, which is the most useful thing I can
-tell you. `qwen3` drifts language. `deepseek-r1` spends its output budget
-thinking. `gemma4` parrots format examples. `llama3.1` collapses toward a few
-favourite answers. A pattern that fixes one may be irrelevant to another —
-which is the argument for structural constraints over per-model prompt tuning.
+## How much to trust it
 
-Other caveats that matter:
+Each entry in the guide is labelled **reproduced here** (`npm run report` prints it, `npm run measure` re-runs it), **measured in NextOath, not reproduced here** (real numbers from the game's own harness that this repo doesn't regenerate), or **experience** (unmeasured).
 
-- Several of these failure modes are **much weaker on frontier models**.
-  Boolean parroting in particular mostly disappears on Gemini 2.5-flash and
-  above.
-- A few are **provider-side and stochastic** — Gemini's constrained decoding
-  running away to `MAX_TOKENS` hit ~21% of calls on one prompt and 0% on the
-  next, with no code change.
-- "Small model" is a moving target. What needed this scaffolding in 2026 may
-  not in 2027.
-
-Constraint-first design is itself partly a small-model adaptation: when the
-model is cheap and unreliable, you give it less to be wrong about. Read these
-as *engineering for the cheap tier*, not as universal law.
-
-The production numbers cited in the demos (`0%` capture, `94% → 0%`
-over-long list items, `33% → 0%` filler openings, `3.5–6×` cost regression from
-a *cheaper* model) come from A/B harnesses run against real game fixtures.
-Where a demo can't honestly reproduce a production figure with a toy prompt, it
-says so and replays the recorded result instead of faking one.
-
----
-
-## This is one person's answer, not a standard
-
-Everything here is **how I handled it**, measured on one game and mostly on
-8B-class models. Some of it is probably not the best available approach —
-it is the best I found, which is a different claim.
-
-**If you have a pattern you like better, tell me.** Open an issue or a PR.
-A crude measurement ("I ran 20 calls each on `<model>` and got X vs Y")
-beats any amount of argument, including mine. Alternatives get added
-*alongside* the original with attribution and both sets of numbers, not
-swapped in silently — a demo showing two approaches and an honest "these
-are close, pick by taste" is a better artifact than one that pretends a
-winner exists.
-
-[CONTRIBUTING.md](CONTRIBUTING.md) has my own list of what is most likely
-wrong in here, which is a cheaper starting point than guessing.
+These are small-model results, from 20 to 40 items per test. That's enough to see a clear gap and too few to trust a one- or two-point difference. Several patterns help one model and do nothing for another. The tests use the game's real prompt text but a short generic world, so they run lighter than the game does (about 750 prompt tokens for the judge here against about 1,300 in the game). Run them on yours, with your full prompt, before you trust them. [CONTRIBUTING.md](CONTRIBUTING.md) if you have an alternate pattern; I'll consider revising or including it.
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT. See [LICENSE](LICENSE).

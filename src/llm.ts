@@ -1,33 +1,88 @@
 /**
  * Minimal LLM shim.
  *
- * Default is a MOCK whose responses are REAL small-model failures recorded
- * from production runs (gemma4:e4b / llama3.1:8b class). That matters: the
- * demos are not staging failures to make a point, they are replaying ones
- * that actually happened.
+ * With no flags, a demo REPLAYS real replies recorded from a real model —
+ * the file in fixtures/ says which model and when. Nothing is typed in by
+ * hand: if a recording is missing, the demo says so rather than inventing
+ * an answer.
  *
- * Pass --live to hit a real model instead:
- *   OLLAMA_MODEL=gemma4:e2b npm run demo:classify -- --live
- *   GOOGLE_GENERATIVE_AI_API_KEY=... npm run demo:classify -- --live
+ *   npm run demo:judge                          # replay recorded replies
+ *   npm run demo:judge -- --live                # your own model
+ *   npm run demo:judge -- --live --record       # your model, and save the
+ *                                               # replies as the new recording
+ *
+ * Live uses local Ollama (OLLAMA_MODEL, default gemma4:e2b-it-q4_K_M) unless
+ * GOOGLE_GENERATIVE_AI_API_KEY is set and OLLAMA_MODEL is not.
  */
+import { readFileSync, writeFileSync, existsSync, mkdirSync } from "node:fs";
+import { ensureModel } from "./ollama.js";
+
+/** Per-call options. Temperature is a dial per prompt (pattern 6): a judge
+ *  runs cool, a question-writer runs warm. Default is the shim's 0.7. */
+export interface CompleteOptions { temperature?: number }
 
 export interface LLMClient {
   readonly label: string;
-  complete(prompt: string): Promise<string>;
+  complete(prompt: string, opts?: CompleteOptions): Promise<string>;
 }
 
 export const isLive = process.argv.includes("--live");
+const isRecord = process.argv.includes("--record");
+const DEFAULT_TEMPERATURE = 0.7;
 
-// ─── Mock ────────────────────────────────────────────────────────────────
+// ─── Recordings ──────────────────────────────────────────────────────────
 
-type Responder = (prompt: string, call: number) => string;
+/** `temperature` per call was added after the first recordings were made;
+ *  a call without it was recorded at the shim's default of 0.7. */
+interface Recording { model: string; recordedAt: string; calls: { prompt: string; reply: string; temperature?: number }[] }
+const fixturePath = (name: string) => `fixtures/${name}.json`;
 
-export class MockClient implements LLMClient {
-  readonly label = "mock (recorded small-model output)";
-  private calls = 0;
-  constructor(private readonly responder: Responder) {}
+/** Replays a recording. Identical prompts are answered in the order they
+ *  were recorded, so a prompt asked 20 times gets its 20 real replies. */
+class ReplayClient implements LLMClient {
+  readonly label: string;
+  private readonly queues = new Map<string, string[]>();
+  private readonly found: boolean;
+  constructor(private readonly name: string) {
+    // Don't throw here: a missing recording is reported on the first call,
+    // inside runDemo, so the reader gets advice instead of a stack trace.
+    this.found = existsSync(fixturePath(name));
+    if (!this.found) { this.label = "replay (no recording yet)"; return; }
+    const rec = JSON.parse(readFileSync(fixturePath(name), "utf8")) as Recording;
+    for (const c of rec.calls) {
+      const q = this.queues.get(c.prompt) ?? [];
+      q.push(c.reply);
+      this.queues.set(c.prompt, q);
+    }
+    this.label = `replay: real replies from ${rec.model}, recorded ${rec.recordedAt.slice(0, 10)}`;
+  }
   async complete(prompt: string): Promise<string> {
-    return this.responder(prompt, this.calls++);
+    if (!this.found) {
+      throw new Error(`no recording at ${fixturePath(this.name)}\n      Record one:  npm run <demo> -- --live --record`);
+    }
+    const reply = this.queues.get(prompt)?.shift();
+    if (reply === undefined) {
+      throw new Error(`the recording in ${fixturePath(this.name)} has no reply for this prompt ` +
+        `(the demo changed since it was recorded)\n      Re-record:  npm run <demo> -- --live --record`);
+    }
+    return reply;
+  }
+}
+
+/** Wraps a live client and saves every call, so the next plain run replays it. */
+class RecordingClient implements LLMClient {
+  readonly label: string;
+  private readonly rec: Recording;
+  constructor(private readonly inner: LLMClient, private readonly name: string, model: string) {
+    this.label = `${inner.label} (recording)`;
+    this.rec = { model, recordedAt: new Date().toISOString(), calls: [] };
+  }
+  async complete(prompt: string, opts?: CompleteOptions): Promise<string> {
+    const reply = await this.inner.complete(prompt, opts);
+    this.rec.calls.push({ prompt, reply, temperature: opts?.temperature ?? DEFAULT_TEMPERATURE });
+    mkdirSync("fixtures", { recursive: true });
+    writeFileSync(fixturePath(this.name), JSON.stringify(this.rec, null, 2));
+    return reply;
   }
 }
 
@@ -41,7 +96,8 @@ class OllamaClient implements LLMClient {
   ) {
     this.label = `ollama ${this.model}`;
   }
-  async complete(prompt: string): Promise<string> {
+  async complete(prompt: string, opts?: CompleteOptions): Promise<string> {
+    await ensureModel(this.model, this.baseUrl); // pulls it if missing
     let res: Response;
     try {
       res = await fetch(`${this.baseUrl}/api/generate`, {
@@ -51,7 +107,7 @@ class OllamaClient implements LLMClient {
           model: this.model,
           prompt,
           stream: false,
-          options: { temperature: 0.7 },
+          options: { temperature: opts?.temperature ?? DEFAULT_TEMPERATURE },
         }),
       });
     } catch (e) {
@@ -90,13 +146,16 @@ class GoogleClient implements LLMClient {
   ) {
     this.label = `google ${this.model}`;
   }
-  async complete(prompt: string): Promise<string> {
+  async complete(prompt: string, opts?: CompleteOptions): Promise<string> {
     const res = await fetch(
       `https://generativelanguage.googleapis.com/v1beta/models/${this.model}:generateContent`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json", "x-goog-api-key": this.apiKey },
-        body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] }),
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: prompt }] }],
+          generationConfig: { temperature: opts?.temperature ?? DEFAULT_TEMPERATURE },
+        }),
       },
     );
     if (!res.ok) throw new Error(`google ${res.status}: ${await res.text()}`);
@@ -107,14 +166,19 @@ class GoogleClient implements LLMClient {
   }
 }
 
-/** Pick a client. Falls back to the mock with a printed reason rather than
- *  throwing — a demo that can't run is a worse outcome than a demo that
- *  tells you why it fell back. */
-export function getClient(mockResponder: Responder): LLMClient {
-  if (!isLive) return new MockClient(mockResponder);
+/** Pick a client. Without --live this is the replay client for the demo's
+ *  recording in fixtures/<name>.json; a missing or stale recording is
+ *  reported on the first call (inside runDemo) with the command to fix it,
+ *  rather than as a stack trace. */
+export function getClient(name: string): LLMClient {
+  if (!isLive) return new ReplayClient(name);
   const key = process.env.GOOGLE_GENERATIVE_AI_API_KEY;
-  if (process.env.OLLAMA_MODEL || !key) return new OllamaClient();
-  return new GoogleClient(key);
+  const useOllama = Boolean(process.env.OLLAMA_MODEL) || !key;
+  const live = useOllama ? new OllamaClient() : new GoogleClient(key!);
+  const model = useOllama
+    ? process.env.OLLAMA_MODEL ?? "gemma4:e2b-it-q4_K_M"
+    : process.env.GOOGLE_MODEL ?? "gemini-2.5-flash";
+  return isRecord ? new RecordingClient(live, name, model) : live;
 }
 
 // ─── Output helpers ──────────────────────────────────────────────────────

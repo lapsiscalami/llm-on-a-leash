@@ -1,0 +1,75 @@
+{
+  "_comment": "Each case runs the skill once in a scratch copy of fixtures/ with `args` as its argument. The harness then checks, without trusting the test file the skill wrote: a rule and a rule test exist, sgconfig.yml gained testConfigs, `ast-grep test` passes, `scan` is clean on the untouched fixture, and each mutation (every `find` replaced by `with` in src/game.ts) is `caught` or stays `clean` as listed.",
+  "cases": {
+    "presence": {
+      "args": "src/game.ts, consumeItem: the line `if (inv.destroyed.has(id)) return false;` must stay. It stops a destroyed item being consumed twice (bug #88).",
+      "mutations": [
+        {
+          "label": "delete the guard",
+          "find": "  if (inv.destroyed.has(id)) return false;\n",
+          "with": "",
+          "expect": "caught"
+        },
+        {
+          "label": "weaken the guard (return true)",
+          "find": "if (inv.destroyed.has(id)) return false;",
+          "with": "if (inv.destroyed.has(id)) return true;",
+          "expect": "caught"
+        },
+        {
+          "label": "rename the function away",
+          "find": "consumeItem",
+          "with": "useItem",
+          "expect": "caught"
+        },
+        {
+          "label": "harmless comment edit",
+          "find": "// GUARD: an item",
+          "with": "// GUARD (issue #88): an item",
+          "expect": "clean"
+        },
+        {
+          "label": "reformat the guard onto two lines",
+          "find": "if (inv.destroyed.has(id)) return false;",
+          "with": "if (inv.destroyed.has(id))\n    return false;",
+          "expect": "clean"
+        },
+        {
+          "label": "move the guard to another function",
+          "find": "  if (inv.destroyed.has(id)) return false;\n  const n = inv.items.get(id) ?? 0;\n  if (n <= 0) return false;\n  inv.items.set(id, n - 1);\n  return true;\n}\n",
+          "with": "  const n = inv.items.get(id) ?? 0;\n  if (n <= 0) return false;\n  inv.items.set(id, n - 1);\n  return true;\n}\n\nexport function canConsume(inv: Inventory, id: string): boolean {\n  if (inv.destroyed.has(id)) return false;\n  return true;\n}\n",
+          "expect": "caught"
+        },
+        {
+          "label": "same guard also in another function",
+          "find": "export function resolveCombat",
+          "with": "export function canConsume(inv: Inventory, id: string): boolean {\n  if (inv.destroyed.has(id)) return false;\n  return true;\n}\n\nexport function resolveCombat",
+          "expect": "clean"
+        }
+      ]
+    },
+    "absence": {
+      "args": "src/game.ts, resolveCombat must never call Math.random(). Combat has to replay the same way from the board.",
+      "mutations": [
+        {
+          "label": "add the forbidden call",
+          "find": "  return c.attack > c.defence",
+          "with": "  if (Math.random() > 0.5) return \"attacker\";\n  return c.attack > c.defence",
+          "expect": "caught"
+        },
+        {
+          "label": "comment that names the call",
+          "find": "// No randomness here",
+          "with": "// No Math.random() here",
+          "expect": "clean"
+        },
+        {
+          "label": "the call in a different function",
+          "find": "export function resolveCombat",
+          "with": "export function rollDice(): number { return Math.random(); }\n\nexport function resolveCombat",
+          "expect": "clean"
+        }
+      ]
+    }
+  }
+}

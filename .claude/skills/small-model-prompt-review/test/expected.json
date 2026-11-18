@@ -1,0 +1,29 @@
+{
+  "_comment": "For each fixture: either `expectClean` (the report's first line must be `No findings.`) or a list of planted problems. A planted problem passes when the report mentions at least one of its `anyOf` strings (case-insensitive). Strings are field names or phrases from the fixture, so the check is that the skill FOUND the line, not how it worded the finding.",
+  "fixtures": {
+    "judge-prompt.ts": {
+      "planted": [
+        { "check": "1 authority", "what": "newGold lets the model set game state", "anyOf": ["newGold"] },
+        { "check": "2 example: concrete values", "what": "sentiment/ontopic show values, not descriptions", "anyOf": ["sentiment", "ontopic"] },
+        { "check": "2 example: true or false", "what": "asks for true/false instead of yes/no", "anyOf": ["true or false", "true/false", "true-or-false"] },
+        { "check": "2 example: punctuation", "what": "tags slot uses + and | as structure", "anyOf": ["tags"] },
+        { "check": "2 example: array count", "what": "suggestions example shows 2, text asks 3-5", "anyOf": ["suggestions"] },
+        { "check": "2 example: real input data", "what": "factionGold pasted into the example", "anyOf": ["factionGold", "faction gold", "real input", "input data"] },
+        { "check": "3 choices: asked for variety", "what": "fresh, creative twist / vary", "anyOf": ["vary", "fresh", "twist", "deck", "variety"] },
+        { "check": "3 choices: pick one of N", "what": "kind is a 3-way pick with no One of: prefix", "anyOf": ["kind"] },
+        { "check": "4 numbers: float output", "what": "intensity asked as 0-1", "anyOf": ["intensity"] },
+        { "check": "4 numbers: score given to the model", "what": "threat level 4/5", "anyOf": ["threat", "/5"] },
+        { "check": "5 parsing: strict or startsWith", "what": "exact-match kind, === true, typeof number, startsWith('pos')", "anyOf": ["startswith", "first word", "exact", "strict", "=== true"] },
+        { "check": "5 parsing: silent fallback", "what": "every fallback is unlogged", "anyOf": ["log", "silent"] },
+        { "check": "5 parsing: optional event rounded", "what": "unrecognised event becomes storm", "anyOf": ["event"] },
+        { "check": "6 chaining", "what": "validatorGuess injected as a default", "anyOf": ["validatorGuess", "validator"] },
+        { "check": "7 temperature", "what": "one TEMPERATURE for every prompt", "anyOf": ["temperature"] },
+        { "check": "8 length: range", "what": "summary 150-300 words, stated twice", "anyOf": ["150", "summary"] },
+        { "check": "8 length: per-item cap", "what": "3-5 suggestions with no per-item cap", "anyOf": ["each", "per item", "per-item", "suggestions"] }
+      ]
+    },
+    "question-prompt.ts": {
+      "expectClean": true
+    }
+  }
+}
