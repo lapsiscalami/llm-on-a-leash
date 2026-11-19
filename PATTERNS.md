@@ -26,7 +26,7 @@ Want Claude Code to check a prompt against this list? See [`.claude/skills/small
 
 **Check.** Could you replay yesterday's session from saved data without calling the model again? If not, the model is deciding something it shouldn't.
 
-*Evidence: **experience** (a design principle). See post 1.*
+*Evidence: **experience** (a design principle). See [post 1](https://nextoath.ai/blog/llm-on-a-leash).*
 
 ---
 
