@@ -1,0 +1,58 @@
+name: Measurement or new pattern
+description: You measured a pattern (new, or a better version of one here) on a model.
+title: "[measurement] "
+labels: ["measurement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Numbers beat argument, including mine. A rough measurement is fine; say how rough it is.
+        Alternatives get added alongside the original, with attribution and whatever numbers we both measured.
+  - type: input
+    id: pattern
+    attributes:
+      label: Pattern
+      description: Which PATTERNS.md entry this relates to, or "new".
+      placeholder: "e.g. entry 3, ask for words not numbers"
+    validations:
+      required: true
+  - type: input
+    id: model
+    attributes:
+      label: Model and how you ran it
+      placeholder: "e.g. qwen3:4b via Ollama, Q4_K_M"
+    validations:
+      required: true
+  - type: input
+    id: temperature
+    attributes:
+      label: Temperature (per prompt, if they differ)
+      placeholder: "e.g. 0.1 for the judge, 0.8 for questions"
+    validations:
+      required: true
+  - type: input
+    id: items
+    attributes:
+      label: How many items or calls
+      placeholder: "e.g. 20 items, 1 call each"
+    validations:
+      required: true
+  - type: textarea
+    id: results
+    attributes:
+      label: Before → after
+      description: What you measured and how it changed. Paste the `npm run report` output if your run went through `npm run measure`.
+    validations:
+      required: true
+  - type: textarea
+    id: replies
+    attributes:
+      label: Saved replies
+      description: Link to the raw replies (a gist, a branch, or the result JSON). Hand-written or edited replies can't be used.
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything else
+      description: Caveats, what you'd test next, where you think it breaks.

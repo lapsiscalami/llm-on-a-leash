@@ -1,0 +1,36 @@
+name: Bug
+description: A script, demo, test or skill in this repo doesn't work.
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: input
+    id: command
+    attributes:
+      label: Command
+      placeholder: "e.g. npm run demo:judge -- --live"
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: What happened
+      description: The output or error, pasted as text.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+  - type: input
+    id: node
+    attributes:
+      label: Node version (`node --version`)
+      placeholder: "e.g. v22.11.0"
+    validations:
+      required: true
+  - type: input
+    id: platform
+    attributes:
+      label: OS, and model/Ollama version if the command calls a model
+      placeholder: "e.g. Windows 11, Ollama 0.12, gemma4:e4b"

@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Read CONTRIBUTING.md first
+    url: https://github.com/lapsiscalami/llm-on-a-leash/blob/master/CONTRIBUTING.md
+    about: What helps most (a measurement, a counter-example, a demo that runs) and what won't get merged.
+  - name: Report a security problem privately
+    url: https://github.com/lapsiscalami/llm-on-a-leash/security/advisories/new
+    about: Don't open a public issue for a security problem. See SECURITY.md.
