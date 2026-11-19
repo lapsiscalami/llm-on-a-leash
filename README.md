@@ -2,7 +2,7 @@
 
 **Constraint-first patterns for LLM games, on small models.**
 
-Companion code for two dev blog posts from building [NextOath](https://nextoath.ai): *Keeping the LLM on a Leash* and *Small Tricks for Small Models*.
+Companion code for two dev blog posts from building [NextOath](https://nextoath.ai): [*Keeping the LLM on a Leash*](https://nextoath.ai/blog/llm-on-a-leash) and [*Small Tricks for Small Models*](https://nextoath.ai/blog/small-model-tricks) (both published 2026-11-18).
 
 ## Quick start
 

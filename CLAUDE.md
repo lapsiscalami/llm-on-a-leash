@@ -4,7 +4,7 @@ Guidance for Claude Code (claude.ai/code) working in this repository.
 
 ## What this repo is
 
-Companion code for two blog posts about running LLM games on **small models**: "Keeping the LLM on a Leash" and "Small Tricks for Small Models". The posts live in the NextOath site repo; `drafts/` here is a gitignored local folder for writing them. It exists to be read alongside the posts and to let readers reproduce every number in them.
+Companion code for two blog posts about running LLM games on **small models**: "Keeping the LLM on a Leash" (https://nextoath.ai/blog/llm-on-a-leash) and "Small Tricks for Small Models" (https://nextoath.ai/blog/small-model-tricks), published 2026-11-18. The posts live in the NextOath site repo; `drafts/` here is a gitignored local folder for writing them. Once published, a post's numbers are fixed: if a re-measure changes them, the post needs an update too. It exists to be read alongside the posts and to let readers reproduce every number in them.
 
 It is **not** a library.
 

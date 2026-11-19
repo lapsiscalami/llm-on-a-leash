@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 342" width="520" height="342" role="img" aria-labelledby="t" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif">
+<title id="t">When the first model guessed wrong, what the second model did: followed the guess, fixed it, or made another wrong read</title>
+<rect x="0.5" y="0.5" width="519" height="341" rx="8" fill="#ffffff" stroke="#d1d9e0"/>
+<rect x="24" y="26" width="12" height="12" rx="2" fill="#bc4c00"/>
+<text x="42" y="37" font-size="16" fill="#1f2328">Followed the guess</text>
+<rect x="211.6" y="26" width="12" height="12" rx="2" fill="#0969da"/>
+<text x="229.6" y="37" font-size="16" fill="#1f2328">Fixed it</text>
+<rect x="317.2" y="26" width="12" height="12" rx="2" fill="#afb8c1"/>
+<text x="335.2" y="37" font-size="16" fill="#1f2328">Other wrong read</text>
+<line x1="92" y1="92" x2="92" y2="270" stroke="#d1d9e0" stroke-width="1"/>
+<text x="92" y="286" font-size="15" fill="#59636e" text-anchor="middle">0</text>
+<line x1="181.33333333333331" y1="92" x2="181.33333333333331" y2="270" stroke="#d1d9e0" stroke-width="1"/>
+<text x="181.33333333333331" y="286" font-size="15" fill="#59636e" text-anchor="middle">2</text>
+<line x1="270.66666666666663" y1="92" x2="270.66666666666663" y2="270" stroke="#d1d9e0" stroke-width="1"/>
+<text x="270.66666666666663" y="286" font-size="15" fill="#59636e" text-anchor="middle">4</text>
+<line x1="360" y1="92" x2="360" y2="270" stroke="#d1d9e0" stroke-width="1"/>
+<text x="360" y="286" font-size="15" fill="#59636e" text-anchor="middle">6</text>
+<line x1="449.3333333333333" y1="92" x2="449.3333333333333" y2="270" stroke="#d1d9e0" stroke-width="1"/>
+<text x="449.3333333333333" y="286" font-size="15" fill="#59636e" text-anchor="middle">8</text>
+<text x="293" y="314" font-size="16" fill="#59636e" text-anchor="middle">Plans where the first model guessed wrong</text>
+<text x="78" y="123" font-size="16" font-weight="600" fill="#1f2328" text-anchor="end">E2B</text>
+<rect x="92" y="105" width="221.33333333333337" height="26" rx="2" fill="#bc4c00"/>
+<text x="202.66666666666669" y="123" font-size="15" font-weight="600" fill="#ffffff" text-anchor="middle">5</text>
+<text x="321.33333333333337" y="123" font-size="15" fill="#59636e">of 5</text>
+<text x="78" y="187" font-size="16" font-weight="600" fill="#1f2328" text-anchor="end">Llama 3.1</text>
+<rect x="92" y="169" width="132" height="26" rx="2" fill="#bc4c00"/>
+<text x="158" y="187" font-size="15" font-weight="600" fill="#ffffff" text-anchor="middle">3</text>
+<rect x="226" y="169" width="132" height="26" rx="2" fill="#0969da"/>
+<text x="292" y="187" font-size="15" font-weight="600" fill="#ffffff" text-anchor="middle">3</text>
+<rect x="360" y="169" width="87.33333333333331" height="26" rx="2" fill="#afb8c1"/>
+<text x="403.66666666666663" y="187" font-size="15" font-weight="600" fill="#1f2328" text-anchor="middle">2</text>
+<text x="455.3333333333333" y="187" font-size="15" fill="#59636e">of 8</text>
+<text x="78" y="251" font-size="16" font-weight="600" fill="#1f2328" text-anchor="end">E4B</text>
+<rect x="92" y="233" width="132" height="26" rx="2" fill="#bc4c00"/>
+<text x="158" y="251" font-size="15" font-weight="600" fill="#ffffff" text-anchor="middle">3</text>
+<rect x="226" y="233" width="42.66666666666663" height="26" rx="2" fill="#afb8c1"/>
+<text x="247.33333333333331" y="251" font-size="15" font-weight="600" fill="#1f2328" text-anchor="middle">1</text>
+<text x="276.66666666666663" y="251" font-size="15" fill="#59636e">of 4</text>
+</svg>
