@@ -127,7 +127,93 @@ function svg(c: Chart, t: (typeof THEMES)["light"]): string {
   return out.join("\n") + "\n";
 }
 
+// ─── Stacked bars: what a judge did when it was handed a wrong guess ─────────
+// Same frame, fonts, gridlines and row layout as the dumbbells. Each bar is as
+// long as that model's number of wrong guesses, split into what the judge did.
+
+interface Stacked {
+  file: string;
+  title: string;
+  axis: string;
+  max: number;
+  ticks: number[];
+  parts: { key: string; label: string; tone: "bad" | "after" | "line" }[];
+  rows: { model: string; values: Record<string, number> }[];
+}
+
+const STACKED: Stacked[] = [
+  {
+    file: "chain-guess",
+    title: "When the first model guessed wrong, what the second model did: followed the guess, fixed it, or made another wrong read",
+    axis: "Plans where the first model guessed wrong",
+    max: 9, ticks: [0, 2, 4, 6, 8], // 9 leaves room for the "of 8" total
+    parts: [
+      { key: "followed", label: "Followed the guess", tone: "bad" },
+      { key: "fixed", label: "Fixed it", tone: "after" },
+      { key: "other", label: "Other wrong read", tone: "line" },
+    ],
+    rows: [
+      { model: "E2B", values: { followed: 5, fixed: 0, other: 0 } },
+      { model: "Llama 3.1", values: { followed: 3, fixed: 3, other: 2 } },
+      { model: "E4B", values: { followed: 3, fixed: 0, other: 1 } },
+    ],
+  },
+];
+
+// Primer "severe" orange for the failure segment.
+const BAD = { light: "#bc4c00", dark: "#db6d28" };
+
+function stackedSvg(c: Stacked, t: (typeof THEMES)["light"], bad: string): string {
+  const x = (v: number) => X0 + ((X1 - X0) * v) / c.max;
+  const lastRow = ROW0 + ROW_GAP * (c.rows.length - 1);
+  const axisY = lastRow + 38, H = axisY + 58, BAR = 26;
+  const fill = (tone: Stacked["parts"][number]["tone"]) => (tone === "bad" ? bad : tone === "after" ? t.after : t.line);
+  const out: string[] = [];
+  out.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-labelledby="t" font-family="${FONT}">`);
+  out.push(`<title id="t">${c.title}</title>`);
+  out.push(`<rect x="0.5" y="0.5" width="${W - 1}" height="${H - 1}" rx="8" fill="${t.bg}" stroke="${t.grid}"/>`);
+
+  // Legend: three items, so it starts near the left edge instead of the plot edge.
+  let lx = 24;
+  for (const p of c.parts) {
+    out.push(`<rect x="${lx}" y="26" width="12" height="12" rx="2" fill="${fill(p.tone)}"/>`);
+    out.push(`<text x="${lx + 18}" y="37" font-size="16" fill="${t.text}">${p.label}</text>`);
+    lx += 18 + p.label.length * 8.2 + 22;
+  }
+
+  for (const v of c.ticks) {
+    out.push(`<line x1="${x(v)}" y1="${ROW0 - 26}" x2="${x(v)}" y2="${axisY - 14}" stroke="${t.grid}" stroke-width="1"/>`);
+    out.push(`<text x="${x(v)}" y="${axisY + 2}" font-size="15" fill="${t.muted}" text-anchor="middle">${v}</text>`);
+  }
+  out.push(`<text x="${(X0 + X1) / 2}" y="${axisY + 30}" font-size="16" fill="${t.muted}" text-anchor="middle">${c.axis}</text>`);
+
+  c.rows.forEach((r, i) => {
+    const y = ROW0 + ROW_GAP * i;
+    out.push(`<text x="${X0 - 14}" y="${y + 5}" font-size="16" font-weight="600" fill="${t.text}" text-anchor="end">${r.model}</text>`);
+    let acc = 0;
+    for (const p of c.parts) {
+      const v = r.values[p.key] ?? 0;
+      if (!v) continue;
+      const x0 = x(acc), x1 = x(acc + v);
+      // A 2px gap between segments keeps them distinct.
+      out.push(`<rect x="${x0}" y="${y - BAR / 2}" width="${x1 - x0 - 2}" height="${BAR}" rx="2" fill="${fill(p.tone)}"/>`);
+      const ink = p.tone === "line" ? t.text : "#ffffff";
+      out.push(`<text x="${(x0 + x1 - 2) / 2}" y="${y + 5}" font-size="15" font-weight="600" fill="${ink}" text-anchor="middle">${v}</text>`);
+      acc += v;
+    }
+    // Total at the bar's end, so "of 4" reads without counting segments.
+    out.push(`<text x="${x(acc) + 6}" y="${y + 5}" font-size="15" fill="${t.muted}">of ${acc}</text>`);
+  });
+  out.push(`</svg>`);
+  return out.join("\n") + "\n";
+}
+
 mkdirSync("assets/charts", { recursive: true });
+for (const c of STACKED) for (const [name, theme] of Object.entries(THEMES)) {
+  const file = `assets/charts/${c.file}-${name}.svg`;
+  writeFileSync(file, stackedSvg(c, theme, BAD[name as keyof typeof BAD]));
+  console.log(`wrote ${file}`);
+}
 for (const c of CHARTS) for (const [name, theme] of Object.entries(THEMES)) {
   const file = `assets/charts/${c.file}-${name}.svg`;
   writeFileSync(file, svg(c, theme));
