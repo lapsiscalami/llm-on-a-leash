@@ -6,7 +6,7 @@ Each pattern covers a **symptom**, a **fix** (or an approach worth testing), and
 
 **How to read the evidence labels**
 
-- **Reproduced here:** tested with this repository's harness on Gemma 4 E2B, Gemma 4 E4B, and Llama 3.1 8B. See \`npm run report\` for results, or \`npm run measure\` to run the tests.
+- **Reproduced here:** tested with this repository's harness on Gemma 4 E2B, Gemma 4 E4B, and Llama 3.1 8B. See `npm run report` for results, or `npm run measure` to run the tests.
 - **Measured in NextOath, not reproduced here:** observed with the game's own prompts and test harness; the measurements are not included in this repository.
 - **Experience:** a design principle or repeated observation without a controlled comparison here.
 
@@ -24,7 +24,7 @@ For an automated prompt review, see the [small-model prompt-review skill](.claud
 
 **Fix.** Separate *judgment* from *authority*. Code owns the rules, state transitions, and final outcomes. The model can classify a player's action into a small set of grades, and code decides what each grade means. The model can also narrate an outcome after code has decided it, but the narration must not change that outcome.
 
-For example, a judge can return \`"good"\`; code maps \`"good"\` to a bounded reward. Do not ask the model to invent the reward, rewrite the state, or declare the winner. A grade may influence the game, but only within limits established by code.
+For example, a judge can return `"good"`; code maps `"good"` to a bounded reward. Do not ask the model to invent the reward, rewrite the state, or declare the winner. A grade may influence the game, but only within limits established by code.
 
 **Check.** Can you replay a saved session and reproduce its state without calling the model again? If not, identify which model-generated decision still has unchecked authority.
 
@@ -42,38 +42,38 @@ A seeded shuffle gives you variety and makes the sequence reproducible. Avoid fi
 
 **Check.** Across sessions, inspect topic coverage and repeats. Then check whether the generated text actually follows its assigned topic. Dealing a topic prevents selection bias; it does not guarantee the model stays on topic.
 
-*Evidence: **reproduced here** across all three models. See \`npm run report\`.*
+*Evidence: **reproduced here** across all three models. See `npm run report`.*
 
 ---
 
 ## 2. Describe the answer in your example; don't show one
 
-**Symptom.** A model copies values from the example output instead of evaluating the input. A judging prompt that illustrates every field with \`false\`, for instance, can bias the model toward marking good answers down.
+**Symptom.** A model copies values from the example output instead of evaluating the input. A judging prompt that illustrates every field with `false`, for instance, can bias the model toward marking good answers down.
 
 **What to try.** Use the example to describe the required *shape and meaning* of the response, rather than supply plausible answers.
 
 Instead of:
 
-\`\`\`json
+```json
 { "grounded": false, "specific": false }
-\`\`\`
+```
 
 try a description such as:
 
-\`\`\`json
+```json
 {
   "grounded": "yes/no — does it use facts from the scenario?",
   "specific": "yes/no — does it name a concrete action?"
 }
-\`\`\`
+```
 
-The descriptive strings illustrate the prompt's instructions; they are **not** literal values to return. State separately that actual responses must use the allowed values. If a field must be a JSON boolean, keep that type requirement explicit rather than using \`"yes"\` and \`"no"\`.
+The descriptive strings illustrate the prompt's instructions; they are **not** literal values to return. State separately that actual responses must use the allowed values. If a field must be a JSON boolean, keep that type requirement explicit rather than using `"yes"` and `"no"`.
 
 A few related practices are worth testing:
 
-- For enumerated choices, spell out the allowed values (for example, \`One of: rare, uncommon, common, everywhere\`).
+- For enumerated choices, spell out the allowed values (for example, `One of: rare, uncommon, common, everywhere`).
 - Avoid inserting real input data into format examples.
-- Avoid using \`+\`, \`|\`, or \`→\` as shorthand within example values; a model may repeat the punctuation.
+- Avoid using `+`, `|`, or `→` as shorthand within example values; a model may repeat the punctuation.
 - Be deliberate about array examples: the number of sample entries can influence the number returned.
 
 **Check.** Compare old and new prompts on inputs where the correct answer conflicts with the old example. Include strong, weak, and borderline cases. An apparent improvement is not useful if the judge simply becomes more generous to everything.
@@ -84,11 +84,11 @@ A few related practices are worth testing:
 
 ## 3. Ask for words, not numbers
 
-**Symptom.** When asked for a value between 0 and 1, a small model favors extremes, misses useful middle values, or returns prose such as \`"about half"\`.
+**Symptom.** When asked for a value between 0 and 1, a small model favors extremes, misses useful middle values, or returns prose such as `"about half"`.
 
-**Fix.** When you need a coarse judgment rather than precise measurement, ask the model to choose from meaningful labels: \`rare\`, \`uncommon\`, \`common\`, or \`everywhere\`. Map those labels to numeric values or ranges in code.
+**Fix.** When you need a coarse judgment rather than precise measurement, ask the model to choose from meaningful labels: `rare`, `uncommon`, `common`, or `everywhere`. Map those labels to numeric values or ranges in code.
 
-This keeps interpretation with the model and arithmetic with code. If you need variation within a category, draw a value from its range using a saved seed so the result can be replayed. The reverse also helps: give the model a label such as \`"dire"\` when asking it to describe a code-calculated severity level.
+This keeps interpretation with the model and arithmetic with code. If you need variation within a category, draw a value from its range using a saved seed so the result can be replayed. The reverse also helps: give the model a label such as `"dire"` when asking it to describe a code-calculated severity level.
 
 Labels are not a substitute for real calculations. If the task requires an exact number, compute it outside the model.
 
@@ -100,12 +100,12 @@ Labels are not a substitute for real calculations. If the task requires an exact
 
 ## 4. Accept answers that are almost right, but record every fallback
 
-**Symptom.** A strict parser rejects an otherwise clear answer because the model adds an explanation or punctuation: \`"yes — because it names the bridge"\`, \`"Good."\`, or \`"good (solid)"\`. Retrying costs another call without necessarily changing the behavior.
+**Symptom.** A strict parser rejects an otherwise clear answer because the model adds an explanation or punctuation: `"yes — because it names the bridge"`, `"Good."`, or `"good (solid)"`. Retrying costs another call without necessarily changing the behavior.
 
 **Fix.** For a small, known vocabulary, parse conservatively but tolerate harmless extra text:
 
 - Normalize casing and surrounding whitespace.
-- Match a complete leading word from the allowed vocabulary, not an arbitrary prefix. \`goodness\` must not become \`good\`.
+- Match a complete leading word from the allowed vocabulary, not an arbitrary prefix. `goodness` must not become `good`.
 - If no allowed answer is recognizable, use a safe fallback **and log that the fallback was used**.
 - For optional events, an unrecognized answer should usually mean *no event*, not the closest event type.
 
@@ -135,7 +135,7 @@ This does not mean multi-stage pipelines are always wrong. Passing verified fact
 
 **Symptom.** A single global temperature is used for classification, planning, and storytelling. The setting that works for creative prose may not suit a constrained judge, and models can respond differently to the same value.
 
-**Fix.** Define a small set of intent-based presets, such as \`logic\`, \`balanced\`, and \`creative\`, then map each preset to a temperature for each model. This lets prompts express their purpose without hard-coding one supposedly universal number.
+**Fix.** Define a small set of intent-based presets, such as `logic`, `balanced`, and `creative`, then map each preset to a temperature for each model. This lets prompts express their purpose without hard-coding one supposedly universal number.
 
 As a starting point, constrained classification may warrant less sampling variation than open-ended narration. But do not assume “colder is always better.” Follow model-specific guidance when appropriate; for example, the Gemma 4 configuration used here follows a recommendation of 1.0 even for judging.
 
@@ -169,24 +169,24 @@ A good length instruction describes the output the user needs, not just a token 
 
 ## 8. Watch “pick one” fields collapse
 
-**Symptom.** A classifier is supposed to choose among several valid options, but one option almost disappears. The prompt can still produce well-formed JSON, making the problem easy to miss. In NextOath, a judge frequently failed to classify actions as \`steal\`, even when players clearly took something from an opponent.
+**Symptom.** A classifier is supposed to choose among several valid options, but one option almost disappears. The prompt can still produce well-formed JSON, making the problem easy to miss. In NextOath, a judge frequently failed to classify actions as `steal`, even when players clearly took something from an opponent.
 
 **Why it matters.** A valid-looking response is not necessarily a good classification. Longer prompts, competing tasks, and model-specific biases can change how options are used. A short isolated test may not reveal the same failure.
 
 **What I tried.** Replace one multi-way classification with simpler yes/no questions, then derive the category in code:
 
-\`\`\`json
+```json
 {
   "takesSomething": "yes/no — does this take something from an enemy?",
   "setsATrap": "yes/no — does this spring something on an enemy?"
 }
-\`\`\`
+```
 
-\`\`\`ts
+```ts
 const kind = takesSomething ? "steal" : setsATrap ? "trap" : "claim";
-\`\`\`
+```
 
-This also creates an explicit precedence rule: an action that both steals and sets a trap becomes \`steal\`. That choice belongs to the application, not the model. In production code, parse the yes/no strings into booleans before applying this rule.
+This also creates an explicit precedence rule: an action that both steals and sets a trap becomes `steal`. That choice belongs to the application, not the model. In production code, parse the yes/no strings into booleans before applying this rule.
 
 **The warning:** this workaround did **not** generalize. It improved classification on one tested model but made another model substantially worse. Some models answered “no” to almost everything under the heavier prompt.
 
@@ -194,7 +194,7 @@ This also creates an explicit precedence rule: an action that both steals and se
 
 **Check.** Build a labeled test set with examples of every option, including ambiguous cases. Run the real prompt, with the real surrounding context, and inspect results separately for each category. Overall accuracy can hide a category that has collapsed.
 
-*Evidence: **reproduced here**. The missing-category problem was observable; the yes/no workaround was model-dependent and is **not** a recommended default. See \`npm run report\`, section 8.*
+*Evidence: **reproduced here**. The missing-category problem was observable; the yes/no workaround was model-dependent and is **not** a recommended default. See `npm run report`, section 8.*
 
 ---
 
@@ -213,9 +213,9 @@ Include the reason for the rule in its error message. Future maintainers should 
 
 **Check.** Deliberately delete, rename, weaken, and move the guard to verify the rule catches changes that matter. Confirm that harmless formatting or comment changes do not trigger it.
 
-**Tooling.** The [\`pin-the-fix\` skill](.claude/skills/pin-the-fix/SKILL.md) generates an ast-grep rule and tests that the rule fires.
+**Tooling.** The [`pin-the-fix` skill](.claude/skills/pin-the-fix/SKILL.md) generates an ast-grep rule and tests that the rule fires.
 
-*Evidence: **reproduced here** with \`npm run demo:fences\`.*
+*Evidence: **reproduced here** with `npm run demo:fences`.*
 
 ---
 
@@ -242,6 +242,6 @@ The first three measures can reduce the chance of a successful attack. **None is
 
 Start with the failure you actually see, not a collection of tricks you hope will help. Make one change, preserve representative inputs, and compare the results on the model and prompt you intend to ship.
 
-Use \`npm run report\` to inspect the saved comparisons, or \`OLLAMA_MODEL=<your-model> npm run measure\` to test locally. For setup and detailed results, see the [README](README.md).
+Use `npm run report` to inspect the saved comparisons, or `OLLAMA_MODEL=<your-model> npm run measure` to test locally. For setup and detailed results, see the [README](README.md).
 
 Above all, keep the division of responsibility clear: **code controls the outcome; the model supplies bounded judgments and language.** That makes experimentation safer, and failures easier to detect.
